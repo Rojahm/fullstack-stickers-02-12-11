@@ -2,32 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
+/* :root {
+  --foreground-rgb: rgb(40, 148, 216);
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-}
+} */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(51, 59, 64);
+  background: #fff;
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.title {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+  color: #fff;
+}
+.section-title {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 37px;
+}
+.item-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+}
+.item-title:hover {
+  color: rgb(129, 73, 151);
 }
