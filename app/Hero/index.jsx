@@ -27,7 +27,7 @@ function HeroPage() {
             alt="stickers"
           />
         </div>
-        <div className="relative h-[6.25vw] -bottom-1 bg-hero-bg-curve bg-contain"></div>
+        <div className="relative h-[6.25vw] -bottom-1 lg:-bottom-2 bg-hero-bg-curve bg-contain"></div>
       </div>
 
       <div className="flex justify-center items-center my-12">
