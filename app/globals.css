@@ -26,6 +26,18 @@ body {
   line-height: 35px;
   color: #fff;
 }
+.title-secondary {
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22px;
+  color: #fff;
+}
+.title-hero {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 53px;
+  color: #fff;
+}
 .section-title {
   font-weight: 400;
   font-size: 32px;

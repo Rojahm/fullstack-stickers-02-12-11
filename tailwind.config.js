@@ -8,6 +8,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        "hero-background-image": "url('/banner-home-bg.jpg')",
+        "hero-bg-curve": "url('/banner-before.png')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
