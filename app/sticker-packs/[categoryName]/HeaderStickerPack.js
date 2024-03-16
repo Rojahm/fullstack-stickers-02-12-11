@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function HeaderStickerPack() {
   return (
-    <div className="bg-blue-300 h-[16vh] lg:h-[20vh] relative">
+    <div className="bg-pink-500 h-[16vh] lg:h-[20vh] relative">
       <Image
         src={"/page_pack.png"}
         alt="page pack bg"

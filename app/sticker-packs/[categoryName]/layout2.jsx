@@ -1,3 +1,4 @@
+import Footer from "@/app/ui/Footer";
 import HeaderStickerPack from "./HeaderStickerPack";
 import Link from "next/link";
 
@@ -5,7 +6,7 @@ function StickerPackSingleLayout({ children }) {
   return (
     <>
       <HeaderStickerPack />
-      <div className="mx-10 mt-6">
+      <div className="mx-10 my-6">
         <div className="flex gap-2 leading-6 text-[22px] font-semibold">
           <Link href={"/"}>Home</Link>
           <Link href={"/sticker-packs"}>/ Sticker Packs</Link>
@@ -13,6 +14,7 @@ function StickerPackSingleLayout({ children }) {
         </div>
         {children}
       </div>
+      <Footer />
     </>
   );
 }
