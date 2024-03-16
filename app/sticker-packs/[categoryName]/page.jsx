@@ -14,14 +14,6 @@ function StickerPackSinglePage() {
               height={300}
               alt="hello kitty"
               className="md:absolute md:bottom-48 lg:bottom-24 md:-left-32 lg:-left-28 lg:w-[400px]"
-              style={
-                {
-                  // objectPosition: "left bottom",
-                  // position: "absolute",
-                  // bottom: 100,
-                  // left: -110,
-                }
-              }
             />
           </div>
           <div className="flex flex-col gap-5">
