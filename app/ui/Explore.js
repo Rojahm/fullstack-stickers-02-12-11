@@ -62,7 +62,7 @@ function Explore() {
     "Girl",
   ];
   return (
-    <div className="my-10 px-6 md:px-12 lg:px-80 flex flex-col">
+    <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">
       <Link href={"/"} className="text-4xl">
         Explore
       </Link>

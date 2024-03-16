@@ -6,20 +6,35 @@ import { GiHamburgerMenu } from "react-icons/gi";
 function Nav() {
   return (
     <>
-      <div className="hidden md:w-[50vw] md:flex md:justify-evenly md:items-center">
-        <Link href={"/"} className="title-secondary">
+      <div className="hidden md:w-[400px] md:h-[50px] md:flex md:justify-evenly md:items-center">
+        <Link
+          href={"/"}
+          className="title-secondary flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+        >
           Home
         </Link>
-        <Link href={"/"} className="title-secondary">
+        <Link
+          href={"/sticker-packs"}
+          className="title-secondary flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+        >
           Sticker Packs
         </Link>
-        <Link href={"/"} className="title-secondary">
+        <Link
+          href={"/"}
+          className="title-secondary flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+        >
           Stickers
         </Link>
-        <Link href={"/"} className="title-secondary">
+        <Link
+          href={"/"}
+          className="title-secondary flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+        >
           FAQ
         </Link>
-        <Link href={"/"} className="title-secondary">
+        <Link
+          href={"/"}
+          className="title-secondary flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+        >
           <FaSearch />
         </Link>
       </div>

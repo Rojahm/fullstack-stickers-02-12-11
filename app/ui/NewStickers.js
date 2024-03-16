@@ -45,7 +45,7 @@ function NewStickers() {
     },
   ];
   return (
-    <div className="px-6 md:px-12 lg:px-80 flex flex-col">
+    <div className="px-6 md:px-12 lg:px-40 flex flex-col">
       <Link href={"/"} className="text-4xl">
         New Stickers
       </Link>
