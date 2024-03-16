@@ -2,11 +2,12 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import StickerPacksLayout from "./layout1";
 
 function StickerPacksPage() {
   const pathName = usePathname();
   return (
-    <div>
+    <StickerPacksLayout>
       <div className="flex gap-2 leading-6 text-[22px] font-semibold">
         <Link href={"/"}>Home</Link>
         <Link
@@ -18,7 +19,7 @@ function StickerPacksPage() {
           / Sticker Packs
         </Link>
       </div>
-    </div>
+    </StickerPacksLayout>
   );
 }
 

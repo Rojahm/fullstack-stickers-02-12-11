@@ -51,3 +51,13 @@ body {
 .item-title:hover {
   color: rgb(129, 73, 151);
 }
+/* .cover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url("/page_pack.png");
+  z-index: 2;
+  height: 10vh;
+  width: 100%;
+} */
