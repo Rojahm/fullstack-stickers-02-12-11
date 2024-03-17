@@ -24,7 +24,7 @@ function HeaderStickerPack() {
         }}
       />
       <div className="z-2 relative">
-        <Header />
+        <Header color={"black"} />
       </div>
     </div>
   );

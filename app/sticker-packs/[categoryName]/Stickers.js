@@ -45,7 +45,7 @@ function Stickers() {
   ];
   return (
     <div className="my-16 px-6 md:px-12 lg:px-40 flex flex-col">
-      <Link href={"/"} className="text-4xl">
+      <Link href={"/"} className="text-2xl font-bold">
         Browse our sticker pack Sanrio
       </Link>
       <hr className="border-[#814997] border-[3px] rounded-md" />
@@ -71,11 +71,6 @@ function Stickers() {
             </Link>
           </div>
         ))}
-      </div>
-      <div className="mt-6 flex justify-end ">
-        <button className="border border-[#814997] w-[130px] rounded-full text-xl font-semibold py-3 hover:bg-[#814997] hover:shadow-md hover:text-white transition-all ease-in-out duration-200">
-          Show More
-        </button>
       </div>
     </div>
   );

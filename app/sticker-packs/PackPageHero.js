@@ -3,7 +3,7 @@ import Header from "../ui/Header";
 function PackPageHero() {
   return (
     <div className="bg-hero-background-image flex flex-col bg-cover min-h-[200px] h-auto relative">
-      <Header />
+      <Header color={"white"} />
       <div className="flex flex-col justify-center items-center my-20 pb-14 mx-32 lg:mx-44 gap-10 lg:gap-16">
         <h1 className="text-white font-extrabold text-3xl md:text-[40px] lg:text-[60px] uppercase drop-shadow-md">
           ALL STICKER PACKS

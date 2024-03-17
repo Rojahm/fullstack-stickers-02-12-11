@@ -1,4 +1,3 @@
-import Footer from "@/app/ui/Footer";
 import HeaderStickerPack from "./HeaderStickerPack";
 import Link from "next/link";
 
@@ -14,7 +13,6 @@ function StickerPackSingleLayout({ children }) {
         </div>
         {children}
       </div>
-      <Footer />
     </>
   );
 }

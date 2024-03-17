@@ -4,7 +4,7 @@ import { GoDotFill } from "react-icons/go";
 
 function Footer() {
   return (
-    <div className="bg-[#0B1D2C] text-white font-bold flex flex-col justify-center items-center gap-2 pt-5 pb-10">
+    <div className="relative bottom-0 w-full bg-[#0B1D2C] text-white font-bold flex flex-col justify-center items-center gap-2 pt-5 pb-10">
       <p>Copyright 2024 © Sticker Mania</p>
       <div className="flex justify-center items-center gap-1">
         <Link href={"/"}>Sticker Mania for Chrome</Link>

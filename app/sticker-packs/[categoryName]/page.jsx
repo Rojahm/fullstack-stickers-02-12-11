@@ -1,5 +1,5 @@
 import Image from "next/image";
-import StickerPackSingleLayout from "./layout2";
+import StickerPackSingleLayout from "./layoutPack";
 import Stickers from "./Stickers";
 function StickerPackSinglePage() {
   return (
