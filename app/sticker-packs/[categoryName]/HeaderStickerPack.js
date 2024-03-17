@@ -1,9 +1,12 @@
 import Header from "@/app/ui/Header";
 import Image from "next/image";
 
-function HeaderStickerPack() {
+function HeaderStickerPack({ color, textColor }) {
   return (
-    <div className="bg-pink-500 h-[16vh] lg:h-[20vh] relative">
+    <div
+      className="h-[16vh] lg:h-[20vh] relative"
+      style={{ backgroundColor: `${color}` }}
+    >
       <Image
         src={"/page_pack.png"}
         alt="page pack bg"
@@ -24,7 +27,7 @@ function HeaderStickerPack() {
         }}
       />
       <div className="z-2 relative">
-        <Header color={"black"} />
+        <Header color={textColor} />
       </div>
     </div>
   );

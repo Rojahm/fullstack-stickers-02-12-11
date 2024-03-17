@@ -1,9 +1,18 @@
 import Image from "next/image";
-import StickerPackSingleLayout from "./layoutPack";
+// import StickerPackSingleLayout from "./layoutPack";
 import Stickers from "./Stickers";
+import HeaderStickerPack from "./HeaderStickerPack";
+import Link from "next/link";
+
 function StickerPackSinglePage() {
   return (
-    <StickerPackSingleLayout>
+    <>
+      <HeaderStickerPack color={"#ec4899"} textColor={"black"} />
+      <div className="mx-10 my-6 flex gap-2 leading-6 text-[22px] font-semibold">
+        <Link href={"/"}>Home</Link>
+        <Link href={"/sticker-packs"}>/ Sticker Packs</Link>
+        <div className="text-[#814997]">/ Sanario</div>
+      </div>
       <div className="mt-10">
         <div className="flex flex-col md:flex-row mx-[40px] lg:mx-[300px] rounded-3xl shadow-lg shadow-[#814997]/40 p-5">
           <div className="relative md:w-[350vw] lg:w-[200vw] h-auto">
@@ -61,7 +70,7 @@ function StickerPackSinglePage() {
         </div>
         <Stickers />
       </div>
-    </StickerPackSingleLayout>
+    </>
   );
 }
 
