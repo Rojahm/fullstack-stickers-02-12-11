@@ -1,5 +1,6 @@
 import Image from "next/image";
 import StickerPackSingleLayout from "./layout2";
+import Stickers from "./Stickers";
 function StickerPackSinglePage() {
   return (
     <StickerPackSingleLayout>
@@ -58,6 +59,7 @@ function StickerPackSinglePage() {
             </div>
           </div>
         </div>
+        <Stickers />
       </div>
     </StickerPackSingleLayout>
   );
