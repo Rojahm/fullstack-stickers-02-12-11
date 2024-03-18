@@ -1,4 +1,4 @@
-import Header from "@/app/ui/Header";
+import Header from "@/app/(front)/ui/Header";
 import Image from "next/image";
 
 function HeaderStickerPack({ color, textColor }) {

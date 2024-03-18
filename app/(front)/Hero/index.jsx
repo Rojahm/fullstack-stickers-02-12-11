@@ -1,11 +1,11 @@
-import Header from "@/app/ui/Header";
 import Image from "next/image";
+import Header from "../ui/Header";
 
 function HeroPage() {
   return (
     <>
       <div className="bg-hero-background-image flex flex-col bg-cover min-h-[200px] h-auto relative">
-        <Header />
+        <Header color={"white"} />
         <div className="flex flex-col justify-center items-center mt-20 gap-10">
           <h1 className="text-white font-extrabold text-3xl md:text-[40px] lg:text-[60px] uppercase drop-shadow-md">
             ChopStick

@@ -12,6 +12,7 @@ function Header({ color }) {
           ChopStick
         </h1>
       </Link>
+
       <Nav color={color} />
     </div>
   );

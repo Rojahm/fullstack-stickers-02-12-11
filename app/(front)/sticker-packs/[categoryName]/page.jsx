@@ -1,5 +1,4 @@
 import Image from "next/image";
-// import StickerPackSingleLayout from "./layoutPack";
 import Stickers from "./Stickers";
 import HeaderStickerPack from "./HeaderStickerPack";
 import Link from "next/link";
