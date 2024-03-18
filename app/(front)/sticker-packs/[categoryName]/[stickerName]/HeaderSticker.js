@@ -1,4 +1,4 @@
-import Header from "@/app/ui/Header";
+import Header from "@/app/(front)/ui/Header";
 
 function HeaderSticker({ color, textColor }) {
   return (

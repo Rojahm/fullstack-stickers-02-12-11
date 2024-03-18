@@ -44,7 +44,7 @@ function Stickers() {
     },
   ];
   return (
-    <div className="my-16 px-6 md:px-12 lg:px-40 flex flex-col">
+    <div className="my-16 w-[80%]">
       <Link href={"/"} className="text-2xl font-bold">
         Browse our sticker pack Sanrio
       </Link>
