@@ -8,14 +8,14 @@ function StickerPackSinglePage() {
     <>
       <HeaderStickerPack color={"#ec4899"} textColor={"black"} />
       <div className="flex flex-col justify-center items-center">
-        <div className="w-[80%] my-6 flex gap-2 leading-6 text-[19px] font-semibold">
+        <div className="w-[90%] lg:w-[80%] my-6 flex gap-2 leading-6 text-[19px] font-semibold">
           <Link href={"/"}>Home</Link>
           <Link href={"/sticker-packs"}>/ Sticker Packs</Link>
           <div className="text-[#814997]">/ Sanario</div>
         </div>
-        <div className="mt-10 w-[70%] flex flex-col justify-center items-center md:flex-row rounded-3xl shadow-lg shadow-[#814997]/40 p-5">
+        <div className="mt-10 w-[90%] lg:w-[70%] flex flex-col gap-5 justify-center items-center md:flex-row rounded-3xl shadow-lg shadow-[#814997]/40 p-5">
           {/* image */}
-          <div className="bg-white w-[40%] h-full p-4 -translate-x-20 rounded-3xl shadow-lg">
+          <div className="bg-white md:w-[40%] h-full p-4 -translate-y-20 md:translate-y-0 md:-translate-x-20 rounded-3xl shadow-lg">
             <Image
               src={
                 "/images/StickerPacks/sanrio-hello-kitty-bathing-suit-512x512-512x512.png"
@@ -27,7 +27,7 @@ function StickerPackSinglePage() {
             />
           </div>
           {/* details */}
-          <div className="flex flex-col gap-5 w-[60%]">
+          <div className="flex flex-col gap-5 md:w-[60%]">
             <h1 className="text-4xl font-bold">Sanrio</h1>
             <p className="text-[#4e4a67] text-[0.8rem] leading-6">
               For those who adore the realm of cute, or kawaii in Japanese
@@ -49,7 +49,7 @@ function StickerPackSinglePage() {
                 Add stickers Pack
               </button>
             </div>
-            <div className="shadow-lg shadow-[#814997]/40 rounded-3xl border py-8 px-3">
+            <div className="bg-white shadow-lg shadow-[#814997]/40 rounded-3xl border py-8 px-3 lg:translate-x-20">
               <h2 className="font-bold text-lg">Related sticker packs:</h2>
               <hr className="border-2 border-[#814997]/20 rounded-full" />
               <div className="flex flex-wrap gap-5 my-5">

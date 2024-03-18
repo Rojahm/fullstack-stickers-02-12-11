@@ -1,10 +1,13 @@
+import Stickers from "../Stickers";
 import HeaderSticker from "./HeaderSticker";
+import StickerPage from "./Sticker";
 
 function StickerSinglePage() {
   return (
-    <div className="">
+    <div className="flex flex-col justify-center items-center">
       <HeaderSticker color={"#EC5298"} textColor={"black"} />
-      <h1>Sticker single page</h1>
+      <StickerPage />
+      <Stickers />
     </div>
   );
 }
