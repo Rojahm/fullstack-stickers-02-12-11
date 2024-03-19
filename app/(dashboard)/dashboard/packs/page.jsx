@@ -101,10 +101,6 @@ function DashBPacksPage() {
                   {pack.show ? <FaRegEyeSlash /> : <FaRegEye />}
                 </Link>
 
-                {/* <Link
-                  href={"/dashboard/packs/edit"}
-                  className="shadow-md hover:shadow-lg hover:bg-sky-300 hover:text-white border border-sky-300 p-2 rounded-md"
-                ></Link> */}
                 <Link
                   href={"/dashboard/packs/delete"}
                   className="shadow-md hover:shadow-lg hover:bg-sky-300 hover:text-white border border-sky-300 p-2 rounded-md"

@@ -8,11 +8,11 @@ function DashBPacksNav() {
   const items = [
     {
       title: "Show All",
-      link: "/dashboard/packs",
+      link: "/dashboard/stickers",
     },
     {
       title: "Add New",
-      link: "/dashboard/packs/new",
+      link: "/dashboard/stickers/new",
     },
   ];
   return (
