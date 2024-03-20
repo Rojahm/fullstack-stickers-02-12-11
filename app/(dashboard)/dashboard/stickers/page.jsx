@@ -60,7 +60,7 @@ function DashBStickerPage() {
     },
   ];
   return (
-    <div className="px-6 md:px-12 lg:px-40 flex flex-col justify-center w-[90%] lg:w-[70%]">
+    <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col justify-center w-[95%] lg:w-[70%]">
       <Link href={"/"} className="text-4xl">
         All Stickers
       </Link>

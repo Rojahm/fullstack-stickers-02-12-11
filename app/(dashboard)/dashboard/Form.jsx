@@ -21,79 +21,82 @@ function Form({ title }) {
         {/* One Input */}
         {/* One Input */}
         <div className="flex justify-center items-center gap-5 w-full">
-          <label htmlFor="title" className="font-semibold w-[20%] md:w-[10%]">
+          <label htmlFor="image" className="font-semibold w-[20%] md:w-[10%]">
             Image :
           </label>
           <input
             required
             type="text"
-            id="title"
+            id="image"
             className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
           ></input>
         </div>
         {/* One Input */}
         {/* One Input */}
         <div className="flex justify-center items-center gap-5 w-full">
-          <label htmlFor="title" className="font-semibold w-[20%] md:w-[10%]">
+          <label htmlFor="cover" className="font-semibold w-[20%] md:w-[10%]">
             Cover :
           </label>
           <input
             required
             type="text"
-            id="title"
+            id="cover"
             className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
           ></input>
         </div>
         {/* One Input */}
         {/* One Input */}
         <div className="flex justify-center items-center gap-5 w-full">
-          <label htmlFor="title" className="font-semibold w-[20%] md:w-[10%]">
+          <label htmlFor="link" className="font-semibold w-[20%] md:w-[10%]">
             Link :
           </label>
           <input
             required
             type="text"
-            id="title"
+            id="link"
             className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
           ></input>
         </div>
         {/* One Input */}
         {/* One Input */}
         <div className="flex justify-center items-center gap-5 w-full">
-          <label htmlFor="title" className="font-semibold w-[20%] md:w-[10%]">
+          <label htmlFor="tags" className="font-semibold w-[20%] md:w-[10%]">
             Tags :
           </label>
           <input
             required
             type="text"
-            id="title"
+            id="tags"
             className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
           ></input>
         </div>
         {/* One Input */}
         {/* One Input */}
         <div className="flex justify-center items-center gap-5 w-full">
-          <label htmlFor="title" className="font-semibold w-[20%] md:w-[10%]">
+          <label htmlFor="show" className="font-semibold w-[20%] md:w-[10%]">
             Show :
           </label>
-          <input
+          <select
             required
-            type="text"
-            id="title"
+            type="select"
+            id="show"
             className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-          ></input>
+          >
+            <option>Yes</option>
+            <option>No</option>
+          </select>
         </div>
         {/* One Input */}
         {/* One Input */}
         <div className="flex justify-center items-center gap-5 w-full">
-          <label htmlFor="title" className="font-semibold w-[20%] md:w-[10%]">
+          <label htmlFor="color" className="font-semibold w-[20%] md:w-[10%]">
             Color :
           </label>
           <div className="w-[70%]">
             <input
               required
               type="color"
-              id="title"
+              id="color"
               className="border border-sky-200 rounded-md px-2 py-1 outline-sky-300 h-10"
             ></input>
           </div>
