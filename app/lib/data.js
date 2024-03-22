@@ -14,9 +14,22 @@ import axios from "axios";
 //   // console.log(data);
 //   // return data;
 // }
+export function fetchAllPacks() {
+  axios.get(`${process.env.SRV}/stickerPacks`).then((res) => {
+    console.log(res.data);
+    return res.data;
+  });
+}
 export function fetchOnePack(id) {
   axios.get(`${process.env.SRV}/stickerPack/${id}`).then((res) => {
     // console.log(res.data);
     return res.data;
   });
 }
+
+// export function fetchPacksName() {
+//   axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
+//     // console.log(res.data);
+//     return res.data;
+//   });
+// }

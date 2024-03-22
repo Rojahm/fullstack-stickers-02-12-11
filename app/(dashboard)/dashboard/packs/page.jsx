@@ -24,63 +24,11 @@ import { FaRegEyeSlash } from "react-icons/fa";
 //   // return data;
 // }
 function DashBPacksPage() {
-  // const packs = [
-  //   {
-  //     title: "meme",
-  //     cover: "/images/StickerPacks/covers/meme.png",
-  //     image: "/images/StickerPacks/previews-512x512.png",
-  //     link: "/",
-  //     color: "bg-lime-400",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "anime",
-  //     cover: "/images/StickerPacks/covers/cover-anime.png",
-  //     image: "/images/StickerPacks/BNHA – Tsuyu-a-256x256.png",
-  //     link: "/",
-  //     color: "bg-green-400",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "cute",
-  //     cover: "/images/StickerPacks/covers/cover-cute.png",
-  //     image:
-  //       "/images/StickerPacks/cute-eggs-pack1600175875-512x512-256x256.png",
-  //     link: "/",
-  //     color: "bg-yellow-400",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "pokemon",
-  //     cover: "/images/StickerPacks/covers/cover-pokemon-bg.png",
-  //     image: "/images/StickerPacks/cover-pokemon-bg1-256x256.png",
-  //     link: "/",
-  //     color: "bg-purple-400",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "cute cats",
-  //     cover: "/images/StickerPacks/covers/cover-cute-cats.png",
-  //     image: "/images/StickerPacks/previews-256x256.png",
-  //     link: "/",
-  //     color: "bg-sky-400",
-  //     show: false,
-  //   },
-  //   {
-  //     title: "among us",
-  //     cover: "/images/StickerPacks/covers/cover-among-us.png",
-  //     image: "/images/StickerPacks/изображение_2021-01-11_022359-256x256.png",
-  //     link: "/",
-  //     color: "bg-orange-400",
-  //     show: true,
-  //   },
-  // ];
   const [packs, setPacks] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios.get(`${process.env.SRV}/stickerPacks`).then((res) => {
       const data = res.data;
-      console.log(data);
       setPacks(data);
       setLoading(false);
     });
@@ -104,16 +52,19 @@ function DashBPacksPage() {
             >
               <Link href={pack.link} key={i} className="w-[50%]">
                 <div
-                  className={`w-auto h-auto rounded-s-xl ${pack.color} group-hover:bg-black bg-cover`}
-                  // style={{ backgroundImage: `url(${pack.cover})` }}
+                  className={`w-auto h-auto rounded-s-xl group-hover:bg-black bg-cover`}
+                  style={{
+                    backgroundImage: `url(${pack.cover})`,
+                    backgroundColor: `${pack.color}`,
+                  }}
                 >
-                  {/* <Image
-                    src={pack.image}
+                  <Image
+                    src={pack.imageLink}
                     width={200}
                     height={200}
                     alt={pack.title}
                     className="p-3 m-auto"
-                  /> */}
+                  />
                   <p className="uppercase text-center font-bold text-xl text-white drop-shadow-md">
                     {pack.title}
                   </p>

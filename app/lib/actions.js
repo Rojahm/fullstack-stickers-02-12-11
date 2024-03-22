@@ -7,11 +7,10 @@ export async function addNewPack(formData) {
     imageLink: formData.get("image"),
     cover: formData.get("cover"),
     link: formData.get("link"),
-    relatedPacks: formData.get("tags").split(","),
+    relatedPacks: formData.get("relatedPacks").split(","),
     show: formData.get("show"),
     color: formData.get("color"),
   };
-
   axios.post(`${process.env.SRV}/newstickerPack`, data).then((res) => {
     console.log(res.data.msg);
   });

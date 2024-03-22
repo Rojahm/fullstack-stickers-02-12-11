@@ -19,7 +19,7 @@ function PackPageHero() {
         </div>
       </div>
 
-      <div className="relative h-[6.25vw] -bottom-1 lg:-bottom-2 bg-hero-bg-curve bg-contain"></div>
+      <div className="relative h-[6.25vw] -bottom-1 md:-bottom-2 bg-hero-bg-curve bg-contain"></div>
     </div>
   );
 }
