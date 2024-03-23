@@ -9,7 +9,7 @@ function RelatedPacksInput({ packsNames, defaultValue, onClick }) {
       </label>
       <div className="flex flex-wrap gap-3 w-[70%]">
         {packsNames.map((packsName, i) => (
-          <div className="flex gap-1">
+          <div className="flex gap-1" key={i}>
             {packsName.title}
             <input
               defaultChecked={defaultValue.includes(packsName.title)}
