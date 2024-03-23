@@ -6,11 +6,16 @@ export async function addNewPack(formData) {
     title: formData.get("title").trim().split(" ").join("-"),
     imageLink: formData.get("image"),
     cover: formData.get("cover"),
+    description: formData.get("description"),
     link: formData.get("link"),
-    relatedPacks: formData.get("relatedPacks").split(","),
+    relatedPacks: formData
+      .get("relatedPacks")
+      .split(",")
+      .filter((relPack) => relPack !== ""),
     show: formData.get("show"),
     color: formData.get("color"),
   };
+  // console.log(data);
   // console.log(formData.get("title").trim().split(" ").join("-"));
   axios.post(`${process.env.SRV}/newstickerPack`, data).then((res) => {
     console.log(res.data.msg);

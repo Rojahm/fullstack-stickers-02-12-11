@@ -70,17 +70,18 @@ function Form({ title, id }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    if (relatedPacks.length > 0) {
-      //Add Related Packs
-      formData.append("relatedPacks", relatedPacks);
-    }
+    // if (relatedPacks.length > 0) {
+    //Add Related Packs
+    formData.append("relatedPacks", relatedPacks);
+    e.target.reset();
+    setRelatedPacks([]);
+    // }
     if (pathname === "/dashboard/packs/new") {
       await addNewPack(formData);
     } else if (pathname.startsWith("/dashboard/packs/edit")) {
       await updatePack(formData, id);
       router.back();
     }
-    e.target.reset();
   };
 
   //Handle Tags
