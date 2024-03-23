@@ -33,3 +33,10 @@ export function fetchOnePack(id) {
 //     return res.data;
 //   });
 // }
+
+export function fetchAllStickers() {
+  axios.get(`${process.env.SRV}/allStickers`).then((res) => {
+    // console.log(res.data);
+    return res.data;
+  });
+}

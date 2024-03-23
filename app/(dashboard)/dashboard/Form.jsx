@@ -12,6 +12,7 @@ import LinkInput from "../(ui-form-inputs)/LinkInput";
 import TitleInput from "../(ui-form-inputs)/TitleInput";
 import ImageInput from "../(ui-form-inputs)/ImageInput";
 import DescriptionInput from "../(ui-form-inputs)/DescriptionInput";
+// import { fetchAllPacks } from "@/app/lib/data";
 // import { fetchOnePack, fetchPacksName } from "@/app/lib/data";
 
 function Form({ title, id }) {
@@ -30,11 +31,12 @@ function Form({ title, id }) {
   const [defaultShow, setDefaultShow] = useState();
   const [defaultColor, setDefaultColor] = useState();
   useEffect(() => {
-    if (pathname.startsWith("/dashboard/packs")) {
-      axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
-        setPacksNames(res.data);
-      });
-    }
+    // if (pathname.startsWith("/dashboard/packs")) {
+    axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
+      setPacksNames(res.data);
+      console.log(res.data);
+    });
+    // }
     if (pathname.startsWith("/dashboard/packs/edit")) {
       setIsLoading(true);
       axios.get(`${process.env.SRV}/stickerPack/${id}`).then((res) => {
@@ -89,6 +91,7 @@ function Form({ title, id }) {
       if (pathname === "/dashboard/stickers/new") {
         await addNewSticker(formData);
         e.target.reset();
+        setTags([]);
       }
     }
   };
@@ -158,8 +161,11 @@ function Form({ title, id }) {
                   name="pack"
                   className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
                 >
-                  <option value={"pack1"}>pack1</option>
-                  <option value={"pack2"}>pack2</option>
+                  {packsNames.map((packName, i) => (
+                    <option value={packName.title} key={i}>
+                      {packName.title.split("-").join(" ")}
+                    </option>
+                  ))}
                 </select>
               </div>
               {/* One Input */}
