@@ -3,7 +3,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // Custom componenets
-import { addNewPack, updatePack } from "@/app/lib/actions";
+import { addNewPack, updatePack, addNewSticker } from "@/app/lib/actions";
 import CoverInput from "../(ui-form-inputs)/CoverInput";
 import RelatedPacksInput from "../(ui-form-inputs)/RelatedPacksInput";
 import ColorInput from "../(ui-form-inputs)/ColorInput";
@@ -70,20 +70,32 @@ function Form({ title, id }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    // if (relatedPacks.length > 0) {
-    //Add Related Packs
-    formData.append("relatedPacks", relatedPacks);
-    e.target.reset();
-    setRelatedPacks([]);
-    // }
-    if (pathname === "/dashboard/packs/new") {
-      await addNewPack(formData);
-    } else if (pathname.startsWith("/dashboard/packs/edit")) {
-      await updatePack(formData, id);
-      router.back();
+    // Submit Packs
+    if (pathname.startsWith("/dashboard/packs")) {
+      //Add Related Packs
+      formData.append("relatedPacks", relatedPacks);
+      if (pathname === "/dashboard/packs/new") {
+        await addNewPack(formData);
+        e.target.reset();
+      } else if (pathname.startsWith("/dashboard/packs/edit")) {
+        await updatePack(formData, id);
+        router.back();
+      }
+      setRelatedPacks([]);
+    }
+    // Submit Stickers
+    else if (pathname.startsWith("/dashboard/stickers")) {
+      formData.append("tags", tags);
+      if (pathname === "/dashboard/stickers/new") {
+        await addNewSticker(formData);
+        e.target.reset();
+      }
     }
   };
-
+  //Search Tags
+  const searchTags = (e) => {
+    // console.log(e.target.value);
+  };
   //Handle Tags
   const [tags, setTags] = useState([]);
   const handleTag = (e) => {
@@ -93,6 +105,7 @@ function Form({ title, id }) {
       e.target.value = null;
     }
   };
+  console.log(tags);
   const deleteTag = (tagToDelete) => {
     setTags(tags.filter((tag) => tag != tagToDelete));
   };
@@ -130,9 +143,43 @@ function Form({ title, id }) {
           {/* One Input */}
           <LinkInput name="link" defaultValue={defaultLink} />
           {/* One Input */}
-          {/* One Input */}
           {pathname.startsWith("/dashboard/stickers/") ? (
             <>
+              {/* One Input */}
+              <div className="flex justify-center items-center gap-5 w-full">
+                <label
+                  htmlFor="pack"
+                  className="font-semibold w-[20%] md:w-[10%]"
+                >
+                  Pack :
+                </label>
+                <select
+                  id="pack"
+                  name="pack"
+                  className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
+                >
+                  <option value={"pack1"}>pack1</option>
+                  <option value={"pack2"}>pack2</option>
+                </select>
+              </div>
+              {/* One Input */}
+              {/* One Input */}
+              <div className="flex justify-center items-center gap-5 w-full">
+                <label
+                  htmlFor="quantity"
+                  className="font-semibold w-[20%] md:w-[10%]"
+                >
+                  Quantity :
+                </label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
+                ></input>
+              </div>
+              {/* One Input */}
+              {/* One Input */}
               <div className="flex justify-center items-center gap-5 w-full">
                 <label
                   htmlFor="tags"
@@ -145,6 +192,7 @@ function Form({ title, id }) {
                   id="tags"
                   // name="tags"
                   onKeyDown={handleTag}
+                  onChange={searchTags}
                   className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
                 ></input>
               </div>
@@ -164,7 +212,7 @@ function Form({ title, id }) {
                   </div>
                 ))}
               </div>
-              // {/* One Input */}
+              {/* // One Input */}
             </>
           ) : (
             <>
