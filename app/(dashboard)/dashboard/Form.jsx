@@ -1,20 +1,30 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { addNewPack } from "@/app/lib/actions";
+// Custom componenets
+import { addNewPack, updatePack } from "@/app/lib/actions";
+import CoverInput from "../(ui)/CoverInput";
+import RelatedPacksInput from "../(ui)/RelatedPacksInput";
+import ColorInput from "../(ui)/ColorInput";
+import ShowInput from "../(ui)/ShowInput";
+import LinkInput from "../(ui)/LinkInput";
+import TitleInput from "../(ui)/TitleInput";
+import ImageInput from "../(ui)/ImageInput";
+import DescriptionInput from "../(ui)/DescriptionInput";
 // import { fetchOnePack, fetchPacksName } from "@/app/lib/data";
+
 function Form({ title, id }) {
   const pathname = usePathname();
-  // console.log(pathname);
-  // const pack = fetchOnePack(id);
-  // console.log(pack);
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [packsNames, setPacksNames] = useState([]);
-  // Defaul values
+
+  // Defaul values if it is an edit page
   const [defaultTitle, setDefaultTitle] = useState();
   const [defaultImage, setDefaultImage] = useState();
   const [defaultCover, setDefaultCover] = useState();
+  const [defaultDescription, setDefaultDescription] = useState();
   const [defaultLink, setDefaultLink] = useState();
   const [defaultRelatedPacks, setDefaultRelatedPacks] = useState([]);
   const [defaultShow, setDefaultShow] = useState();
@@ -22,18 +32,19 @@ function Form({ title, id }) {
   useEffect(() => {
     if (pathname.startsWith("/dashboard/packs")) {
       axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
-        // console.log(res.data);
         setPacksNames(res.data);
       });
     }
     if (pathname.startsWith("/dashboard/packs/edit")) {
       setIsLoading(true);
       axios.get(`${process.env.SRV}/stickerPack/${id}`).then((res) => {
-        setDefaultTitle(res.data.title);
+        setDefaultTitle(res.data.title.split("-").join(" "));
         setDefaultImage(res.data.imageLink);
         setDefaultCover(res.data.cover);
+        setDefaultDescription(res.data.description);
         setDefaultLink(res.data.link);
         setDefaultRelatedPacks(res.data.relatedPacks);
+        setRelatedPacks(res.data.relatedPacks);
         setDefaultShow(res.data.show);
         setDefaultColor(res.data.color);
         setIsLoading(false);
@@ -42,18 +53,32 @@ function Form({ title, id }) {
   }, []);
   // Handle Related Packs
   const [relatedPacks, setRelatedPacks] = useState([]);
-  const handleRelatedPacks = (title) => {
+  const handleRelatedPacks = (e, title) => {
     if (title.length > 0) {
-      setRelatedPacks([...relatedPacks, title]);
+      if (e.target.checked === true) {
+        if (!relatedPacks.includes(title)) {
+          setRelatedPacks([...relatedPacks, title]);
+        }
+      } else if (e.target.checked === false) {
+        setRelatedPacks(
+          relatedPacks.filter((relatedPack) => relatedPack != title)
+        );
+      }
     }
   };
   // Handle Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append("relatedPacks", relatedPacks);
+    if (relatedPacks.length > 0) {
+      //Add Related Packs
+      formData.append("relatedPacks", relatedPacks);
+    }
     if (pathname === "/dashboard/packs/new") {
       await addNewPack(formData);
+    } else if (pathname.startsWith("/dashboard/packs/edit")) {
+      await updatePack(formData, id);
+      router.back();
     }
     e.target.reset();
   };
@@ -90,72 +115,19 @@ function Form({ title, id }) {
           className="flex flex-col justify-center items-center w-[90%] md:w-[80%] lg:w-[60%] my-10 gap-5"
         >
           {/* One Input */}
-          <div className="flex justify-center items-center gap-5 w-full">
-            <label
-              htmlFor="title"
-              className="font-semibold w-[20%] md:w-[10%] "
-            >
-              Title :
-            </label>
-            <input
-              defaultValue={defaultTitle}
-              required
-              type="text"
-              id="title"
-              name="title"
-              className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-            ></input>
-          </div>
+          <TitleInput name="title" defaultValue={defaultTitle} />
           {/* One Input */}
           {/* One Input */}
-          <div className="flex justify-center items-center gap-5 w-full">
-            <label htmlFor="image" className="font-semibold w-[20%] md:w-[10%]">
-              Image :
-            </label>
-            <input
-              defaultValue={defaultImage}
-              required
-              type="text"
-              id="image"
-              name="image"
-              className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-            ></input>
-          </div>
+          <ImageInput name="image" defaultValue={defaultImage} />
           {/* One Input */}
           {/* One Input */}
-          {pathname.startsWith("/dashboard/packs/") ? (
-            <div className="flex justify-center items-center gap-5 w-full">
-              <label
-                htmlFor="cover"
-                className="font-semibold w-[20%] md:w-[10%]"
-              >
-                Cover :
-              </label>
-              <input
-                defaultValue={defaultCover}
-                required
-                type="text"
-                id="cover"
-                name="cover"
-                className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-              ></input>
-            </div>
-          ) : null}
+          <DescriptionInput
+            name="description"
+            defaultValue={defaultDescription}
+          />
           {/* One Input */}
           {/* One Input */}
-          <div className="flex justify-center items-center gap-5 w-full">
-            <label htmlFor="link" className="font-semibold w-[20%] md:w-[10%]">
-              Link :
-            </label>
-            <input
-              defaultValue={defaultLink}
-              required
-              type="text"
-              id="link"
-              name="link"
-              className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-            ></input>
-          </div>
+          <LinkInput name="link" defaultValue={defaultLink} />
           {/* One Input */}
           {/* One Input */}
           {pathname.startsWith("/dashboard/stickers/") ? (
@@ -191,71 +163,27 @@ function Form({ title, id }) {
                   </div>
                 ))}
               </div>
+              // {/* One Input */}
             </>
           ) : (
-            // {/* One Input */}
-            // {/* One Input */}
-            <div className="flex justify-center items-center gap-5 w-full">
-              <label
-                htmlFor="relatedPacks"
-                className="font-semibold w-[20%] md:w-[10%]"
-              >
-                Related Packs :
-              </label>
-              <div className="flex flex-wrap gap-3 w-[70%]">
-                {packsNames.map((packsName, i) => (
-                  <div className="flex gap-1">
-                    {packsName.title}
-                    <input
-                      defaultChecked={defaultRelatedPacks.includes(
-                        packsName.title
-                      )}
-                      // defaultChecked={true}
-                      value={packsName.id}
-                      type="checkbox"
-                      id="relatedPacks"
-                      onClick={() => handleRelatedPacks(packsName.title)}
-                    ></input>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <>
+              {/* // One Input */}
+              <CoverInput name="cover" defaultValue={defaultCover} />
+              {/* // One Input */}
+              {/* // One Input */}
+              <RelatedPacksInput
+                packsNames={packsNames}
+                defaultValue={defaultRelatedPacks}
+                onClick={handleRelatedPacks}
+              />
+              {/* One Input */}
+            </>
           )}
           {/* One Input */}
-          {/* One Input */}
-          <div className="flex justify-center items-center gap-5 w-full">
-            <label htmlFor="show" className="font-semibold w-[20%] md:w-[10%]">
-              Show :
-            </label>
-            <select
-              defaultValue={defaultShow}
-              required
-              type="select"
-              id="show"
-              name="show"
-              className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-            >
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </select>
-          </div>
+          <ShowInput name="show" defaultValue={defaultShow} />
           {/* One Input */}
           {/* One Input */}
-          <div className="flex justify-center items-center gap-5 w-full">
-            <label htmlFor="color" className="font-semibold w-[20%] md:w-[10%]">
-              Color :
-            </label>
-            <div className="w-[70%]">
-              <input
-                defaultValue={defaultColor}
-                required
-                type="color"
-                id="color"
-                name="color"
-                className="border border-sky-200 rounded-md px-2 py-1 outline-sky-300 h-10"
-              ></input>
-            </div>
-          </div>
+          <ColorInput name="color" defaultValue={defaultColor} />
           {/* One Input */}
           <button className="bg-sky-100 w-[20%] rounded-md shadow-md leading-9 hover:bg-sky-200 hover:shadow-lg hover:text-white">
             Save

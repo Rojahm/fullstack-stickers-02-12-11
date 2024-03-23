@@ -15,14 +15,6 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-// export async function fetchAllPacks() {
-//   // const res = await fetch(
-//   //   "https://srv-sticker-shop.liara.run/api/stickerPacks"
-//   // );
-//   // const data = await res.json();
-//   // console.log(data);
-//   // return data;
-// }
 function DashBPacksPage() {
   const [packs, setPacks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -66,7 +58,7 @@ function DashBPacksPage() {
                     className="p-3 m-auto"
                   />
                   <p className="uppercase text-center font-bold text-xl text-white drop-shadow-md">
-                    {pack.title}
+                    {pack.title.split("-").join(" ")}
                   </p>
                 </div>
               </Link>

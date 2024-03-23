@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-function Stickers() {
+function Stickers({ title }) {
   const stickers = [
     {
       title: "Among Us Red Character Jumps Sticker",
@@ -46,7 +46,7 @@ function Stickers() {
   return (
     <div className="my-16 w-[90%] lg:w-[80%]">
       <Link href={"/"} className="text-2xl font-bold">
-        Browse our sticker pack Sanrio
+        Browse our sticker pack {title.split("-").join(" ")}
       </Link>
       <hr className="border-[#814997] border-[3px] rounded-md" />
       <div className="mt-4 grid grid-cols-5 gap-5">

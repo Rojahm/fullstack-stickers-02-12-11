@@ -16,7 +16,7 @@ import axios from "axios";
 // }
 export function fetchAllPacks() {
   axios.get(`${process.env.SRV}/stickerPacks`).then((res) => {
-    console.log(res.data);
+    // console.log(res.data);
     return res.data;
   });
 }

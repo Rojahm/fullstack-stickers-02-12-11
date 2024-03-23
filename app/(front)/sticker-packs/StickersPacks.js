@@ -29,7 +29,7 @@ function StickersPacks() {
               className="p-3 m-auto"
             />
             <p className="uppercase text-center font-bold text-xl text-white drop-shadow-md">
-              {pack.title}
+              {pack.title.split("-").join(" ")}
             </p>
           </div>
         </Link>
