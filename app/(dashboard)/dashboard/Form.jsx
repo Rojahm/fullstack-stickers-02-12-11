@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 // Custom componenets
 import { addNewPack, updatePack } from "@/app/lib/actions";
-import CoverInput from "../(ui)/CoverInput";
-import RelatedPacksInput from "../(ui)/RelatedPacksInput";
-import ColorInput from "../(ui)/ColorInput";
-import ShowInput from "../(ui)/ShowInput";
-import LinkInput from "../(ui)/LinkInput";
-import TitleInput from "../(ui)/TitleInput";
-import ImageInput from "../(ui)/ImageInput";
-import DescriptionInput from "../(ui)/DescriptionInput";
+import CoverInput from "../(ui-form-inputs)/CoverInput";
+import RelatedPacksInput from "../(ui-form-inputs)/RelatedPacksInput";
+import ColorInput from "../(ui-form-inputs)/ColorInput";
+import ShowInput from "../(ui-form-inputs)/ShowInput";
+import LinkInput from "../(ui-form-inputs)/LinkInput";
+import TitleInput from "../(ui-form-inputs)/TitleInput";
+import ImageInput from "../(ui-form-inputs)/ImageInput";
+import DescriptionInput from "../(ui-form-inputs)/DescriptionInput";
 // import { fetchOnePack, fetchPacksName } from "@/app/lib/data";
 
 function Form({ title, id }) {
