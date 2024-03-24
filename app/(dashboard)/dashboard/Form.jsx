@@ -37,7 +37,6 @@ function Form({ title, id }) {
     // if (pathname.startsWith("/dashboard/packs")) {
     axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
       setPacksNames(res.data);
-      console.log(res.data);
     });
     // }
     if (pathname.startsWith("/dashboard/packs/edit")) {
