@@ -12,6 +12,8 @@ import LinkInput from "../(ui-form-inputs)/LinkInput";
 import TitleInput from "../(ui-form-inputs)/TitleInput";
 import ImageInput from "../(ui-form-inputs)/ImageInput";
 import DescriptionInput from "../(ui-form-inputs)/DescriptionInput";
+import PackSelectionInput from "../(ui-form-inputs)/PackSelectionInput";
+import QuantityInput from "../(ui-form-inputs)/QuantityInput";
 // import { fetchAllPacks } from "@/app/lib/data";
 // import { fetchOnePack, fetchPacksName } from "@/app/lib/data";
 
@@ -108,7 +110,6 @@ function Form({ title, id }) {
       e.target.value = null;
     }
   };
-  console.log(tags);
   const deleteTag = (tagToDelete) => {
     setTags(tags.filter((tag) => tag != tagToDelete));
   };
@@ -149,44 +150,13 @@ function Form({ title, id }) {
           {pathname.startsWith("/dashboard/stickers/") ? (
             <>
               {/* One Input */}
-              <div className="flex justify-center items-center gap-5 w-full">
-                <label
-                  htmlFor="pack"
-                  className="font-semibold w-[20%] md:w-[10%]"
-                >
-                  Pack :
-                </label>
-                <select
-                  id="pack"
-                  name="pack"
-                  className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-                >
-                  {packsNames.map((packName, i) => (
-                    <option value={packName.title} key={i}>
-                      {packName.title.split("-").join(" ")}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <PackSelectionInput name="pack" packsNames={packsNames} />
               {/* One Input */}
               {/* One Input */}
-              <div className="flex justify-center items-center gap-5 w-full">
-                <label
-                  htmlFor="quantity"
-                  className="font-semibold w-[20%] md:w-[10%]"
-                >
-                  Quantity :
-                </label>
-                <input
-                  type="number"
-                  id="quantity"
-                  name="quantity"
-                  className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
-                ></input>
-              </div>
+              <QuantityInput name="quantity" defaultValue={1} />
               {/* One Input */}
               {/* One Input */}
-              <div className="flex justify-center items-center gap-5 w-full">
+              <div className="flex relative justify-center items-center gap-5 w-full">
                 <label
                   htmlFor="tags"
                   className="font-semibold w-[20%] md:w-[10%]"
@@ -201,6 +171,9 @@ function Form({ title, id }) {
                   onChange={searchTags}
                   className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
                 ></input>
+              </div>
+              <div className="border w-[70%] z-10 relative -top-5 -right-[2.6rem] p-2 bg-sky-50 rounded-b-xl">
+                search results
               </div>
               <div className="flex flex-wrap gap-3 justify-start items-center w-[95%] md:w-[80%] lg:w-[70%]">
                 {tags.map((tag, i) => (
