@@ -34,11 +34,10 @@ function Form({ title, id }) {
   const [defaultShow, setDefaultShow] = useState();
   const [defaultColor, setDefaultColor] = useState();
   useEffect(() => {
-    // if (pathname.startsWith("/dashboard/packs")) {
     axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
       setPacksNames(res.data);
     });
-    // }
+
     if (pathname.startsWith("/dashboard/packs/edit")) {
       setIsLoading(true);
       axios.get(`${process.env.SRV}/stickerPack/${id}`).then((res) => {
@@ -173,7 +172,13 @@ function Form({ title, id }) {
           {pathname.startsWith("/dashboard/stickers/") ? (
             <>
               {/* One Input */}
-              <PackSelectionInput name="pack" packsNames={packsNames} />
+              {packsNames ? (
+                <PackSelectionInput
+                  name="pack"
+                  packsNames={packsNames}
+                  setDefaultColor={setDefaultColor}
+                />
+              ) : null}
               {/* One Input */}
               {/* One Input */}
               <QuantityInput name="quantity" defaultValue={1} />
