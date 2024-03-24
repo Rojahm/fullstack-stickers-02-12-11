@@ -129,6 +129,7 @@ function Form({ title, id }) {
     } else if (e.type === "click") {
       setTags([...tags, tag]);
       setTagResult([]);
+      document.getElementById("tagResultBox").style.display = "none";
       document.getElementById("tags").focus();
       document.getElementById("tags").value = "";
     }
@@ -190,6 +191,7 @@ function Form({ title, id }) {
                   type="text"
                   id="tags"
                   // name="tags"
+                  autoComplete="off"
                   onKeyDown={handleTag}
                   onChange={searchTags}
                   className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
@@ -199,10 +201,14 @@ function Form({ title, id }) {
                 <div className="w-[20%] md:w-[10%]"></div>
                 <div
                   id="tagResultBox"
-                  className="w-[70%] hidden gap-3 hover:cursor-pointer px-2 py-1 border z-10 relative -top-5 p-2 bg-sky-50 rounded-b-xl"
+                  className="w-[70%] hidden flex-wrap gap-3 hover:cursor-pointer px-2 py-1 border z-10 relative -top-5 p-2 bg-sky-50 rounded-b-xl"
                 >
                   {tagResult.map((result, i) => (
-                    <span key={i} onClick={(e) => handleTag(e, result)}>
+                    <span
+                      key={i}
+                      onClick={(e) => handleTag(e, result)}
+                      className="text-sky-300"
+                    >
                       {result}
                     </span>
                   ))}
