@@ -124,6 +124,8 @@ function Form({ title, id }) {
       e.preventDefault();
       setTags([...tags, e.target.value]);
       e.target.value = null;
+      setTagResult([]);
+      document.getElementById("tagResultBox").style.display = "none";
     } else if (e.type === "click") {
       setTags([...tags, tag]);
       setTagResult([]);
