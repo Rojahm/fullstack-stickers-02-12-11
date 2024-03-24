@@ -98,8 +98,10 @@ function Form({ title, id }) {
     }
   };
   //Search Tags
+  const [tagResult, setTagResult] = useState([]);
   const searchTags = (e) => {
     // console.log(e.target.value);
+    axios.get(`${process.env.SRV}/allTags`).then;
   };
   //Handle Tags
   const [tags, setTags] = useState([]);
