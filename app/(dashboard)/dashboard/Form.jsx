@@ -158,7 +158,7 @@ function Form({ title, id }) {
               <QuantityInput name="quantity" defaultValue={1} />
               {/* One Input */}
               {/* One Input */}
-              <div className="flex relative justify-center items-center gap-5 w-full">
+              <div className="flex justify-center items-center gap-5 w-full">
                 <label
                   htmlFor="tags"
                   className="font-semibold w-[20%] md:w-[10%]"
@@ -174,8 +174,11 @@ function Form({ title, id }) {
                   className="border border-sky-200 rounded-md w-[70%] px-2 py-1 outline-sky-300"
                 ></input>
               </div>
-              <div className="border w-[70%] z-10 relative -top-5 -right-[2.6rem] p-2 bg-sky-50 rounded-b-xl">
-                search results
+              <div className=" flex relative justify-center items-center gap-5 w-full">
+                <div className="w-[20%] md:w-[10%]"></div>
+                <div className="w-[70%] px-2 py-1 border z-10 relative -top-5 p-2 bg-sky-50 rounded-b-xl">
+                  search results
+                </div>
               </div>
               <div className="flex flex-wrap gap-3 justify-start items-center w-[95%] md:w-[80%] lg:w-[70%]">
                 {tags.map((tag, i) => (
