@@ -2,6 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useDebouncedCallback } from "use-debounce";
 // Custom componenets
 import { addNewPack, updatePack, addNewSticker } from "@/app/lib/actions";
 import CoverInput from "../(ui-form-inputs)/CoverInput";
@@ -99,17 +100,35 @@ function Form({ title, id }) {
   };
   //Search Tags
   const [tagResult, setTagResult] = useState([]);
-  const searchTags = (e) => {
+  const searchTags = useDebouncedCallback((e) => {
     // console.log(e.target.value);
-    axios.get(`${process.env.SRV}/allTags`).then;
-  };
+    document.getElementById("tagResultBox").style.display = "flex";
+    if (e.target.value) {
+      axios.get(`${process.env.SRV}/allTags/${e.target.value}`).then((res) => {
+        const results = res.data.reduce((acc, result) => {
+          return acc.concat(result.tags);
+        }, []);
+
+        setTagResult(Array.from(new Set(results)));
+      });
+    } else {
+      setTagResult([]);
+      document.getElementById("tagResultBox").style.display = "none";
+    }
+  }, 300);
+
   //Handle Tags
   const [tags, setTags] = useState([]);
-  const handleTag = (e) => {
+  const handleTag = (e, tag) => {
     if (e.key === "Enter") {
       e.preventDefault();
       setTags([...tags, e.target.value]);
       e.target.value = null;
+    } else if (e.type === "click") {
+      setTags([...tags, tag]);
+      setTagResult([]);
+      document.getElementById("tags").focus();
+      document.getElementById("tags").value = "";
     }
   };
   const deleteTag = (tagToDelete) => {
@@ -176,8 +195,15 @@ function Form({ title, id }) {
               </div>
               <div className=" flex relative justify-center items-center gap-5 w-full">
                 <div className="w-[20%] md:w-[10%]"></div>
-                <div className="w-[70%] px-2 py-1 border z-10 relative -top-5 p-2 bg-sky-50 rounded-b-xl">
-                  search results
+                <div
+                  id="tagResultBox"
+                  className="w-[70%] hidden gap-3 hover:cursor-pointer px-2 py-1 border z-10 relative -top-5 p-2 bg-sky-50 rounded-b-xl"
+                >
+                  {tagResult.map((result, i) => (
+                    <span key={i} onClick={(e) => handleTag(e, result)}>
+                      {result}
+                    </span>
+                  ))}
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 justify-start items-center w-[95%] md:w-[80%] lg:w-[70%]">
