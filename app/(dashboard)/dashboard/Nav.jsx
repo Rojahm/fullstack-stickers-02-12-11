@@ -25,7 +25,7 @@ function Nav() {
         <Link
           key={i}
           href={menuItem.link}
-          className="flex justify-center items-center w-full h-full hover:bg-sky-100"
+          className="flex justify-center items-center w-full h-full hover:bg-sky-100 hover:shadow-sm"
         >
           <div>{menuItem.title}</div>
         </Link>
