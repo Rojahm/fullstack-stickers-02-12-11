@@ -1,18 +1,8 @@
 "client component";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
-function Stickers() {
-  const [stickers, setStickers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    axios.get(`${process.env.SRV}/allStickers`).then((res) => {
-      setStickers(res.data);
-      setLoading(false);
-    });
-  }, [loading]);
+function Stickers({ stickers }) {
   return (
     <div className="mt-4 grid grid-cols-5 gap-5">
       {stickers.map((sticker, i) => (

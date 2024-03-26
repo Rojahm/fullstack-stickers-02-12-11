@@ -1,9 +1,35 @@
 "use client";
 import Link from "next/link";
 import PackPageHero from "../sticker-packs/PackPageHero";
-import Pagination from "../ui/Pagination";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Pagination from "@/app/ui/Pagination";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+
 import Stickers from "./Stickers";
 function StickersPage() {
+  const [stickers, setStickers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [allStickerQty, setAllStickerQty] = useState();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const pagenumber = params.get("pn") || 1;
+  const pagination = params.get("pg") || 30;
+  useEffect(() => {
+    axios
+      .get(`${process.env.SRV}/allStickers?pn=${pagenumber}&pg=${pagination}`)
+      .then((res) => {
+        setStickers(res.data.paginatedStickers);
+        setAllStickerQty(res.data.qty);
+        params.set("pn", pagenumber);
+        params.set("pg", pagination);
+        router.replace(`${pathname}?${params.toString()}`);
+        setLoading(false);
+      });
+  }, [loading, pagenumber, pagination]);
+
   return (
     <div className="flex flex-col justify-center items-center w-full">
       <PackPageHero />
@@ -20,10 +46,10 @@ function StickersPage() {
           Sticker Packs
         </Link>
         <hr className="border-[#814997] border-[3px] rounded-md" />
-        <Stickers />
+        <Stickers stickers={stickers} />
       </div>
       {/* pagination */}
-      <Pagination />
+      <Pagination qty={allStickerQty} />
     </div>
   );
 }
