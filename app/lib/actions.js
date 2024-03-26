@@ -86,7 +86,7 @@ export async function updateSticker(formData, id) {
   });
 }
 export async function deleteSticker(id) {
-  axios.post(`${process.env.SRV}/deletestickerPack/${id}`).then((res) => {
+  axios.post(`${process.env.SRV}/deleteSticker/${id}`).then((res) => {
     console.log(res.data.msg);
   });
 }
