@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 //Custom Components
 import Pagination from "@/app/(front)/ui/Pagination";
+import { deleteSticker } from "@/app/lib/actions";
 // UI and Icons
 import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -12,67 +13,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function DashBStickerPage() {
-  // const stickers = [
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/among-us-red-jumps-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/egg-bacon-love-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/dumbo-smile-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/playstation-symbols-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //     show: true,
-  //   },
-  // ];
+  const [loading, setLoading] = useState(true);
   const [stickers, setStickers] = useState([]);
   useEffect(() => {
     axios
       .get(`${process.env.SRV}/allStickers`)
       .then((res) => {
         setStickers(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.error);
       });
-  }, []);
+  }, [loading]);
+
+  // Delete Sticker
+  const handleDelete = async (id) => {
+    await deleteSticker(id);
+    setLoading(true);
+  };
   return (
     <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col justify-center w-[95%] lg:w-[70%]">
       <Link href={"/"} className="text-4xl">
@@ -86,12 +45,12 @@ function DashBStickerPage() {
             className="flex justify-start items-center rounded-xl border-2 border-transparent hover:border-sky-400 group shadow-md hover:shadow-xl shadow-[#814997]/40 hover:shadow-[#814997]/50 group"
           >
             <div className="flex flex-col w-[50%] justify-center items-center gap-4 my-2 py-5 px-4 rounded-md shadow-xl shadow-[#814997]/40 group-hover:shadow-3xl group-hover:shadow-[#814997]/80">
-              {/* <Image
+              <Image
                 src={sticker.imageLink}
                 width={200}
                 height={200}
                 alt={sticker.title}
-              /> */}
+              />
               <p className="text-center line-clamp-3 leading-5 font-semibold">
                 {sticker.title}
               </p>
@@ -111,12 +70,12 @@ function DashBStickerPage() {
                 {sticker.show ? <FaRegEyeSlash /> : <FaRegEye />}
               </Link>
 
-              <Link
-                href={"/dashboard/stickers/delete"}
+              <button
+                onClick={() => handleDelete(sticker._id)}
                 className="shadow-md hover:shadow-lg hover:bg-sky-300 hover:text-white border border-sky-300 p-2 rounded-md"
               >
                 <FaRegTrashAlt />
-              </Link>
+              </button>
             </div>
           </div>
         ))}
