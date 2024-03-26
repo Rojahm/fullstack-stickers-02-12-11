@@ -5,6 +5,7 @@ function QuantityInput({ name, defaultValue }) {
         Quantity :
       </label>
       <input
+        autoComplete="off"
         type="number"
         id={name}
         name={name}
