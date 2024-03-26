@@ -74,9 +74,12 @@ function TopStickers() {
         ))}
       </div>
       <div className="mt-6 flex justify-end ">
-        <button className="border border-[#814997] w-[130px] rounded-full text-xl font-semibold py-3 hover:bg-[#814997] hover:shadow-md hover:text-white transition-all ease-in-out duration-200">
+        <Link
+          href={"/stickers"}
+          className="border border-[#814997] w-[130px] rounded-full text-xl font-semibold py-3 text-center hover:bg-[#814997] hover:shadow-md hover:text-white transition-all ease-in-out duration-200"
+        >
           Show More
-        </button>
+        </Link>
       </div>
     </div>
   );

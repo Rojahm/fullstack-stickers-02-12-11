@@ -1,49 +1,58 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function NewStickers() {
-  const stickers = [
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/among-us-red-jumps-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/egg-bacon-love-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/dumbo-smile-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/playstation-symbols-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-  ];
+  // const stickers = [
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/among-us-red-jumps-512x512.png",
+  //     link: "/",
+  //   },
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/egg-bacon-love-512x512.png",
+  //     link: "/",
+  //   },
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/dumbo-smile-512x512.png",
+  //     link: "/",
+  //   },
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/playstation-symbols-512x512.png",
+  //     link: "/",
+  //   },
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/heart-peace-512x512.png",
+  //     link: "/",
+  //   },
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/heart-peace-512x512.png",
+  //     link: "/",
+  //   },
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/heart-peace-512x512.png",
+  //     link: "/",
+  //   },
+  //   {
+  //     title: "Among Us Red Character Jumps Sticker",
+  //     imageLink: "/images/heart-peace-512x512.png",
+  //     link: "/",
+  //   },
+  // ];
+  const [stickers, setStickers] = useState([]);
+  useEffect(() => {
+    axios.get(`${process.env.SRV}/getNewStickers`).then((res) => {
+      setStickers(res.data);
+    });
+  }, []);
   return (
     <div className="px-6 md:px-12 lg:px-40 flex flex-col">
       <Link href={"/"} className="text-4xl">
@@ -74,9 +83,12 @@ function NewStickers() {
         ))}
       </div>
       <div className="mt-6 flex justify-end ">
-        <button className="border border-[#814997] w-[130px] rounded-full text-xl font-semibold py-3 hover:bg-[#814997] hover:shadow-md hover:text-white transition-all ease-in-out duration-200">
+        <Link
+          href={"/stickers"}
+          className="border border-[#814997] w-[130px] rounded-full text-xl font-semibold py-3 text-center hover:bg-[#814997] hover:shadow-md hover:text-white transition-all ease-in-out duration-200"
+        >
           Show More
-        </button>
+        </Link>
       </div>
     </div>
   );
