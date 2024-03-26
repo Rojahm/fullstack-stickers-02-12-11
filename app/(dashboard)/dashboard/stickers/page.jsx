@@ -98,7 +98,7 @@ function DashBStickerPage() {
             </div>
             <div className="flex justify-end items-center gap-5 w-[50%] pr-5">
               <Link
-                href={"/dashboard/stickers/edit"}
+                href={`/dashboard/stickers/edit/${sticker._id}`}
                 className="shadow-md hover:shadow-lg hover:bg-sky-300 hover:text-white border border-sky-300 p-2 rounded-md"
               >
                 <FaRegEdit />

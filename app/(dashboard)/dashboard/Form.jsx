@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDebouncedCallback } from "use-debounce";
 // Custom componenets
-import { addNewPack, updatePack, addNewSticker } from "@/app/lib/actions";
+import {
+  addNewPack,
+  updatePack,
+  addNewSticker,
+  updateSticker,
+} from "@/app/lib/actions";
 import CoverInput from "../(ui-form-inputs)/CoverInput";
 import RelatedPacksInput from "../(ui-form-inputs)/RelatedPacksInput";
 import ColorInput from "../(ui-form-inputs)/ColorInput";
@@ -33,7 +38,11 @@ function Form({ title, id }) {
   const [defaultRelatedPacks, setDefaultRelatedPacks] = useState([]);
   const [defaultShow, setDefaultShow] = useState();
   const [defaultColor, setDefaultColor] = useState();
+  const [defaultPack, setDefaultPack] = useState();
+  const [defaultQuantity, setDefaultQuantity] = useState();
+  const [defaultTags, setDefaultTags] = useState();
   useEffect(() => {
+    // Get All the Packs Names
     axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
       setPacksNames(res.data);
     });
@@ -48,6 +57,25 @@ function Form({ title, id }) {
         setDefaultLink(res.data.link);
         setDefaultRelatedPacks(res.data.relatedPacks);
         setRelatedPacks(res.data.relatedPacks);
+        setDefaultShow(res.data.show);
+        setDefaultColor(res.data.color);
+        setIsLoading(false);
+      });
+    }
+  }, []);
+  // Default Values if it's Sticker
+  useEffect(() => {
+    if (pathname.startsWith("/dashboard/stickers/edit")) {
+      setIsLoading(true);
+      axios.get(`${process.env.SRV}/getStickerById/${id}`).then((res) => {
+        setDefaultTitle(res.data.title);
+        setDefaultImage(res.data.imageLink);
+        setDefaultDescription(res.data.description);
+        setDefaultLink(res.data.link);
+        setDefaultPack(res.data.pack);
+        setDefaultQuantity(res.data.quantity);
+        setDefaultTags(res.data.tags);
+        setTags(res.data.tags);
         setDefaultShow(res.data.show);
         setDefaultColor(res.data.color);
         setIsLoading(false);
@@ -92,8 +120,11 @@ function Form({ title, id }) {
       if (pathname === "/dashboard/stickers/new") {
         await addNewSticker(formData);
         e.target.reset();
-        setTags([]);
+      } else if (pathname.startsWith("/dashboard/stickers/edit")) {
+        await updateSticker(formData, id);
+        router.back();
       }
+      setTags([]);
     }
   };
   //Search Tags
@@ -176,12 +207,13 @@ function Form({ title, id }) {
                 <PackSelectionInput
                   name="pack"
                   packsNames={packsNames}
+                  defaultPack={defaultPack}
                   setDefaultColor={setDefaultColor}
                 />
               ) : null}
               {/* One Input */}
               {/* One Input */}
-              <QuantityInput name="quantity" defaultValue={1} />
+              <QuantityInput name="quantity" defaultValue={defaultQuantity} />
               {/* One Input */}
               {/* One Input */}
               <div className="flex justify-center items-center gap-5 w-full">

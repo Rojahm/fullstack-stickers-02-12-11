@@ -1,4 +1,9 @@
-function PackSelectionInput({ name, packsNames, setDefaultColor }) {
+function PackSelectionInput({
+  name,
+  packsNames,
+  defaultPack,
+  setDefaultColor,
+}) {
   const handleColor = (e) => {
     const packColor = e.target.value;
     if (packColor) {
@@ -13,6 +18,7 @@ function PackSelectionInput({ name, packsNames, setDefaultColor }) {
       </label>
       <select
         required
+        defaultValue={defaultPack}
         onChange={handleColor}
         id={name}
         name={name}
