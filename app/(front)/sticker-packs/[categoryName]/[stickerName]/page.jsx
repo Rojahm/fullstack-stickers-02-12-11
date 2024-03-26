@@ -6,7 +6,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function StickerSinglePage({ params }) {
-  console.log(params);
   const [sticker, setSticker] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -17,7 +16,6 @@ function StickerSinglePage({ params }) {
         setLoading(false);
       });
   }, [loading]);
-  console.log(sticker);
   return (
     <>
       <HeaderSticker color={sticker.color} textColor={"black"} />
@@ -29,7 +27,7 @@ function StickerSinglePage({ params }) {
             targetsticker={sticker}
           />
         )}
-        {/* <Stickers /> */}
+        <Stickers title={params.categoryName} />
       </div>
     </>
   );

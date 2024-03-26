@@ -11,7 +11,6 @@ function StickerPage({ title, pack, targetsticker }) {
     setLoading(false);
   }, [loading]);
 
-  console.log(sticker);
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-[90%] lg:w-[80%] my-6 flex gap-2 leading-6 text-[18px] font-semibold">

@@ -13,7 +13,6 @@ function Stickers() {
       setLoading(false);
     });
   }, [loading]);
-  console.log(stickers);
   return (
     <div className="mt-4 grid grid-cols-5 gap-5">
       {stickers.map((sticker, i) => (
