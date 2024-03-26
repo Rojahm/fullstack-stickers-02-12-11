@@ -22,7 +22,7 @@ function Nav({ color }) {
           Sticker Packs
         </Link>
         <Link
-          href={"/"}
+          href={"/stickers"}
           style={{ color: `${color}` }}
           className="font-semi bold text-[19px] flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
         >

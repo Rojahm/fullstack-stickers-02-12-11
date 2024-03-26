@@ -46,7 +46,7 @@ function Stickers({ title }) {
   return (
     <div className="my-16 w-[90%] lg:w-[80%]">
       <Link href={"/"} className="text-2xl font-bold">
-        Browse our sticker pack {title.split("-").join(" ")}
+        Browse our sticker pack {title}
       </Link>
       <hr className="border-[#814997] border-[3px] rounded-md" />
       <div className="mt-4 grid grid-cols-5 gap-5">

@@ -71,7 +71,7 @@ function StickerPackSinglePage({ params }) {
             </div>
           </div>
         )}
-        <Stickers title={title} />
+        {/* <Stickers title={title} /> */}
       </div>
     </>
   );

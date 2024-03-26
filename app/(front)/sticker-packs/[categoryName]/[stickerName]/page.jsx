@@ -1,14 +1,35 @@
+"use client";
 import Stickers from "../Stickers";
 import HeaderSticker from "./HeaderSticker";
 import StickerPage from "./Sticker";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
-function StickerSinglePage() {
+function StickerSinglePage({ params }) {
+  console.log(params);
+  const [sticker, setSticker] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get(`${process.env.SRV}/getStickerByName/${params.stickerName}`)
+      .then((res) => {
+        setSticker(res.data[0]);
+        setLoading(false);
+      });
+  }, [loading]);
+  console.log(sticker);
   return (
     <>
-      <HeaderSticker color={"#EC5298"} textColor={"black"} />
+      <HeaderSticker color={sticker.color} textColor={"black"} />
       <div className="flex flex-col justify-center items-center">
-        <StickerPage />
-        <Stickers />
+        {!loading && (
+          <StickerPage
+            title={params.stickerName}
+            pack={params.categoryName}
+            targetsticker={sticker}
+          />
+        )}
+        {/* <Stickers /> */}
       </div>
     </>
   );
