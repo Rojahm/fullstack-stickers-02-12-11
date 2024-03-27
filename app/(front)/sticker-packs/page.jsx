@@ -2,15 +2,36 @@
 import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import PackPageHero from "./PackPageHero";
-import Pagination from "../ui/Pagination";
 import StickersPacks from "./StickersPacks";
-// import StickerPacksLayout from "./layout1";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Pagination from "@/app/ui/Pagination";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 function StickerPacksPage() {
-  const pathName = usePathname();
-
+  const [packs, setPacks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [allPackQty, setAllPackQty] = useState();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const pagenumber = params.get("pn") || 1;
+  const pagination = params.get("pg") || 6;
+  useEffect(() => {
+    axios
+      .get(`${process.env.SRV}/stickerPacks?pn=${pagenumber}&pg=${pagination}`)
+      .then((res) => {
+        setPacks(res.data.paginatedPacks);
+        setAllPackQty(res.data.qty);
+        params.set("pn", pagenumber);
+        params.set("pg", pagination);
+        router.replace(`${pathname}?${params.toString()}`);
+        setLoading(false);
+      });
+  }, [loading, pagenumber, pagination]);
+  console.log(packs);
   return (
     <div className="flex flex-col justify-center items-center w-full">
       <PackPageHero />
@@ -20,7 +41,7 @@ function StickerPacksPage() {
         <Link
           href={"/sticker-packs"}
           className={clsx("", {
-            "text-[#814997]": pathName === "/sticker-packs",
+            "text-[#814997]": pathname === "/sticker-packs",
           })}
         >
           / Sticker Packs
@@ -32,10 +53,10 @@ function StickerPacksPage() {
           Sticker Packs
         </Link>
         <hr className="border-[#814997] border-[3px] rounded-md" />
-        <StickersPacks />
+        <StickersPacks packs={packs} />
       </div>
       {/* pagination */}
-      <Pagination />
+      <Pagination qty={allPackQty} pg={pagination} pn={pagenumber} />
     </div>
   );
 }

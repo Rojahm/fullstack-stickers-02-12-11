@@ -1,14 +1,14 @@
 "use client";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-function Pagination({ qty }) {
+function Pagination({ qty, pg, pn }) {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const pageNumber = Number(params.get("pn")) || 1;
-  const paginate = Number(params.get("pg")) || 6;
+  const pageNumber = Number(params.get("pn")) || pn;
+  const paginate = Number(params.get("pg")) || pg;
   const numberOfPages = Math.ceil(qty / paginate);
 
   // Generate the suitable Array for page numbers
@@ -93,6 +93,7 @@ function Pagination({ qty }) {
         >
           {/* <option value={2}>2</option> */}
           <option value={5}>5</option>
+          <option value={6}>6</option>
           <option value={10}>10</option>
           <option value={15}>15</option>
           <option value={20}>20</option>
