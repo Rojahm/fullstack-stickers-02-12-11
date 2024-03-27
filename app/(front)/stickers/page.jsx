@@ -8,7 +8,7 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Suspense } from "react";
 
 import Stickers from "./Stickers";
-function StickersPage() {
+function StickersPage({ searchParams }) {
   const [stickers, setStickers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [allStickerQty, setAllStickerQty] = useState();
