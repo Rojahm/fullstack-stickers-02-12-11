@@ -18,10 +18,10 @@ function DashBStickerPage({ searchParams }) {
   const [stickers, setStickers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [allStickerQty, setAllStickerQty] = useState();
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
+  // const router = useRouter();
+  // const pathname = usePathname();
+  // const searchParams = useSearchParams();
+  // const params = new URLSearchParams(searchParams);
   const pagenumber = Number(searchParams.pn) || 1;
   const pagination = Number(searchParams.pg) || 5;
 
