@@ -16,3 +16,11 @@ module.exports = {
     SRV: process.env.SRV_URL,
   },
 };
+// module.exports = {
+//   output: "standalone",
+// };
+// module.exports = {
+//   experimental: {
+//     missingSuspenseWithCSRBailout: false,
+//   },
+// };

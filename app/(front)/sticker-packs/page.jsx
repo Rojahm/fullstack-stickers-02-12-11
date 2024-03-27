@@ -7,7 +7,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "@/app/ui/Pagination";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-
+export const dynamicParms = true;
 function StickerPacksPage() {
   const [packs, setPacks] = useState([]);
   const [loading, setLoading] = useState(true);
