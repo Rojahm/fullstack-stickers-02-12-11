@@ -17,6 +17,7 @@
 /build
 /srv
 srv
+liara.json
 
 # misc
 .DS_Store
