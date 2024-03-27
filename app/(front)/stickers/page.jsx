@@ -5,27 +5,28 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "@/app/ui/Pagination";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Suspense } from "react";
 
 import Stickers from "./Stickers";
 function StickersPage() {
   const [stickers, setStickers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [allStickerQty, setAllStickerQty] = useState();
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
-  const pagenumber = params.get("pn") || 1;
-  const pagination = params.get("pg") || 30;
+  // const router = useRouter();
+  // const pathname = usePathname();
+  // const searchParams = useSearchParams();
+  // const params = new URLSearchParams(searchParams);
+  const pagenumber = Number(searchParams.pn) || 1;
+  const pagination = Number(searchParams.pg) || 30;
   useEffect(() => {
     axios
       .get(`${process.env.SRV}/allStickers?pn=${pagenumber}&pg=${pagination}`)
       .then((res) => {
         setStickers(res.data.paginatedStickers);
         setAllStickerQty(res.data.qty);
-        params.set("pn", pagenumber);
-        params.set("pg", pagination);
-        router.replace(`${pathname}?${params.toString()}`);
+        // params.set("pn", pagenumber);
+        // params.set("pg", pagination);
+        // router.replace(`${pathname}?${params.toString()}`);
         setLoading(false);
       });
   }, [loading, pagenumber, pagination]);
@@ -46,7 +47,9 @@ function StickersPage() {
           Sticker Packs
         </Link>
         <hr className="border-[#814997] border-[3px] rounded-md" />
-        <Stickers stickers={stickers} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Stickers stickers={stickers} />
+        </Suspense>
       </div>
       {/* pagination */}
       <Pagination qty={allStickerQty} />

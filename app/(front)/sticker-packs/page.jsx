@@ -7,26 +7,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "@/app/ui/Pagination";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Suspense } from "react";
 export const dynamicParms = true;
-function StickerPacksPage() {
+function StickerPacksPage({ searchParams }) {
   const [packs, setPacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [allPackQty, setAllPackQty] = useState();
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
-  const pagenumber = params.get("pn") || 1;
-  const pagination = params.get("pg") || 6;
+  // const router = useRouter();
+  // const pathname = usePathname();
+  // const searchParams = useSearchParams();
+  // const params = new URLSearchParams(searchParams);
+  const pagenumber = Number(searchParams.pn) || 1;
+  const pagination = Number(searchParams.pg) || 6;
   useEffect(() => {
     axios
       .get(`${process.env.SRV}/stickerPacks?pn=${pagenumber}&pg=${pagination}`)
       .then((res) => {
         setPacks(res.data.paginatedPacks);
         setAllPackQty(res.data.qty);
-        params.set("pn", pagenumber);
-        params.set("pg", pagination);
-        router.replace(`${pathname}?${params.toString()}`);
+        // params.set("pn", pagenumber);
+        // params.set("pg", pagination);
+        // router.replace(`${pathname}?${params.toString()}`);
         setLoading(false);
       });
   }, [loading, pagenumber, pagination]);
@@ -52,7 +53,9 @@ function StickerPacksPage() {
           Sticker Packs
         </Link>
         <hr className="border-[#814997] border-[3px] rounded-md" />
-        <StickersPacks packs={packs} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <StickersPacks packs={packs} />
+        </Suspense>
       </div>
       {/* pagination */}
       <Pagination qty={allPackQty} pg={pagination} pn={pagenumber} />
