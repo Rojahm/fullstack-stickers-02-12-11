@@ -38,12 +38,7 @@ function StickerPacksPage({ searchParams }) {
       {/* Breadcrumbs here */}
       <div className="flex gap-2 leading-6 text-[22px] font-semibold w-[90%] lg:w-[80%]">
         <Link href={"/"}>Home</Link>
-        <Link
-          href={"/sticker-packs"}
-          className={clsx("", {
-            "text-[#814997]": pathname === "/sticker-packs",
-          })}
-        >
+        <Link href={"/sticker-packs"} className={"text-[#814997]"}>
           / Sticker Packs
         </Link>
       </div>
