@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+
 //Custom Components
-import Pagination from "@/app/(front)/ui/Pagination";
-import { fetchAllPacks } from "@/app/lib/data";
+import Pagination from "@/app/ui/Pagination";
 import { deletePack } from "@/app/lib/actions";
 
 // UI and Icons
 import { FaRegEdit } from "react-icons/fa";
-import { FaBan } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -18,14 +18,25 @@ import { FaRegEyeSlash } from "react-icons/fa";
 function DashBPacksPage() {
   const [packs, setPacks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [allPackQty, setAllPackQty] = useState();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const pagenumber = params.get("pn") || 1;
+  const pagination = params.get("pg") || 6;
   useEffect(() => {
-    axios.get(`${process.env.SRV}/stickerPacks`).then((res) => {
-      const data = res.data;
-      setPacks(data);
-      setLoading(false);
-    });
-  }, [loading]);
-
+    axios
+      .get(`${process.env.SRV}/stickerPacks?pn=${pagenumber}&pg=${pagination}`)
+      .then((res) => {
+        setPacks(res.data.paginatedPacks);
+        setAllPackQty(res.data.qty);
+        params.set("pn", pagenumber);
+        params.set("pg", pagination);
+        router.replace(`${pathname}?${params.toString()}`);
+        setLoading(false);
+      });
+  }, [loading, pagenumber, pagination]);
   const handleDelete = async (id) => {
     await deletePack(id);
     // window.location.reload();
@@ -88,7 +99,7 @@ function DashBPacksPage() {
             </div>
           ))}
         </div>
-        <Pagination />
+        <Pagination qty={allPackQty} pn={pagenumber} pg={pagination} />
       </div>
     </div>
   );

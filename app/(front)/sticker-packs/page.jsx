@@ -1,7 +1,6 @@
 "use client";
 import clsx from "clsx";
 import Link from "next/link";
-import Image from "next/image";
 import PackPageHero from "./PackPageHero";
 import StickersPacks from "./StickersPacks";
 import axios from "axios";
@@ -31,7 +30,7 @@ function StickerPacksPage() {
         setLoading(false);
       });
   }, [loading, pagenumber, pagination]);
-  console.log(packs);
+
   return (
     <div className="flex flex-col justify-center items-center w-full">
       <PackPageHero />

@@ -5,48 +5,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function NewStickers() {
-  // const stickers = [
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/among-us-red-jumps-512x512.png",
-  //     link: "/",
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/egg-bacon-love-512x512.png",
-  //     link: "/",
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/dumbo-smile-512x512.png",
-  //     link: "/",
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/playstation-symbols-512x512.png",
-  //     link: "/",
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //   },
-  //   {
-  //     title: "Among Us Red Character Jumps Sticker",
-  //     imageLink: "/images/heart-peace-512x512.png",
-  //     link: "/",
-  //   },
-  // ];
   const [stickers, setStickers] = useState([]);
   useEffect(() => {
     axios.get(`${process.env.SRV}/getNewStickers`).then((res) => {

@@ -1,49 +1,16 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function TopStickers() {
-  const stickers = [
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/among-us-red-jumps-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/egg-bacon-love-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/dumbo-smile-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/playstation-symbols-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-    {
-      title: "Among Us Red Character Jumps Sticker",
-      imageLink: "/images/heart-peace-512x512.png",
-      link: "/",
-    },
-  ];
+  const [stickers, setStickers] = useState([]);
+  useEffect(() => {
+    axios.get(`${process.env.SRV}/getNewStickers`).then((res) => {
+      setStickers(res.data);
+    });
+  }, []);
   return (
     <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">
       <Link href={"/"} className="text-4xl">
