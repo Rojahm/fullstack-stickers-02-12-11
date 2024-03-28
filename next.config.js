@@ -10,15 +10,15 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-module.exports = {
-  reactStrictMode: true,
-  env: {
-    SRV: process.env.SRV_URL,
-  },
-};
 // module.exports = {
-//   output: "standalone",
+//   reactStrictMode: true,
+//   env: {
+//     SRV: process.env.SRV_URL,
+//   },
 // };
+module.exports = {
+  output: "standalone",
+};
 // module.exports = {
 //   experimental: {
 //     missingSuspenseWithCSRBailout: false,

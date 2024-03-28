@@ -1,5 +1,6 @@
 "use client";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 function Pagination({ qty, pg, pn }) {
   const searchParams = useSearchParams();
@@ -7,13 +8,12 @@ function Pagination({ qty, pg, pn }) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const pageNumber = Number(params.get("pn")) || pn;
-  const paginate = Number(params.get("pg")) || pg;
+  const pageNumber = Number(searchParams.get("pn")) || pn;
+  const paginate = Number(searchParams.get("pg")) || pg;
   const numberOfPages = Math.ceil(qty / paginate);
 
   // Generate the suitable Array for page numbers
   const pageArray = () => {
-    let pages = [];
     if (numberOfPages <= 7) {
       return Array.from(Array(numberOfPages), (_, i) => i + 1);
     } else if (pageNumber < 3) {
@@ -46,9 +46,9 @@ function Pagination({ qty, pg, pn }) {
   //Generate buttons
   const pages = pageArray();
   let pageBtns = [];
-  pages.map((page) => {
+  pages.map((page, i) => {
     page === "..."
-      ? pageBtns.push(<div>{page}</div>)
+      ? pageBtns.push(<div key={page}>{page}</div>)
       : pageBtns.push(
           <button
             key={page}
@@ -76,7 +76,7 @@ function Pagination({ qty, pg, pn }) {
 
   return (
     <div className="flex my-10 justify-between items-center gap-5">
-      <div className="flex gap-2">{pageBtns}</div>
+      {qty ? <div className="flex gap-2">{pageBtns}</div> : <div>...</div>}
       <div className="flex gap-2 font-thin text-sm items-center">
         <p className="text-sm">Items per Page:</p>
         <select
