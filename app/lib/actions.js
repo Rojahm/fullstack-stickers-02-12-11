@@ -17,9 +17,11 @@ export async function addNewPack(formData) {
   };
   // console.log(data);
   // console.log(formData.get("title").trim().split(" ").join("-"));
-  axios.post(`${process.env.SRV}/newstickerPack`, data).then((res) => {
-    console.log(res.data.msg);
-  });
+  axios
+    .post(`${process.env.NEXT_PUBLIC_SRV_URL}/newstickerPack`, data)
+    .then((res) => {
+      console.log(res.data.msg);
+    });
 }
 export async function updatePack(formData, id) {
   const data = {
@@ -36,15 +38,19 @@ export async function updatePack(formData, id) {
     color: formData.get("color"),
   };
 
-  axios.post(`${process.env.SRV}/updatestickerPack/${id}`, data).then((res) => {
-    console.log(res.data.msg);
-  });
+  axios
+    .post(`${process.env.NEXT_PUBLIC_SRV_URL}/updatestickerPack/${id}`, data)
+    .then((res) => {
+      console.log(res.data.msg);
+    });
 }
 export async function deletePack(id) {
-  axios.post(`${process.env.SRV}/deletestickerPack/${id}`).then((res) => {
-    console.log(res.data.msg);
-    // // window.location.reload();
-  });
+  axios
+    .post(`${process.env.NEXT_PUBLIC_SRV_URL}/deletestickerPack/${id}`)
+    .then((res) => {
+      console.log(res.data.msg);
+      // // window.location.reload();
+    });
 }
 //Stickers
 export async function addNewSticker(formData) {
@@ -62,9 +68,11 @@ export async function addNewSticker(formData) {
     show: formData.get("show"),
     color: formData.get("color"),
   };
-  axios.post(`${process.env.SRV}/addNewSticker`, data).then((res) => {
-    console.log(res.data.msg);
-  });
+  axios
+    .post(`${process.env.NEXT_PUBLIC_SRV_URL}/addNewSticker`, data)
+    .then((res) => {
+      console.log(res.data.msg);
+    });
 }
 export async function updateSticker(formData, id) {
   const data = {
@@ -81,12 +89,16 @@ export async function updateSticker(formData, id) {
     show: formData.get("show"),
     color: formData.get("color"),
   };
-  axios.post(`${process.env.SRV}//updateSticker/${id}`, data).then((res) => {
-    console.log(res.data.msg);
-  });
+  axios
+    .post(`${process.env.NEXT_PUBLIC_SRV_URL}//updateSticker/${id}`, data)
+    .then((res) => {
+      console.log(res.data.msg);
+    });
 }
 export async function deleteSticker(id) {
-  axios.post(`${process.env.SRV}/deleteSticker/${id}`).then((res) => {
-    console.log(res.data.msg);
-  });
+  axios
+    .post(`${process.env.NEXT_PUBLIC_SRV_URL}/deleteSticker/${id}`)
+    .then((res) => {
+      console.log(res.data.msg);
+    });
 }

@@ -10,10 +10,12 @@ function StickerPackSinglePage({ params }) {
   const title = params.categoryName;
   const [pack, setPack] = useState([-1]);
   useEffect(() => {
-    axios.get(`${process.env.SRV}/allstickerPack/${title}`).then((res) => {
-      setPack(res.data[0]);
-      console.log(res.data[0].relatedPacks);
-    });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_SRV_URL}/allstickerPack/${title}`)
+      .then((res) => {
+        setPack(res.data[0]);
+        console.log(res.data[0].relatedPacks);
+      });
   }, []);
   return (
     <>

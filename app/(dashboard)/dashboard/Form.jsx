@@ -43,43 +43,49 @@ function Form({ title, id }) {
   const [defaultTags, setDefaultTags] = useState();
   useEffect(() => {
     // Get All the Packs Names
-    axios.get(`${process.env.SRV}/stickerPacksNames`).then((res) => {
-      setPacksNames(res.data);
-    });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_SRV_URL}/stickerPacksNames`)
+      .then((res) => {
+        setPacksNames(res.data);
+      });
 
     if (pathname.startsWith("/dashboard/packs/edit")) {
       setIsLoading(true);
-      axios.get(`${process.env.SRV}/stickerPack/${id}`).then((res) => {
-        setDefaultTitle(res.data.title.split("-").join(" "));
-        setDefaultImage(res.data.imageLink);
-        setDefaultCover(res.data.cover);
-        setDefaultDescription(res.data.description);
-        setDefaultLink(res.data.link);
-        setDefaultRelatedPacks(res.data.relatedPacks);
-        setRelatedPacks(res.data.relatedPacks);
-        setDefaultShow(res.data.show);
-        setDefaultColor(res.data.color);
-        setIsLoading(false);
-      });
+      axios
+        .get(`${process.env.NEXT_PUBLIC_SRV_URL}/stickerPack/${id}`)
+        .then((res) => {
+          setDefaultTitle(res.data.title.split("-").join(" "));
+          setDefaultImage(res.data.imageLink);
+          setDefaultCover(res.data.cover);
+          setDefaultDescription(res.data.description);
+          setDefaultLink(res.data.link);
+          setDefaultRelatedPacks(res.data.relatedPacks);
+          setRelatedPacks(res.data.relatedPacks);
+          setDefaultShow(res.data.show);
+          setDefaultColor(res.data.color);
+          setIsLoading(false);
+        });
     }
   }, []);
   // Default Values if it's Sticker
   useEffect(() => {
     if (pathname.startsWith("/dashboard/stickers/edit")) {
       setIsLoading(true);
-      axios.get(`${process.env.SRV}/getStickerById/${id}`).then((res) => {
-        setDefaultTitle(res.data.title);
-        setDefaultImage(res.data.imageLink);
-        setDefaultDescription(res.data.description);
-        setDefaultLink(res.data.link);
-        setDefaultPack(res.data.pack);
-        setDefaultQuantity(res.data.quantity);
-        setDefaultTags(res.data.tags);
-        setTags(res.data.tags);
-        setDefaultShow(res.data.show);
-        setDefaultColor(res.data.color);
-        setIsLoading(false);
-      });
+      axios
+        .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getStickerById/${id}`)
+        .then((res) => {
+          setDefaultTitle(res.data.title);
+          setDefaultImage(res.data.imageLink);
+          setDefaultDescription(res.data.description);
+          setDefaultLink(res.data.link);
+          setDefaultPack(res.data.pack);
+          setDefaultQuantity(res.data.quantity);
+          setDefaultTags(res.data.tags);
+          setTags(res.data.tags);
+          setDefaultShow(res.data.show);
+          setDefaultColor(res.data.color);
+          setIsLoading(false);
+        });
     }
   }, []);
   // Handle Related Packs
@@ -133,13 +139,15 @@ function Form({ title, id }) {
     // console.log(e.target.value);
     document.getElementById("tagResultBox").style.display = "flex";
     if (e.target.value) {
-      axios.get(`${process.env.SRV}/allTags/${e.target.value}`).then((res) => {
-        const results = res.data.reduce((acc, result) => {
-          return acc.concat(result.tags);
-        }, []);
+      axios
+        .get(`${process.env.NEXT_PUBLIC_SRV_URL}/allTags/${e.target.value}`)
+        .then((res) => {
+          const results = res.data.reduce((acc, result) => {
+            return acc.concat(result.tags);
+          }, []);
 
-        setTagResult(Array.from(new Set(results)));
-      });
+          setTagResult(Array.from(new Set(results)));
+        });
     } else {
       setTagResult([]);
       document.getElementById("tagResultBox").style.display = "none";

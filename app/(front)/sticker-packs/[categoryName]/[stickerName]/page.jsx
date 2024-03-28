@@ -10,7 +10,9 @@ function StickerSinglePage({ params }) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
-      .get(`${process.env.SRV}/getStickerByName/${params.stickerName}`)
+      .get(
+        `${process.env.NEXT_PUBLIC_SRV_URL}/getStickerByName/${params.stickerName}`
+      )
       .then((res) => {
         setSticker(res.data[0]);
         setLoading(false);

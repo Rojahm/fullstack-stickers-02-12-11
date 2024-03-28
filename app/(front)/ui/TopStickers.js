@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 function TopStickers() {
   const [stickers, setStickers] = useState([]);
   useEffect(() => {
-    axios.get(`${process.env.SRV}/getNewStickers`).then((res) => {
-      setStickers(res.data);
-    });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`)
+      .then((res) => {
+        setStickers(res.data);
+      });
   }, []);
   return (
     <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">

@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 function StickerPacks() {
   const [packs, setPacks] = useState([]);
   useEffect(() => {
-    axios.get(`${process.env.SRV}/getNewStickerPacks`).then((res) => {
-      setPacks(res.data);
-    });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickerPacks`)
+      .then((res) => {
+        setPacks(res.data);
+      });
   }, []);
   return (
     <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">

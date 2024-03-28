@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 function Stickers({ title }) {
   const [stickers, setStickers] = useState([]);
   useEffect(() => {
-    axios.get(`${process.env.SRV}/getPackStickers/${title}`).then((res) => {
-      setStickers(res.data);
-    });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getPackStickers/${title}`)
+      .then((res) => {
+        setStickers(res.data);
+      });
   }, []);
 
   return (
