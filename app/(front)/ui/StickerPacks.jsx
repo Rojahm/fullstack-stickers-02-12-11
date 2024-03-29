@@ -21,7 +21,7 @@ function StickerPacks() {
       <hr className="border-[#814997] border-[3px] rounded-md" />
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-5">
         {packs.map((pack, i) => (
-          <Link href={pack.link} key={i}>
+          <Link href={`/sticker-packs/${pack.title}`} key={i}>
             <div
               className={`w-auto h-auto rounded-xl hover:bg-black bg-cover`}
               style={{

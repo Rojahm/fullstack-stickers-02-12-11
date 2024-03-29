@@ -25,7 +25,7 @@ function Stickers({ title }) {
             className="my-2 py-5 px-4 rounded-md shadow-xl shadow-[#814997]/40 hover:shadow-3xl hover:shadow-[#814997]/80"
           >
             <Link
-              href={`${sticker.link}`}
+              href={`/sticker-packs/${title}/${sticker.title}`}
               className="flex flex-col justify-center items-center gap-4"
             >
               <Image
