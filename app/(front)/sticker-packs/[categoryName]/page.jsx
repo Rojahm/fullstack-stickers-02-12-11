@@ -14,7 +14,6 @@ function StickerPackSinglePage({ params }) {
       .get(`${process.env.NEXT_PUBLIC_SRV_URL}/allstickerPack/${title}`)
       .then((res) => {
         setPack(res.data[0]);
-        console.log(res.data[0].relatedPacks);
       });
   }, []);
   return (
