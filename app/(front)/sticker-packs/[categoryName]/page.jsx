@@ -16,6 +16,7 @@ export async function generateStaticParams() {
   const result = packs.map((pack) => ({
     categoryName: pack.title,
   }));
+
   return result;
 }
 

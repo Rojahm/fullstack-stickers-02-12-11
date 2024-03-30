@@ -2,18 +2,19 @@ import Stickers from "../Stickers";
 import HeaderSticker from "./HeaderSticker";
 import StickerPage from "./Sticker";
 
-// to show 404 for pack names that doesnt exist
+// to show 404 for sticker names that doesnt exist
 export const dynamicParams = false;
 
-const generateStaticParams = async () => {
+export async function generateStaticParams() {
   const stickers = await fetch(
     `${process.env.NEXT_PUBLIC_SRV_URL}/allStickers`
-  );
-  return stickers.map((stickers) => ({
+  ).then((res) => res.json());
+  const result = stickers.map((stickers) => ({
     categoryName: stickers.pack,
-    stcikerName: stickers.title,
+    stickerName: stickers.title,
   }));
-};
+  return result;
+}
 
 const getSticker = async (stickerName) => {
   const res = await fetch(
@@ -26,16 +27,11 @@ async function StickerSinglePage({ params }) {
   const packname = params.categoryName;
   const stickername = params.stickerName;
   const sticker = await getSticker(stickername);
-
   return (
     <>
       <HeaderSticker color={sticker.color} textColor={"black"} />
       <div className="flex flex-col justify-center items-center">
-        <StickerPage
-          title={stickername}
-          pack={packname}
-          targetsticker={sticker}
-        />
+        <StickerPage pack={packname} sticker={sticker} />
         <Stickers title={packname} />
       </div>
     </>
