@@ -51,7 +51,7 @@ function Stickers() {
             >
               <div className="flex flex-col w-[50%] justify-center items-center gap-4 my-2 py-5 px-4 rounded-md shadow-xl shadow-[#814997]/40 group-hover:shadow-3xl group-hover:shadow-[#814997]/80">
                 <Image
-                  src={sticker.imageLink}
+                  src={`${sticker.imageLink}`}
                   width={200}
                   height={200}
                   alt={sticker.title}

@@ -1,12 +1,11 @@
 function ImageInput({ name, defaultValue }) {
   return (
-    <div className="flex justify-center items-center gap-5 w-full">
+    <div className="hidden justify-center items-center gap-5 w-full">
       <label htmlFor={name} className="font-semibold w-[20%] md:w-[10%]">
         Image :
       </label>
       <input
         defaultValue={defaultValue}
-        required
         type="text"
         id={name}
         name={name}

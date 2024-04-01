@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.540.0",
+    "@aws-sdk/s3-presigned-post": "^3.540.0",
+    "@aws-sdk/s3-request-presigner": "^3.540.0",
+    "aws-sdk": "^2.1589.0",
     "axios": "^1.6.8",
     "clsx": "^2.1.0",
     "mongodb": "^6.5.0",

@@ -20,6 +20,7 @@ import ImageInput from "../(ui-form-inputs)/ImageInput";
 import DescriptionInput from "../(ui-form-inputs)/DescriptionInput";
 import PackSelectionInput from "../(ui-form-inputs)/PackSelectionInput";
 import QuantityInput from "../(ui-form-inputs)/QuantityInput";
+import FileInput from "../(ui-form-inputs)/FileInput";
 // import { fetchAllPacks } from "@/app/lib/data";
 // import { fetchOnePack, fetchPacksName } from "@/app/lib/data";
 
@@ -200,6 +201,9 @@ function Form({ title, id }) {
           <ImageInput name="image" defaultValue={defaultImage} />
           {/* One Input */}
           {/* One Input */}
+          <FileInput name="imageFile" />
+          {/* One Input */}
+          {/* One Input */}
           <DescriptionInput
             name="description"
             defaultValue={defaultDescription}
@@ -278,6 +282,9 @@ function Form({ title, id }) {
             </>
           ) : (
             <>
+              {/* One Input */}
+              <FileInput name="coverFile" />
+              {/* One Input */}
               {/* // One Input */}
               <CoverInput name="cover" defaultValue={defaultCover} />
               {/* // One Input */}
