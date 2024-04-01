@@ -5,13 +5,13 @@ import HeaderStickerPack from "./HeaderStickerPack";
 import Stickers from "./Stickers";
 
 // export const revalidate = 60; // revalidate at most every minute
-export const dynamicParams = false; // to show 404 for pack names that doesnt exist
+export const dynamicParams = true; // to show new pages for pack names that doesnt exist on build time
 
 // Generate AllPossible Params
 export async function generateStaticParams() {
-  const packs = await fetch(`${process.env.NEXT_PUBLIC_SRV_URL}/stickerPacks`, {
-    next: { revalidate: 30 },
-  }).then((res) => res.json());
+  const packs = await fetch(
+    `${process.env.NEXT_PUBLIC_SRV_URL}/stickerPacks`
+  ).then((res) => res.json());
   // Returns an array of Object with key of categoryName
   const result = packs.map((pack) => ({
     categoryName: pack.title,
