@@ -1,0 +1,40 @@
+// TO DO //
+
+front:
+
+  tags page
+  profile page
+  search
+  cart
+  login page
+  toastify
+  dark mode
+
+back:
+ 
+  
+
+
+// TO OPT //
+
+  form optimization
+
+
+// DONE //
+
+front:
+  main page
+  sticker pack page
+  stickers page
+  dashboard/packs
+  dashboard/stickers
+  form
+
+6 days
+
+back:
+  db
+  srv
+  fetch and mutate data
+
+13 days

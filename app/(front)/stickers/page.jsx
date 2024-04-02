@@ -7,7 +7,7 @@ import Stickers from "./Stickers";
 function StickersPage() {
   return (
     <div className="flex flex-col justify-center items-center w-full">
-      <PackPageHero />
+      <PackPageHero title={"ALL STICKERS"} />
       {/* Breadcrumbs here */}
       <div className="flex gap-2 leading-6 text-[22px] font-semibold w-[90%] lg:w-[80%]">
         <Link href={"/"}>Home</Link>

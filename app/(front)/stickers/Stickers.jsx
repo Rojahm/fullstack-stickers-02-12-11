@@ -5,8 +5,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "@/app/ui/Pagination";
 import { useSearchParams } from "next/navigation";
+import Stickers from "@/app/(front)/ui/Stickers";
 
-function Stickers() {
+function StickersPage() {
   const searchParams = useSearchParams();
   const [stickers, setStickers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,33 +27,11 @@ function Stickers() {
   }, [loading, pagenumber, pagination]);
   return (
     <>
-      <div className="mt-4 grid grid-cols-5 gap-5">
-        {stickers.map((sticker, i) => (
-          <div
-            key={i}
-            className="my-2 py-5 px-4 rounded-md shadow-xl shadow-[#814997]/40 hover:shadow-3xl hover:shadow-[#814997]/80"
-          >
-            <Link
-              href={`/sticker-packs/${sticker.pack}/${sticker.title}`}
-              className="flex flex-col justify-center items-center gap-4"
-            >
-              <Image
-                src={sticker.imageLink}
-                width={200}
-                height={200}
-                alt={sticker.title}
-              />
-              <p className="text-center line-clamp-3 leading-5 font-semibold">
-                {sticker.title}
-              </p>
-            </Link>
-          </div>
-        ))}
-      </div>
+      <Stickers stickers={stickers} />
       {/* pagination */}
       <Pagination qty={allStickerQty} pn={pagenumber} pg={pagination} />
     </>
   );
 }
 
-export default Stickers;
+export default StickersPage;

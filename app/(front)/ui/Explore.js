@@ -71,7 +71,7 @@ function Explore() {
         {tags.map((tag, i) => (
           <Link
             key={i}
-            href={"/"}
+            href={`/tags/${tag}`}
             className="text-black font-medium inline-block mx-[10px] leading-6 hover:text-[#814997] hover:scale-[1.2] transition-all duration-100 ease-linear"
           >
             {tag}

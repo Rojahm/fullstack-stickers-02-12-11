@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Stickers from "@/app/(front)/ui/Stickers";
 
 function NewStickers() {
   const [stickers, setStickers] = useState([]);
@@ -19,7 +20,8 @@ function NewStickers() {
         New Stickers
       </Link>
       <hr className="border-[#814997] border-[3px] rounded-md" />
-      <div className="mt-4 grid grid-cols-5 gap-5">
+      <Stickers stickers={stickers} />
+      {/* <div className="mt-4 grid grid-cols-5 gap-5">
         {stickers.map((sticker, i) => (
           <div
             key={i}
@@ -41,7 +43,7 @@ function NewStickers() {
             </Link>
           </div>
         ))}
-      </div>
+      </div> */}
       <div className="mt-6 flex justify-end ">
         <Link
           href={"/stickers"}
