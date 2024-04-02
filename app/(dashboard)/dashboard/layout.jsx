@@ -1,6 +1,7 @@
 import { Nunito } from "next/font/google";
 import "@/app/globals.css";
 import Nav from "./Nav";
+import Header from "@/app/(front)/ui/Header";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -13,6 +14,7 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en" className={`${nunito.className} antialiased`}>
       <body>
+        <Header />
         <Nav />
         {children}
       </body>

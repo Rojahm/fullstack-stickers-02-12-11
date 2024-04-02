@@ -1,6 +1,9 @@
 import Link from "next/link";
 // UI
 import { FaSearch } from "react-icons/fa";
+import { CiUser } from "react-icons/ci";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+
 function MenuItems({ color }) {
   return (
     <>
@@ -38,6 +41,20 @@ function MenuItems({ color }) {
         className="font-semi bold text-[19px] flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
       >
         <FaSearch />
+      </Link>
+      <Link
+        href={"/profile"}
+        style={{ color: `${color}` }}
+        className="font-semi bold text-[19px] flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+      >
+        <CiUser />
+      </Link>
+      <Link
+        href={"/dashboard"}
+        style={{ color: `${color}` }}
+        className="font-semi bold text-[19px] flex justify-center items-center h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+      >
+        <MdOutlineSpaceDashboard />
       </Link>
     </>
   );
