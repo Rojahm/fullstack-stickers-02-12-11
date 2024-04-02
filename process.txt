@@ -4,6 +4,7 @@ front:
 
   tags page
   profile page
+  Nav hamburger
   search
   cart
   login page

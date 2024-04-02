@@ -1,7 +1,12 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
 import Nav from "./Nav";
+import Hamburger from "./Hamburger";
+import NavDrawer from "./NavDrawer";
 
 function Header({ color }) {
+  const [showDrawer, setShowDrawer] = useState(false);
   return (
     <div className="z-10 relative flex justify-between items-center pt-3 px-3">
       <Link href={"/"}>
@@ -14,6 +19,8 @@ function Header({ color }) {
       </Link>
 
       <Nav color={color} />
+      <Hamburger setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
+      <NavDrawer color={color} showDrawer={showDrawer} />
     </div>
   );
 }
