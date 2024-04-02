@@ -10,7 +10,6 @@ import { RiLockPasswordLine } from "react-icons/ri";
 function UserNav() {
   return (
     <div className="flex flex-col gap-5">
-      <h2>Profile</h2>
       <div>
         <div>Hello</div>
         <div>UserName</div>
@@ -22,24 +21,28 @@ function UserNav() {
           </div>
           <div>Cart</div>
         </Link>
+        <hr />
         <Link href={"/"} className="flex justify-start items-center gap-3">
           <div>
             <FaRegUser />
           </div>
           <div>My Account</div>
         </Link>
+        <hr />
         <Link href={"/"} className="flex justify-start items-center gap-3">
           <div>
             <MdOutlineHistory />
           </div>
           <div>My Orders</div>
         </Link>
+        <hr />
         <Link href={"/"} className="flex justify-start items-center gap-3">
           <div>
             <GrFavorite />
           </div>
           <div>My Favs</div>
         </Link>
+        <hr />
 
         <Link href={"/"} className="flex justify-start items-center gap-3">
           <div>
@@ -47,6 +50,7 @@ function UserNav() {
           </div>
           <div>Payments</div>
         </Link>
+        <hr />
         <Link href={"/"} className="flex justify-start items-center gap-3">
           <div>
             <RiLockPasswordLine />

@@ -1,7 +1,7 @@
 function ProfilePage() {
   return (
-    <div className="w-full">
-      <div>
+    <div className="">
+      <div className="">
         <h1>Personal Information</h1>
         <hr />
       </div>

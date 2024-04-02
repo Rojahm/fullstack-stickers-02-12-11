@@ -20,23 +20,3 @@ const nextConfig = {
   },
 };
 module.exports = nextConfig;
-// module.exports = {
-//   output: "standalone",
-// };
-// module.exports = {
-//   experimental: {
-//     missingSuspenseWithCSRBailout: false,
-//   },
-// };
-// module.exports = {
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: "https",
-//         hostname: "sticker.storage.iran.liara.space",
-//         port: "",
-//         pathname: "/**",
-//       },
-//     ],
-//   },
-// };
