@@ -2,9 +2,7 @@
 
 front:
 
-  tags page
   profile page
-  Nav hamburger
   search
   cart
   login page
@@ -12,13 +10,15 @@ front:
   dark mode
 
 back:
- 
+  tag page fetch
   
 
 
 // TO OPT //
 
   form optimization
+  navbar drawer animation
+
 
 
 // DONE //
@@ -30,6 +30,10 @@ front:
   dashboard/packs
   dashboard/stickers
   form
+  Nav hamburger
+  tags page
+
+
 
 6 days
 
