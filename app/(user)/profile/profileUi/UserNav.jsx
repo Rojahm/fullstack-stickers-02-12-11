@@ -12,7 +12,7 @@ function UserNav() {
     <div className="flex flex-col gap-5">
       <div>
         <div>Hello</div>
-        <div>UserName</div>
+        <div className="font-bold">UserName</div>
       </div>
       <div className="flex flex-col gap-2">
         <Link href={"/"} className="flex justify-start items-center gap-3">

@@ -16,11 +16,15 @@ export default function ProfileLayout({ children }) {
     <html lang="en" className={`${nunito.className} antialiased`}>
       <body>
         <Header color={"black"} />
-        <div className="flex justify-center items-start gap-5 p-5">
-          <div className="bg-sky-100/60 p-6 rounded-lg">
-            <UserNav />
+        <div className="flex flex-col justify-center items-center w-full">
+          <div className="flex justify-center gap-5 p-5 w-full lg:w-[70%]">
+            <div className="bg-sky-100/60 p-6 rounded-lg">
+              <UserNav />
+            </div>
+            <div className="w-full bg-sky-100/60 p-5 rounded-lg">
+              {children}
+            </div>
           </div>
-          <div className="w-full bg-sky-100/60 p-5 rounded-lg">{children}</div>
         </div>
         <Footer />
       </body>
