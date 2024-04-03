@@ -11,11 +11,11 @@ import { RiLockPasswordLine } from "react-icons/ri";
 function UserNav() {
   const menuItems = [
     { title: "cart", icon: <IoCartOutline />, link: "/" },
-    { title: "My Account", icon: <FaRegUser />, link: "/" },
-    { title: "My Orders", icon: <MdOutlineHistory />, link: "/" },
-    { title: "My Favs", icon: <GrFavorite />, link: "/" },
-    { title: "Payments", icon: <MdPayment />, link: "/" },
-    { title: "Change Password", icon: <RiLockPasswordLine />, link: "/" },
+    { title: "my account", icon: <FaRegUser />, link: "/" },
+    { title: "my orders", icon: <MdOutlineHistory />, link: "/" },
+    { title: "my favs", icon: <GrFavorite />, link: "/" },
+    { title: "payments", icon: <MdPayment />, link: "/" },
+    { title: "change password", icon: <RiLockPasswordLine />, link: "/" },
   ];
   return (
     <div className="flex flex-col">
@@ -32,7 +32,7 @@ function UserNav() {
               className="text-sm flex justify-start items-center gap-3 px-5 py-4 hover:bg-sky-200"
             >
               <div>{item.icon}</div>
-              <div>{item.title}</div>
+              <div className="capitalize">{item.title}</div>
             </Link>
 
             <hr />
