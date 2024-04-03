@@ -2,7 +2,7 @@ import { Nunito } from "next/font/google";
 import Footer from "@/app/(front)/ui/Footer";
 import Header from "@/app/(front)/ui/Header";
 import "@/app/globals.css";
-import UserNav from "@/app/(user)/profile/profileUi/UserNav";
+import UserNav from "@/app/(user)/ui/UserNav";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -21,7 +21,9 @@ export default function ProfileLayout({ children }) {
             <div className="bg-sky-100/60 rounded-lg">
               <UserNav />
             </div>
-            {children}
+            <div className="w-full bg-sky-100/60 p-5 rounded-lg">
+              {children}
+            </div>
           </div>
         </div>
         <Footer />
