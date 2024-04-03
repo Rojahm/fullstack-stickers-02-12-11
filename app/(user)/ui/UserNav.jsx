@@ -8,9 +8,11 @@ import { MdPayment } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { useState } from "react";
 
 function UserNav() {
   const pathname = usePathname();
+  const [expand, setExpand] = useState(true);
   const menuItems = [
     { title: "cart", icon: <IoCartOutline />, link: "/profile/cart" },
     { title: "my account", icon: <FaRegUser />, link: "/profile" },
