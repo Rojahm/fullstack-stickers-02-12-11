@@ -2,18 +2,29 @@ import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import clsx from "clsx";
 import MenuItems from "./MenuItems";
-function NavDrawer({ color, showDrawer }) {
+function NavDrawer({ color, showDrawer, setShowDrawer }) {
   return (
     <div
       id="drawer-navigation"
       className={clsx(
-        "bg-sky-300/80 fixed top-0 left-64 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full w-64",
-        { hidden: !showDrawer }
+        "bg-sky-300/90 fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform duration-300 ease-in-out w-42",
+        {
+          "transform translate-x-0": showDrawer,
+          "transform -translate-x-full": !showDrawer,
+        }
       )}
     >
+      <button
+        className="flex justify-end w-full"
+        onClick={() => setShowDrawer(!showDrawer)}
+      >
+        x
+      </button>
       <div className="flex flex-col justify-center items-center gap-3 my-5">
         <h2 className="font-bold text-xl">ChopStick</h2>
-        <MenuItems color={color} />
+        <div className=" flex flex-col justify-center items-center gap-2">
+          <MenuItems color={color} />
+        </div>
       </div>
     </div>
   );

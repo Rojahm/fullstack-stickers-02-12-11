@@ -2,7 +2,7 @@ import MenuItems from "./MenuItems";
 
 function Nav({ color }) {
   return (
-    <div className="hidden md:w-[400px] md:h-[50px] md:flex md:justify-evenly md:items-center">
+    <div className="hidden w-[400px] md:flex justify-center items-center gap-3">
       <MenuItems color={color} />
     </div>
   );

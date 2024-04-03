@@ -19,8 +19,16 @@ function Header({ color }) {
       </Link>
 
       <Nav color={color} />
-      <Hamburger setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
-      <NavDrawer color={color} showDrawer={showDrawer} />
+      <Hamburger
+        color={color}
+        setShowDrawer={setShowDrawer}
+        showDrawer={showDrawer}
+      />
+      <NavDrawer
+        color={color}
+        showDrawer={showDrawer}
+        setShowDrawer={setShowDrawer}
+      />
     </div>
   );
 }
