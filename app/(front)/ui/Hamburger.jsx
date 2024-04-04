@@ -6,8 +6,8 @@ function Hamburger({ color, setShowDrawer, showDrawer }) {
   };
   return (
     <div className="flex flex-col md:hidden">
-      <button style={{ text: { color } }} onClick={() => handleDrawer()}>
-        <GiHamburgerMenu size={28} />
+      <button onClick={() => handleDrawer()}>
+        <GiHamburgerMenu size={28} color={color} />
       </button>
     </div>
   );

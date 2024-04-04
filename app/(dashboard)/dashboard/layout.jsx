@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en" className={`${nunito.className} antialiased`}>
       <body>
-        <Header />
+        <Header color={"black"} />
         <Nav />
         {children}
       </body>
