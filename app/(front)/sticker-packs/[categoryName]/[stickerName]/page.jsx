@@ -2,8 +2,7 @@ import Stickers from "../Stickers";
 import HeaderSticker from "./HeaderSticker";
 import StickerPage from "./Sticker";
 
-export const dynamicParams = true; // to show 404 for sticker names that doesnt exist
-// export const revalidate = 60; // revalidate at most every minute
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const stickers = await fetch(
