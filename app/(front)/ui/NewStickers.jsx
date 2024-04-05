@@ -6,21 +6,12 @@ import Stickers from "@/app/(front)/ui/Stickers";
 
 const getStickers = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`);
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.json();
 };
 
 async function NewStickers() {
   const stickers = await getStickers();
-  // console.log(stickers);
-  // const [stickers, setStickers] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`)
-  //     .then((res) => {
-  //       setStickers(res.data);
-  //     });
-  // }, []);
   return (
     <>
       <Stickers stickers={stickers} />
