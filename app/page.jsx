@@ -1,9 +1,9 @@
 //Custom components
-import HeroPage from "./Hero";
-import Explore from "./ui/Explore";
+import HeroPage from "./(front)/Hero";
+import Explore from "./(front)/ui/Explore";
 import NewStickers from "@/app/(front)/ui/NewStickers";
-import StickerPacks from "./ui/StickerPacks";
-import TopStickers from "./ui/TopStickers";
+import StickerPacks from "./(front)/ui/StickerPacks";
+import TopStickers from "./(front)/ui/TopStickers";
 
 export default function Home() {
   return (
