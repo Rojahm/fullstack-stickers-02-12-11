@@ -1,18 +1,24 @@
-"use client";
+// "use client";
 import Link from "next/link";
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 import Stickers from "@/app/(front)/ui/Stickers";
 
-function TopStickers() {
-  const [stickers, setStickers] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`)
-      .then((res) => {
-        setStickers(res.data);
-      });
-  }, []);
+const getStickres = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`);
+  return res.json();
+};
+
+async function TopStickers() {
+  const stickers = await getStickres();
+  // const [stickers, setStickers] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`)
+  //     .then((res) => {
+  //       setStickers(res.data);
+  //     });
+  // }, []);
   return (
     <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">
       <Link href={"/"} className="text-4xl">
