@@ -2,8 +2,7 @@
 
 front:
 
-  404 (front)-/sticker-packs/pack/sticker
-  404 (front)-/sticker-packs/pack
+
   loading (front)  main ./newstickers , sticker packs, top stickers
   loading (front) /sticker-packs
   loading (front) /stickers
@@ -40,18 +39,16 @@ front:
   dashboard/packs
   dashboard/stickers
   form
+6 days
   Nav hamburger
   tags page
   profile page
-
-
-
-
-6 days
+  404 (front)-/sticker-packs/pack/sticker
+  404 (front)-/sticker-packs/pack
+2 days
 
 back:
   db
   srv
   fetch and mutate data
-
 13 days
