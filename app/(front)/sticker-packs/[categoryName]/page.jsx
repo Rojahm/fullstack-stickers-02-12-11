@@ -3,6 +3,7 @@ import Link from "next/link";
 // Custom Components
 import HeaderStickerPack from "./HeaderStickerPack";
 import Stickers from "./Stickers";
+import NotFound from "@/app/not-found";
 
 // export const revalidate = 60; // revalidate at most every minute
 export const dynamicParams = true; // to show new pages for pack names that doesnt exist on build time
@@ -101,7 +102,7 @@ async function StickerPackSinglePage({ params }) {
           </div>
         </>
       ) : (
-        <div>No Sticker Packs</div>
+        <NotFound />
       )}
     </>
   );

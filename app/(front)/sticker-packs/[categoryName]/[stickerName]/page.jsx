@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import Stickers from "../Stickers";
 import HeaderSticker from "./HeaderSticker";
 import StickerPage from "./Sticker";
@@ -28,11 +29,17 @@ async function StickerSinglePage({ params }) {
   const sticker = await getSticker(stickername);
   return (
     <>
-      <HeaderSticker color={sticker.color} textColor={"black"} />
-      <div className="flex flex-col justify-center items-center">
-        <StickerPage pack={packname} sticker={sticker} />
-        <Stickers title={packname} />
-      </div>
+      {sticker ? (
+        <>
+          <HeaderSticker color={sticker.color} textColor={"black"} />
+          <div className="flex flex-col justify-center items-center">
+            <StickerPage pack={packname} sticker={sticker} />
+            <Stickers title={packname} />
+          </div>
+        </>
+      ) : (
+        <NotFound />
+      )}
     </>
   );
 }
