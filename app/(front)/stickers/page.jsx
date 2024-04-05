@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import PackPageHero from "../sticker-packs/PackPageHero";
-import { Suspense } from "react";
-
-import Stickers from "./Stickers";
+import { Suspense, lazy } from "react";
+const Stickers = lazy(() => import("./Stickers"));
+// import Stickers from "./Stickers";
+import Title from "../ui/Title";
+import Loading from "@/app/Loading";
 function StickersPage() {
   return (
     <div className="flex flex-col justify-center items-center w-full">
@@ -17,11 +19,8 @@ function StickersPage() {
       </div>
       {/* List of Sticker Packs */}
       <div className="w-[90%] lg:w-[80%] my-10">
-        <Link href={"/"} className="text-4xl">
-          Sticker Packs
-        </Link>
-        <hr className="border-[#814997] border-[3px] rounded-md" />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Title title={"Stickers"} link={"/stickers"} />
+        <Suspense fallback={<Loading />}>
           <Stickers />
         </Suspense>
       </div>
