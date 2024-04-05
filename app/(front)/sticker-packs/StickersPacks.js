@@ -1,11 +1,17 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 //Custom Components
 import Pagination from "@/app/ui/Pagination";
+
+const getStickerPacks = async (pagenumber, pagination) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SRV_URL}/stickerPacks?pn=${pagenumber}&pg=${pagination}`
+  );
+  return res.json();
+};
 
 function StickersPacks() {
   const searchParams = useSearchParams();
@@ -15,14 +21,13 @@ function StickersPacks() {
   const pagination = Number(searchParams.get("pg")) || 6;
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.NEXT_PUBLIC_SRV_URL}/stickerPacks?pn=${pagenumber}&pg=${pagination}`
-      )
-      .then((res) => {
-        setPacks(res.data.paginatedPacks);
-        setAllPackQty(res.data.qty);
-      });
+    const fetchData = async () => {
+      const data = await getStickerPacks(pagenumber, pagination);
+      setPacks(data.paginatedPacks);
+      setAllPackQty(data.qty);
+    };
+
+    fetchData();
   }, [pagenumber, pagination]);
   return (
     <>
