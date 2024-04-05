@@ -1,8 +1,11 @@
 "use client";
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import PackPageHero from "./PackPageHero";
-import StickersPacks from "./StickersPacks";
+// import StickersPacks from "./StickersPacks";
+const StickersPacks = lazy(() => import("./StickersPacks"));
+import Loading from "@/app/Loading";
+
 function StickerPacksPage() {
   return (
     <div className="flex flex-col justify-center items-center w-full">
@@ -20,7 +23,7 @@ function StickerPacksPage() {
           Sticker Packs
         </Link>
         <hr className="border-[#814997] border-[3px] rounded-md" />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <StickersPacks />
         </Suspense>
       </div>

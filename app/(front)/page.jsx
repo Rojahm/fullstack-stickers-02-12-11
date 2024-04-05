@@ -18,8 +18,12 @@ export default function Home() {
           <NewStickers />
         </Suspense>
       </div>
-      <StickerPacks />
-      <TopStickers />
+      <Suspense fallback={<Loading />}>
+        <StickerPacks />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <TopStickers />
+      </Suspense>
       <Explore />
     </main>
   );
