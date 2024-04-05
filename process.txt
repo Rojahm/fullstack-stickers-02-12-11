@@ -1,11 +1,6 @@
 // TO DO //
 
 front:
-
-
-  loading (front)  main ./newstickers , sticker packs, top stickers
-  loading (front) /sticker-packs
-  loading (front) /stickers
   loading (front) /tags
   toastify(dashboard) add/delete/update
   add to cart btn /sticker-packs/pack/sticker
@@ -45,6 +40,9 @@ front:
   profile page
   404 (front)-/sticker-packs/pack/sticker
   404 (front)-/sticker-packs/pack
+  loading (front)  main ./newstickers , sticker packs, top stickers
+  loading (front) /sticker-packs
+  loading (front) /stickers
 2 days
 
 back:
