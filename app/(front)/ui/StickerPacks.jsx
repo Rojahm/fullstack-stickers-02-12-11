@@ -1,10 +1,7 @@
-// "use client";
+"use client";
 import Link from "next/link";
 import Image from "next/image";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-
-export const revalidate = 30;
+import { useEffect, useState } from "react";
 
 const getPacks = async () => {
   const res = await fetch(
@@ -14,13 +11,14 @@ const getPacks = async () => {
 };
 
 async function StickerPacks() {
-  const packs = await getPacks();
-  // const [packs, setPacks] = useState([]);
-  // useEffect(() => {
-  //   axios.get().then((res) => {
-  //     setPacks(res.data);
-  //   });
-  // }, []);
+  const [packs, setPacks] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getPacks();
+      setPacks(data);
+    };
+    getData();
+  }, []);
   return (
     <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">
       <Link href={"/"} className="text-4xl">
