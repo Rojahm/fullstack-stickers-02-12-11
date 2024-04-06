@@ -9,10 +9,10 @@ front:
   dark mode
   cart
   login page
-  revalidation main page components doesnt work
+  form edit removes images
+  hover effect packs 
 
 back:
-  tag page fetch
   search
   sticker model price
   
@@ -46,6 +46,7 @@ front:
 2 days
   (front)&Back /tags
   tag search optimizied /dashboard/stickers/addnew
+  revalidation main page components doesnt work
 
 back:
   db
@@ -53,3 +54,4 @@ back:
   fetch and mutate data
   get clean tag return on api/allTags/r
 13 days
+  tag page fetch
