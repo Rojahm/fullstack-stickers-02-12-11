@@ -5,11 +5,11 @@ front:
   toastify(dashboard) add/delete/update
   add to cart btn /sticker-packs/pack/sticker
   size selection /sticker-packs/pack/sticker
-
   search
   dark mode
   cart
   login page
+  revalidation main page components doesnt work
 
 back:
   tag page fetch

@@ -4,6 +4,8 @@ import Link from "next/link";
 // import { useEffect, useState } from "react";
 import Stickers from "@/app/(front)/ui/Stickers";
 
+export const revalidate = 30;
+
 const getStickers = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`);
   // await new Promise((resolve) => setTimeout(resolve, 3000));

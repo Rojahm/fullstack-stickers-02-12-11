@@ -4,6 +4,8 @@ import Image from "next/image";
 // import axios from "axios";
 // import { useEffect, useState } from "react";
 
+export const revalidate = 30;
+
 const getPacks = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickerPacks`
