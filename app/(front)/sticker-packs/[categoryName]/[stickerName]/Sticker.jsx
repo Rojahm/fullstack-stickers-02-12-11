@@ -22,7 +22,6 @@ function StickerPage({ pack, sticker }) {
             width={500}
             height={500}
             alt={sticker.title}
-            // className="md:absolute md:bottom-48 lg:bottom-24 md:-left-32 lg:-left-28 lg:w-[400px]"
           />
         </div>
         {/* details */}
@@ -33,10 +32,20 @@ function StickerPage({ pack, sticker }) {
           <p className="text-[#4e4a67] text-[0.8rem] leading-6">
             {sticker.description}
           </p>
-          <div className="flex justify-center items-center">
-            <button className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-full">
-              Add stickers Pack
-            </button>
+          <div className="flex justify-between items-center px-10">
+            <div>
+              <button className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-s-full">
+                -
+              </button>
+              <button className="p-5 text-[purple]">0</button>
+              <button className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-e-full">
+                +
+              </button>
+            </div>
+            <div className="flex gap-1">
+              <p className="font-semibold">Available:</p>
+              <p className="text-[purple]">{sticker.quantity}</p>
+            </div>
           </div>
           <div className="bg-white shadow-lg shadow-[#814997]/40 rounded-3xl border py-8 px-3 lg:translate-x-20">
             <h2 className="font-bold text-lg">Related sticker packs:</h2>
