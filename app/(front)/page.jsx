@@ -17,13 +17,15 @@ export default function Home() {
         <Suspense fallback={<Loading />}>
           <NewStickers />
         </Suspense>
+        <Title title={"Sticker Packs"} link={"/sticker-packs"} />
+        <Suspense fallback={<Loading />}>
+          <StickerPacks />
+        </Suspense>
+        <Title title={"Top Stickers"} link={"/stickers"} />
+        <Suspense fallback={<Loading />}>
+          <TopStickers />
+        </Suspense>
       </div>
-      <Suspense fallback={<Loading />}>
-        <StickerPacks />
-      </Suspense>
-      <Suspense fallback={<Loading />}>
-        <TopStickers />
-      </Suspense>
       <Explore />
     </main>
   );

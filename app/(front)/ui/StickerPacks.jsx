@@ -20,11 +20,7 @@ async function StickerPacks() {
     getData();
   }, []);
   return (
-    <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">
-      <Link href={"/"} className="text-4xl">
-        Sticker Packs
-      </Link>
-      <hr className="border-[#814997] border-[3px] rounded-md" />
+    <>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-5">
         <Packs packs={packs} />
       </div>
@@ -36,7 +32,7 @@ async function StickerPacks() {
           Show More
         </Link>
       </div>
-    </div>
+    </>
   );
 }
 
