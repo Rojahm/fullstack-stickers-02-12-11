@@ -1,7 +1,6 @@
-// "use client";
+"use client";
 import Link from "next/link";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Stickers from "@/app/(front)/ui/Stickers";
 
 const getStickres = async () => {
@@ -10,21 +9,16 @@ const getStickres = async () => {
 };
 
 async function TopStickers() {
-  const stickers = await getStickres();
-  // const [stickers, setStickers] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`)
-  //     .then((res) => {
-  //       setStickers(res.data);
-  //     });
-  // }, []);
+  const [stickers, setStickers] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getStickres();
+      setStickers(data);
+    };
+    getData();
+  }, []);
   return (
-    <div className="my-10 px-6 md:px-12 lg:px-40 flex flex-col">
-      <Link href={"/"} className="text-4xl">
-        Top Stickers
-      </Link>
-      <hr className="border-[#814997] border-[3px] rounded-md" />
+    <>
       <Stickers stickers={stickers} />
       <div className="mt-6 flex justify-end ">
         <Link
@@ -34,7 +28,7 @@ async function TopStickers() {
           Show More
         </Link>
       </div>
-    </div>
+    </>
   );
 }
 
