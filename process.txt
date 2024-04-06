@@ -2,7 +2,7 @@
 
 front:
   toastify(dashboard) add/delete/update
-  add to cart btn /sticker-packs/pack/sticker
+
   size selection /sticker-packs/pack/sticker
   search
   dark mode
@@ -47,6 +47,7 @@ front:
   tag search optimizied /dashboard/stickers/addnew
   revalidation main page components doesnt work
   hover effect packs 
+  add to cart btn /sticker
 
 back:
   db
