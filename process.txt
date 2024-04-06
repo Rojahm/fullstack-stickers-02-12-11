@@ -1,7 +1,6 @@
 // TO DO //
 
 front:
- 
   toastify(dashboard) add/delete/update
   add to cart btn /sticker-packs/pack/sticker
   size selection /sticker-packs/pack/sticker
@@ -10,7 +9,7 @@ front:
   cart
   login page
   form edit removes images
-  hover effect packs 
+
 
 back:
   search
@@ -47,6 +46,7 @@ front:
   (front)&Back /tags
   tag search optimizied /dashboard/stickers/addnew
   revalidation main page components doesnt work
+  hover effect packs 
 
 back:
   db
