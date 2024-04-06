@@ -1,7 +1,7 @@
 // TO DO //
 
 front:
-  loading (front) /tags
+ 
   toastify(dashboard) add/delete/update
   add to cart btn /sticker-packs/pack/sticker
   size selection /sticker-packs/pack/sticker
@@ -44,6 +44,8 @@ front:
   loading (front) /sticker-packs
   loading (front) /stickers
 2 days
+  (front)&Back /tags
+  tag search optimizied /dashboard/stickers/addnew
 
 back:
   db
