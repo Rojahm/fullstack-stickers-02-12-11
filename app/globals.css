@@ -61,3 +61,6 @@ body {
   height: 10vh;
   width: 100%;
 } */
+.cover:hover {
+  background-color: black !important;
+}
