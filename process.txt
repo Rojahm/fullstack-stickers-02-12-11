@@ -1,15 +1,12 @@
 // TO DO //
 
 front:
-  toastify(dashboard) add/delete/update
-
-  size selection /sticker-packs/pack/sticker
-  search
-  dark mode
+  navbar close on click on any other part of page
   cart
   login page
+  search
+  toastify(dashboard) add/delete/update
   form edit removes images
-
 
 back:
   search
@@ -19,8 +16,10 @@ back:
 
 // TO OPT //
 
+  dark mode
   form optimization
-  navbar drawer animation
+  ? size selection /sticker-packs/pack/sticker
+ 
 
 
 
@@ -48,6 +47,8 @@ front:
   revalidation main page components doesnt work
   hover effect packs 
   add to cart btn /sticker
+  navbar drawer animation
+18 farvardin
 
 back:
   db
@@ -56,3 +57,4 @@ back:
   get clean tag return on api/allTags/r
 13 days
   tag page fetch
+18 farvardin
