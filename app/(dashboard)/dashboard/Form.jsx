@@ -143,11 +143,7 @@ function Form({ title, id }) {
       axios
         .get(`${process.env.NEXT_PUBLIC_SRV_URL}/allTags/${e.target.value}`)
         .then((res) => {
-          const results = res.data.reduce((acc, result) => {
-            return acc.concat(result.tags);
-          }, []);
-
-          setTagResult(Array.from(new Set(results)));
+          setTagResult(res.data);
         });
     } else {
       setTagResult([]);
