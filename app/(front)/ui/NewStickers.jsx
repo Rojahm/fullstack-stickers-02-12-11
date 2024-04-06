@@ -1,10 +1,7 @@
-// "use client";
+"use client";
 import Link from "next/link";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Stickers from "@/app/(front)/ui/Stickers";
-
-export const revalidate = 30;
 
 const getStickers = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SRV_URL}/getNewStickers`);
@@ -13,7 +10,15 @@ const getStickers = async () => {
 };
 
 async function NewStickers() {
-  const stickers = await getStickers();
+  const [stickers, setStickers] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getStickers();
+      setStickers(data);
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <Stickers stickers={stickers} />
