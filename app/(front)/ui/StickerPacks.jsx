@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import Packs from "./Packs";
 
 const getPacks = async () => {
   const res = await fetch(
@@ -26,28 +26,7 @@ async function StickerPacks() {
       </Link>
       <hr className="border-[#814997] border-[3px] rounded-md" />
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-5">
-        {packs.map((pack, i) => (
-          <Link href={`/sticker-packs/${pack.title}`} key={i}>
-            <div
-              className={`w-auto h-auto rounded-xl hover:bg-black bg-cover`}
-              style={{
-                backgroundImage: `url(${pack.cover})`,
-                backgroundColor: `${pack.color}`,
-              }}
-            >
-              <Image
-                src={pack.imageLink}
-                width={200}
-                height={200}
-                alt={pack.title}
-                className="p-3 m-auto"
-              />
-              <p className="uppercase text-center font-bold text-xl text-white drop-shadow-md">
-                {pack.title}
-              </p>
-            </div>
-          </Link>
-        ))}
+        <Packs packs={packs} />
       </div>
       <div className="mt-6 flex justify-end ">
         <Link
