@@ -2,8 +2,8 @@
 
 front:
   cart
-  login page
   search
+  login page
   toastify(dashboard) add/delete/update
   form edit removes images
   change fetch with name to id
