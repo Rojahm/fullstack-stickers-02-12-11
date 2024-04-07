@@ -1,22 +1,8 @@
+"use client";
 import clsx from "clsx";
 import MenuItems from "./MenuItems";
+
 function NavDrawer({ color, showDrawer, setShowDrawer }) {
-  // Select html elemet to add event listener
-  const html = document.documentElement;
-  // Event listener for html
-  const closeMenuOnBodyClick = (e) => {
-    // get the event path
-    const target = e.composedPath();
-    target.some((elem) => elem.id === "drawerNavigation")
-      ? // terminate this function if drawerNavigation is clicked
-        null
-      : // Close the drawerNavigation if any other element other than drawerNavigation is Cliked
-        setShowDrawer(false);
-  };
-  // Only add EventListener if the drawerNavigation is open
-  if (showDrawer) {
-    html.addEventListener("click", closeMenuOnBodyClick);
-  }
   return (
     <div
       id="drawerNavigation"
