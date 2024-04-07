@@ -1,9 +1,7 @@
 // TO DO //
 
 front:
-  cart
   search
-  login page
   toastify(dashboard) add/delete/update
   form edit removes images
   change fetch with name to id
@@ -51,6 +49,9 @@ front:
 18 farvardin
   navbar close on click on any other part of page
   navbar close on main menu expand
+  login page
+  cart on page click handles
+  search on page click handles
 
 back:
   db
