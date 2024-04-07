@@ -65,6 +65,9 @@ function Header({ color }) {
         color={color}
         showDrawer={showDrawer}
         setShowDrawer={setShowDrawer}
+        setShowCart={setShowCart}
+        showCart={showCart}
+        setShowSearch={setShowSearch}
       />
       <Cart showCart={showCart} />
       <Search showSearch={showSearch} setShowSearch={setShowSearch} />
