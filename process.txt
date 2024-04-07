@@ -1,12 +1,12 @@
 // TO DO //
 
 front:
-  navbar close on click on any other part of page
   cart
   login page
   search
   toastify(dashboard) add/delete/update
   form edit removes images
+  change fetch with name to id
 
 back:
   search
@@ -49,6 +49,8 @@ front:
   add to cart btn /sticker
   navbar drawer animation
 18 farvardin
+  navbar close on click on any other part of page
+  navbar close on main menu expand
 
 back:
   db
