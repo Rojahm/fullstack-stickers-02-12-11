@@ -18,7 +18,7 @@ function Header({ color }) {
         </h1>
       </Link>
 
-      <Nav color={color} />
+      <Nav color={color} setShowDrawer={setShowDrawer} />
       <Hamburger
         color={color}
         setShowDrawer={setShowDrawer}
