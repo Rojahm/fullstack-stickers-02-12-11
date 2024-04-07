@@ -1,8 +1,14 @@
 "use client";
 import clsx from "clsx";
-import MenuItems from "./MenuItems";
-
-function NavDrawer({ color, showDrawer, setShowDrawer }) {
+import DrawerMenuItems from "./DrawerMenuItems";
+function NavDrawer({
+  color,
+  showDrawer,
+  setShowDrawer,
+  showCart,
+  setShowCart,
+  setShowSearch,
+}) {
   return (
     <div
       id="drawerNavigation"
@@ -24,7 +30,12 @@ function NavDrawer({ color, showDrawer, setShowDrawer }) {
       <div className="flex flex-col justify-center items-center gap-3 my-5">
         <h2 className="font-bold text-xl">ChopStick</h2>
         <div className=" flex flex-col justify-center items-center gap-2">
-          <MenuItems color={color} />
+          <DrawerMenuItems
+            color={color}
+            showCart={showCart}
+            setShowCart={setShowCart}
+            setShowSearch={setShowSearch}
+          />
         </div>
       </div>
     </div>
