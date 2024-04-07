@@ -44,7 +44,7 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
       id: "cart",
     },
   ];
-  const handleCart = (e) => {
+  const handleCart = () => {
     setShowCart(!showCart);
   };
   const handleSearch = () => {
