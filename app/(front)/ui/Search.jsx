@@ -1,9 +1,50 @@
+"use client";
+import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+// import { useDebouncedCallback } from "use-debounce";
+
+const searchPack = async (query) => {
+  const packData = await fetch(
+    `${process.env.NEXT_PUBLIC_SRV_URL}/searchPack/${query}`
+  );
+  return packData.json();
+};
+const searchSticker = async (query) => {
+  const stickerData = await fetch(
+    `${process.env.NEXT_PUBLIC_SRV_URL}/searchSticker/${query}`
+  );
+  return stickerData.json();
+};
+const searchTag = async (query) => {
+  const tagData = await fetch(
+    `${process.env.NEXT_PUBLIC_SRV_URL}/searchSticker/${query}`
+  );
+  return tagData.json();
+};
 
 function Search({ showSearch, setShowSearch }) {
   const closeSearch = () => {
     setShowSearch(false);
   };
+  const [query, setQuery] = useState("");
+  const [packResult, setPackResult] = useState([]);
+  const [stickerResult, setStickerResult] = useState([]);
+  const [tagResult, setTagResult] = useState([]);
+  const handleQuery = (e) => {
+    setQuery(e.target.value);
+  };
+  useEffect(() => {
+    const handleSearch = async (query) => {
+      if (query) {
+        const pack = await searchPack(query);
+        setPackResult(pack.result);
+        const sticker = await searchSticker(query);
+        setStickerResult(sticker.result);
+      }
+    };
+    handleSearch(query);
+  }, [query]);
+
   return (
     <>
       {showSearch ? (
@@ -17,6 +58,10 @@ function Search({ showSearch, setShowSearch }) {
                 <IoIosSearch />
               </button>
               <input
+                autoComplete="off"
+                autoFocus
+                onChange={handleQuery}
+                name="query"
                 type="text"
                 placeholder="Search ChopSticks"
                 className="px-1 w-full rounded-sm text-sm outline-none"
