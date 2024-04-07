@@ -30,7 +30,6 @@ function Nav({
           setShowCart={setShowCart}
           showCart={showCart}
           setShowSearch={setShowSearch}
-          showSearch={showSearch}
         />
       </div>
     </div>

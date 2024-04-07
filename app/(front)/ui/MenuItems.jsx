@@ -5,14 +5,9 @@ import { FaSearch } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { RiShoppingBasketLine } from "react-icons/ri";
+import { IoIosSearch } from "react-icons/io";
 
-function MenuItems({
-  color,
-  setShowCart,
-  showCart,
-  setShowSearch,
-  showSearch,
-}) {
+function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const menuItems = [
     {
       title: "Home",
@@ -31,7 +26,7 @@ function MenuItems({
       link: "/",
     },
     {
-      title: <FaSearch />,
+      title: <IoIosSearch />,
       // link: "/",
       id: "search",
     },
@@ -53,7 +48,7 @@ function MenuItems({
     setShowCart(!showCart);
   };
   const handleSearch = () => {
-    setShowSearch(!showSearch);
+    setShowSearch(true);
   };
   return (
     <>

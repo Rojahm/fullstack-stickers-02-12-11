@@ -21,16 +21,13 @@ function Header({ color }) {
           elem.id === "drawerNavigation" ||
           elem.id === "onPageCart" ||
           elem.id === "hamburger" ||
-          elem.id === "cart" ||
-          elem.id === "search" ||
-          elem.id === "onPageSearch"
+          elem.id === "cart"
       )
     ) {
       // Close the drawerNavigation if any other element other than drawerNavigation is Cliked
 
       setShowDrawer(false);
       setShowCart(false);
-      setShowSearch(false);
     }
   };
   // Only add EventListener if the drawerNavigation is open
@@ -58,7 +55,6 @@ function Header({ color }) {
         setShowCart={setShowCart}
         showCart={showCart}
         setShowSearch={setShowSearch}
-        showSearch={showSearch}
       />
       <Hamburger
         color={color}
@@ -71,7 +67,7 @@ function Header({ color }) {
         setShowDrawer={setShowDrawer}
       />
       <Cart showCart={showCart} />
-      <Search showSearch={showSearch} />
+      <Search showSearch={showSearch} setShowSearch={setShowSearch} />
     </div>
   );
 }
