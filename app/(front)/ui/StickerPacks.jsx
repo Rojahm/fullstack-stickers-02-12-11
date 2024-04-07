@@ -10,7 +10,7 @@ const getPacks = async () => {
   return res.json();
 };
 
-async function StickerPacks() {
+function StickerPacks() {
   const [packs, setPacks] = useState([]);
   useEffect(() => {
     const getData = async () => {

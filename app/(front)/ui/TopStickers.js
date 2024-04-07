@@ -8,7 +8,7 @@ const getStickres = async () => {
   return res.json();
 };
 
-async function TopStickers() {
+function TopStickers() {
   const [stickers, setStickers] = useState([]);
   useEffect(() => {
     const getData = async () => {

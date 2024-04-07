@@ -9,7 +9,7 @@ const getStickers = async () => {
   return res.json();
 };
 
-async function NewStickers() {
+function NewStickers() {
   const [stickers, setStickers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
