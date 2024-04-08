@@ -1,7 +1,7 @@
 // TO DO //
 
 front:
-  search
+ 
   toastify(dashboard) add/delete/update
   form edit removes images
   change fetch with name to id
@@ -52,6 +52,8 @@ front:
   login page
   cart on page click handles
   search on page click handles
+19 farvardin
+  search page
 
 back:
   db
@@ -61,3 +63,5 @@ back:
 13 days
   tag page fetch
 18 farvardin
+  2 ctrl for search stickers and packs
+19 farvardin
