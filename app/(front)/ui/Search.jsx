@@ -3,64 +3,53 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { useRouter } from "next/navigation";
-// import { useDebouncedCallback } from "use-debounce";
-
-const searchPack = async (query) => {
-  const packData = await fetch(
-    `${process.env.NEXT_PUBLIC_SRV_URL}/searchPack/${query}`
-  );
-  return packData.json();
-};
-const searchSticker = async (query) => {
-  const stickerData = await fetch(
-    `${process.env.NEXT_PUBLIC_SRV_URL}/searchSticker/${query}`
-  );
-  return stickerData.json();
-};
-const searchTag = async (query) => {
-  const tagData = await fetch(
-    `${process.env.NEXT_PUBLIC_SRV_URL}/getStickersByTag/${query}`
-  );
-  return tagData.json();
-};
+import { searchPack, searchSticker, searchTag } from "@/app/lib/data";
+import { useDebouncedCallback } from "use-debounce";
 
 function Search({ showSearch, setShowSearch }) {
   const closeSearch = () => {
     setShowSearch(false);
+    setPackResult([]);
+    setStickerResult([]);
+    setTagResult([]);
+    setResult([]);
   };
   const [query, setQuery] = useState("");
   const [packResult, setPackResult] = useState([]);
   const [stickerResult, setStickerResult] = useState([]);
   const [tagResult, setTagResult] = useState([]);
   const [result, setResult] = useState([]);
+  const [hasMoreResult, setHasMoreResult] = useState(false);
   const handleQuery = (e) => {
     setQuery(e.target.value);
   };
+  const debouncedSearch = useDebouncedCallback(async (searchQuery) => {
+    // const limit = 2;
+    if (searchQuery) {
+      const pack = await searchPack(searchQuery);
+      setPackResult(pack.result);
+      const sticker = await searchSticker(searchQuery);
+      setStickerResult(sticker.result);
+      const tag = await searchTag(searchQuery);
+      setTagResult(tag);
+      setResult([...pack.result, ...sticker.result, ...tag]);
+    } else {
+      setPackResult([]);
+      setStickerResult([]);
+      setTagResult([]);
+      setResult([]);
+    }
+  }, 500);
   useEffect(() => {
-    const handleSearch = async (query) => {
-      if (query) {
-        const pack = await searchPack(query);
-        setPackResult(pack.result);
-        const sticker = await searchSticker(query);
-        setStickerResult(sticker.result);
-        const tag = await searchTag(query);
-        setTagResult(tag);
-        setResult(pack.result.concat(sticker.result, tag));
-      } else {
-        setPackResult([]);
-        setStickerResult([]);
-        setTagResult([]);
-        setResult([]);
-      }
-    };
-    handleSearch(query);
-  }, [query]);
+    debouncedSearch(query);
+  }, [query, debouncedSearch]);
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(query);
-    router.push("/search");
+    const params = new URLSearchParams({ query });
+    router.push(`/search?${params.toString()}`);
   };
+
   return (
     <>
       {showSearch ? (
@@ -91,7 +80,8 @@ function Search({ showSearch, setShowSearch }) {
             </form>
 
             <h1 className="text-[purple] px-4">
-              Search Results:{query ? result.length : null}
+              Search Results:
+              {query ? (result.length > 0 ? result.length : "no match") : null}
             </h1>
 
             <div className="px-4 mb-4">
@@ -147,7 +137,9 @@ function Search({ showSearch, setShowSearch }) {
                 </>
               ) : null}
             </div>
-            {result.length > 0 ? <button>show more</button> : null}
+            {result.length > 8 ? (
+              <button onClick={handleSubmit}>show more</button>
+            ) : null}
           </div>
         </div>
       ) : null}
