@@ -40,3 +40,38 @@ export function fetchAllStickers() {
     return res.data;
   });
 }
+
+//Search
+export const searchPack = async (query, limit) => {
+  console.log(limit);
+  if (limit) {
+    const packDataLimited = await fetch(
+      `${process.env.NEXT_PUBLIC_SRV_URL}/searchPack/${query}/?limit=${limit}`
+    );
+    return packDataLimited.json();
+  } else {
+    const packData = await fetch(
+      `${process.env.NEXT_PUBLIC_SRV_URL}/searchPack/${query}`
+    );
+    return packData.json();
+  }
+};
+export const searchSticker = async (query, limit) => {
+  if (limit) {
+    const stickerData = await fetch(
+      `${process.env.NEXT_PUBLIC_SRV_URL}/searchSticker/${query}/?limit=${limit}`
+    );
+    return stickerData.json();
+  } else {
+    const stickerData = await fetch(
+      `${process.env.NEXT_PUBLIC_SRV_URL}/searchSticker/${query}`
+    );
+    return stickerData.json();
+  }
+};
+export const searchTag = async (query) => {
+  const tagData = await fetch(
+    `${process.env.NEXT_PUBLIC_SRV_URL}/getStickersByTag/${query}`
+  );
+  return tagData.json();
+};
