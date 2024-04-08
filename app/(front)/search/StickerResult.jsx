@@ -17,7 +17,7 @@ function StickerResult() {
       }
     };
     handleSearch(query);
-  }, []);
+  }, [query]);
   return (
     <div>
       <Stickers stickers={stickers} />
