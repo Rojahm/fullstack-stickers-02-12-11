@@ -1,13 +1,13 @@
 // TO DO //
 
 front:
-  toastify(dashboard) add/delete/update
-  form edit removes images
+  1 tag search
+  2 form edit removes images
+  4 toastify(dashboard) add/delete/update
   change fetch with name to id
 
 back:
-  search
-  sticker model price
+  3 sticker model price
   
 
 
@@ -64,3 +64,4 @@ back:
 18 farvardin
   2 ctrl for search stickers and packs
 19 farvardin
+  limit query for 2 search ctrl
