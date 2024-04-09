@@ -88,11 +88,14 @@ export async function addNewSticker(formData) {
     show: formData.get("show"),
     color: formData.get("color"),
   };
-  console.log(data);
   axios
     .post(`${process.env.NEXT_PUBLIC_SRV_URL}/addNewSticker`, data)
     .then((res) => {
       console.log(res.data.msg);
+      return res.data.msg;
+    })
+    .catch((err) => {
+      return err;
     });
 }
 export async function updateSticker(formData, id) {
