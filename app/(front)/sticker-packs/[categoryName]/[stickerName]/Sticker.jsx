@@ -56,7 +56,15 @@ function StickerPage({ pack, sticker }) {
                   key={i}
                   className="border-[purple] border rounded-3xl px-5 py-1 hover:shadow-xl hover:shadow-[#814997]/40 hover:bg-[mediumpurple] hover:text-white hover:border-[mediumpurple] transition-all ease-in-out duration-200"
                 >
-                  {tag}
+                  <Link
+                    href={`/tags/${tag
+                      .trim()
+                      .toLowerCase()
+                      .split(" ")
+                      .join("-")}`}
+                  >
+                    {tag}
+                  </Link>
                 </button>
               ))}
             </div>
