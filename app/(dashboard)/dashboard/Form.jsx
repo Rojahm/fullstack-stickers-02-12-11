@@ -21,8 +21,9 @@ import DescriptionInput from "../(ui-form-inputs)/DescriptionInput";
 import PackSelectionInput from "../(ui-form-inputs)/PackSelectionInput";
 import QuantityInput from "../(ui-form-inputs)/QuantityInput";
 import FileInput from "../(ui-form-inputs)/FileInput";
-// import { fetchAllPacks } from "@/app/lib/data";
-// import { fetchOnePack, fetchPacksName } from "@/app/lib/data";
+// Toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Form({ title, id }) {
   const pathname = usePathname();
@@ -127,9 +128,11 @@ function Form({ title, id }) {
       if (pathname === "/dashboard/stickers/new") {
         await addNewSticker(formData);
         e.target.reset();
+        toast("New Sticker Added");
       } else if (pathname.startsWith("/dashboard/stickers/edit")) {
         await updateSticker(formData, id);
-        router.back();
+        toast("Sticker Updated");
+        // router.back();
       }
       setTags([]);
     }
@@ -180,6 +183,18 @@ function Form({ title, id }) {
 
   return (
     <div className="flex flex-col justify-center items-center w-full">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="w-[90%] lg:w-[70%]">
         <h1 className="font-bold text-lg">{title}</h1>
         <hr />
