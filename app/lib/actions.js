@@ -30,13 +30,19 @@ export async function addNewPack(formData) {
 export async function updatePack(formData, id) {
   const packImage = formData.get("imageFile");
   const filepath = formData.get("filepath");
-  const image = await upload(packImage, filepath);
+  const image =
+    packImage.size > 0
+      ? await upload(packImage, filepath)
+      : formData.get("image");
   const packCover = formData.get("coverFile");
-  const cover = await upload(packCover, `${filepath}/covers`);
+  const cover =
+    packCover.size > 0
+      ? await upload(packCover, `${filepath}/covers`)
+      : formData.get("cover");
   const data = {
     title: formData.get("title").trim().split(" ").join("-"),
-    imageLink: image || formData.get("image"),
-    cover: cover || formData.get("cover"),
+    imageLink: image,
+    cover: cover,
     description: formData.get("description"),
     link: formData.get("link"),
     relatedPacks: formData
@@ -67,6 +73,7 @@ export async function addNewSticker(formData) {
   const file = formData.get("imageFile");
   const filepath = formData.get("filepath");
   const image = await upload(file, filepath);
+  console.log(image);
   const data = {
     title: formData.get("title").trim().split(" ").join("-"),
     imageLink: image,
@@ -81,6 +88,7 @@ export async function addNewSticker(formData) {
     show: formData.get("show"),
     color: formData.get("color"),
   };
+  console.log(data);
   axios
     .post(`${process.env.NEXT_PUBLIC_SRV_URL}/addNewSticker`, data)
     .then((res) => {
@@ -90,10 +98,11 @@ export async function addNewSticker(formData) {
 export async function updateSticker(formData, id) {
   const file = formData.get("imageFile");
   const filepath = formData.get("filepath");
-  const image = await upload(file, filepath);
+  const image =
+    file.size > 0 ? await upload(file, filepath) : formData.get("image");
   const data = {
     title: formData.get("title").trim().split(" ").join("-"),
-    imageLink: image || formData.get("image"),
+    imageLink: image,
     description: formData.get("description"),
     link: formData.get("link"),
     quantity: formData.get("quantity"),
