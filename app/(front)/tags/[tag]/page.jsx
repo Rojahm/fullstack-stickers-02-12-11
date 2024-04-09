@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 
 const getStickers = async (tag) => {
   const result = await fetch(
-    `${process.env.NEXT_PUBLIC_SRV_URL}/getStickersByTag/${tag}`
+    `${process.env.NEXT_PUBLIC_SRV_URL}/getStickersByTag/${tag
+      .split("-")
+      .join(" ")}`
   );
   // console.log(result.json());
   return result.json();
