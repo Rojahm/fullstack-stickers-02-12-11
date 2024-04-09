@@ -1,7 +1,6 @@
 // TO DO //
 
 front:
-  2 form edit removes images
   4 toastify(dashboard) add/delete/update
   change fetch with name to id
 
@@ -53,6 +52,7 @@ front:
 19 farvardin
   search page
   tag search
+  form edit removes images
 
 back:
   db
