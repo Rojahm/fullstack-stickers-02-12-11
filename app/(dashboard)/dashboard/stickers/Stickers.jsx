@@ -12,6 +12,9 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+// Toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Stickers() {
   const searchParams = useSearchParams();
@@ -37,12 +40,17 @@ function Stickers() {
   }, [loading, pagenumber, pagination]);
   // Delete Sticker
   const handleDelete = async (id) => {
-    await deleteSticker(id);
+    toast.promise(deleteSticker(id), {
+      pending: "Deleting",
+      success: "Sticker Deleted",
+      error: "error",
+    });
     setLoading(true);
   };
   return (
     <>
       <div className="mt-4 grid grid-cols-1 gap-5 w-full">
+        <ToastContainer />
         {!loading &&
           stickers.map((sticker, i) => (
             <div

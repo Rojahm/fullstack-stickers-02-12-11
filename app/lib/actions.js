@@ -73,7 +73,6 @@ export async function addNewSticker(formData) {
   const file = formData.get("imageFile");
   const filepath = formData.get("filepath");
   const image = await upload(file, filepath);
-  console.log(image);
   const data = {
     title: formData.get("title").trim().split(" ").join("-"),
     imageLink: image,
@@ -92,7 +91,7 @@ export async function addNewSticker(formData) {
     .post(`${process.env.NEXT_PUBLIC_SRV_URL}/addNewSticker`, data)
     .then((res) => {
       console.log(res.data.msg);
-      return res.data.msg;
+      // return res.data.msg;
     })
     .catch((err) => {
       return err;

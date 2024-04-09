@@ -12,6 +12,9 @@ import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+// Toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function StickerPacks() {
   const searchParams = useSearchParams();
@@ -34,12 +37,20 @@ function StickerPacks() {
   }, [loading, pagenumber, pagination]);
 
   const handleDelete = async (id) => {
-    await deletePack(id);
+    const deleteP = async () =>
+      await deletePack(id).then(() => {
+        setLoading(true);
+      });
+    toast.promise(deleteP, {
+      pending: "Deleting",
+      success: "Sticker Pack Deleted",
+      error: "error",
+    });
     // window.location.reload();
-    setLoading(true);
   };
   return (
     <>
+      <ToastContainer />
       <div className="mt-4 grid grid-cols-1 gap-10 md:gap-5">
         {packs.map((pack, i) => (
           <div

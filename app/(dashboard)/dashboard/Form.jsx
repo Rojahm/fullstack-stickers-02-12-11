@@ -114,11 +114,25 @@ function Form({ title, id }) {
       //Add Related Packs
       formData.append("relatedPacks", relatedPacks);
       if (pathname === "/dashboard/packs/new") {
-        await addNewPack(formData);
-        e.target.reset();
+        const add = async () =>
+          addNewPack(formData).then(() => {
+            e.target.reset();
+          });
+        toast.promise(add, {
+          pending: "adding",
+          success: "New Sticker Pack Added",
+          error: "error",
+        });
       } else if (pathname.startsWith("/dashboard/packs/edit")) {
-        await updatePack(formData, id);
-        router.back();
+        const update = async () =>
+          await updatePack(formData, id).then(() => {
+            router.back();
+          });
+        toast.promise(update, {
+          pending: "updating",
+          success: "Sticker Pack Updated",
+          error: "error",
+        });
       }
       setRelatedPacks([]);
     }
@@ -126,17 +140,30 @@ function Form({ title, id }) {
     else if (pathname.startsWith("/dashboard/stickers")) {
       formData.append("tags", tags);
       if (pathname === "/dashboard/stickers/new") {
-        await addNewSticker(formData);
-        e.target.reset();
-        toast("New Sticker Added");
+        const add = async () =>
+          await addNewSticker(formData).then(() => {
+            e.target.reset();
+          });
+        toast.promise(add, {
+          pending: "adding",
+          success: "New Sticker Added",
+          error: "error",
+        });
       } else if (pathname.startsWith("/dashboard/stickers/edit")) {
-        await updateSticker(formData, id);
-        toast("Sticker Updated");
-        // router.back();
+        const update = async () =>
+          await updateSticker(formData, id).then(() => {
+            router.back();
+          });
+        toast.promise(update, {
+          pending: "Updating",
+          success: "Sticker Updated, going to the List ",
+          error: "error",
+        });
       }
       setTags([]);
     }
   };
+
   //Search Tags
   const [tagResult, setTagResult] = useState([]);
   const searchTags = useDebouncedCallback((e) => {
@@ -183,18 +210,7 @@ function Form({ title, id }) {
 
   return (
     <div className="flex flex-col justify-center items-center w-full">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <ToastContainer />
       <div className="w-[90%] lg:w-[70%]">
         <h1 className="font-bold text-lg">{title}</h1>
         <hr />

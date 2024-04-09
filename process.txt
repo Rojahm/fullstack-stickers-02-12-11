@@ -1,8 +1,7 @@
 // TO DO //
 
 front:
-  4 toastify(dashboard) add/delete/update
-  change fetch with name to id
+  
 
 back:
   3 sticker model price
@@ -53,6 +52,8 @@ front:
   search page
   tag search
   form edit removes images
+  toastify(dashboard) add/delete/update
+
 
 back:
   db
