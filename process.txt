@@ -1,10 +1,16 @@
 // TO DO //
 
 front:
-  
+  2 cart state mgmt
+  3 sign in
+  4 auth
+  7 users /dashboard
+  8 orders /dashboard
+  9 payment
 
 back:
-  3 sticker model price
+  5 user model
+  6 order model
   
 
 
@@ -53,6 +59,8 @@ front:
   tag search
   form edit removes images
   toastify(dashboard) add/delete/update
+  sticker price
+21 farvardin
 
 
 back:
@@ -67,3 +75,5 @@ back:
 19 farvardin
   limit query for 2 search ctrl
   tag search is in considered in stickerSearch
+  sticker model price
+21 farvardin

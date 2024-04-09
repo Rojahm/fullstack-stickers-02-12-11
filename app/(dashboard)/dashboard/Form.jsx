@@ -24,6 +24,7 @@ import FileInput from "../(ui-form-inputs)/FileInput";
 // Toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PriceInput from "../(ui-form-inputs)/PriceInput";
 
 function Form({ title, id }) {
   const pathname = usePathname();
@@ -43,6 +44,7 @@ function Form({ title, id }) {
   const [defaultPack, setDefaultPack] = useState();
   const [defaultQuantity, setDefaultQuantity] = useState();
   const [defaultTags, setDefaultTags] = useState();
+  const [defaultPrice, setDefaultPrice] = useState();
   useEffect(() => {
     // Get All the Packs Names
     axios
@@ -86,6 +88,7 @@ function Form({ title, id }) {
           setTags(res.data.tags);
           setDefaultShow(res.data.show);
           setDefaultColor(res.data.color);
+          setDefaultPrice(res.data.price);
           setIsLoading(false);
         });
     }
@@ -253,6 +256,9 @@ function Form({ title, id }) {
               {/* One Input */}
               {/* One Input */}
               <QuantityInput name="quantity" defaultValue={defaultQuantity} />
+              {/* One Input */}
+              {/* One Input */}
+              <PriceInput name="price" defaultValue={defaultPrice} />
               {/* One Input */}
               {/* One Input */}
               <div className="flex justify-center items-center gap-5 w-full">

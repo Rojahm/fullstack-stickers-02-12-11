@@ -79,6 +79,7 @@ export async function addNewSticker(formData) {
     description: formData.get("description"),
     link: formData.get("link"),
     quantity: formData.get("quantity"),
+    price: formData.get("price"),
     pack: formData.get("pack").trim().split(" ").join("-"),
     tags: formData
       .get("tags")
@@ -108,6 +109,7 @@ export async function updateSticker(formData, id) {
     description: formData.get("description"),
     link: formData.get("link"),
     quantity: formData.get("quantity"),
+    price: formData.get("price"),
     pack: formData.get("pack").trim().split(" ").join("-"),
     tags: formData
       .get("tags")
