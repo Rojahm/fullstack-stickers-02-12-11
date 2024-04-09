@@ -23,6 +23,7 @@ function FileInput({ name }) {
           type="file"
           id="file"
           name={name}
+          accept="image/jpeg,image/png,image/jpg"
           className="w-full border border-sky-200 rounded-md px-2 py-1 outline-sky-300 h-10"
         ></input>
       </div>
