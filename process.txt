@@ -1,7 +1,6 @@
 // TO DO //
 
 front:
-  1 tag search
   2 form edit removes images
   4 toastify(dashboard) add/delete/update
   change fetch with name to id
@@ -53,6 +52,7 @@ front:
   search on page click handles
 19 farvardin
   search page
+  tag search
 
 back:
   db
@@ -65,3 +65,4 @@ back:
   2 ctrl for search stickers and packs
 19 farvardin
   limit query for 2 search ctrl
+  tag search is in considered in stickerSearch
