@@ -43,7 +43,6 @@ export function fetchAllStickers() {
 
 //Search
 export const searchPack = async (query, limit) => {
-  console.log(limit);
   if (limit) {
     const packDataLimited = await fetch(
       `${process.env.NEXT_PUBLIC_SRV_URL}/searchPack/${query}/?limit=${limit}`
@@ -68,10 +67,4 @@ export const searchSticker = async (query, limit) => {
     );
     return stickerData.json();
   }
-};
-export const searchTag = async (query) => {
-  const tagData = await fetch(
-    `${process.env.NEXT_PUBLIC_SRV_URL}/getStickersByTag/${query}`
-  );
-  return tagData.json();
 };

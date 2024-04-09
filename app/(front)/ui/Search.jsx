@@ -3,23 +3,22 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { useRouter } from "next/navigation";
-import { searchPack, searchSticker, searchTag } from "@/app/lib/data";
+import { searchPack, searchSticker } from "@/app/lib/data";
 import { useDebouncedCallback } from "use-debounce";
 
 function Search({ showSearch, setShowSearch }) {
+  const [query, setQuery] = useState("");
+  const [packResult, setPackResult] = useState([]);
+  const [stickerResult, setStickerResult] = useState([]);
+  const [result, setResult] = useState([]);
+  const [hasMoreResult, setHasMoreResult] = useState();
   const closeSearch = () => {
     setShowSearch(false);
     setPackResult([]);
     setStickerResult([]);
-    setTagResult([]);
     setResult([]);
+    setHasMoreResult(false);
   };
-  const [query, setQuery] = useState("");
-  const [packResult, setPackResult] = useState([]);
-  const [stickerResult, setStickerResult] = useState([]);
-  const [tagResult, setTagResult] = useState([]);
-  const [result, setResult] = useState([]);
-  const [hasMoreResult, setHasMoreResult] = useState(false);
   const handleQuery = (e) => {
     setQuery(e.target.value);
   };
@@ -30,14 +29,17 @@ function Search({ showSearch, setShowSearch }) {
       setPackResult(pack.result);
       const sticker = await searchSticker(searchQuery);
       setStickerResult(sticker.result);
-      const tag = await searchTag(searchQuery);
-      setTagResult(tag);
-      setResult([...pack.result, ...sticker.result, ...tag]);
+      setResult([...pack.result, ...sticker.result]);
+      if (pack.result.length > 4 || sticker.result.length > 4) {
+        setHasMoreResult(true);
+      } else {
+        setHasMoreResult(false);
+      }
     } else {
       setPackResult([]);
       setStickerResult([]);
-      setTagResult([]);
       setResult([]);
+      setHasMoreResult(false);
     }
   }, 500);
   useEffect(() => {
@@ -84,7 +86,7 @@ function Search({ showSearch, setShowSearch }) {
               {query ? (result.length > 0 ? result.length : "no match") : null}
             </h1>
 
-            <div className="px-4 mb-4">
+            <div className="px-4">
               {packResult.length > 0 ? (
                 <>
                   <p className="font-bold">Sticker Packs</p>
@@ -119,26 +121,14 @@ function Search({ showSearch, setShowSearch }) {
                   </div>
                 </>
               ) : null}
-              {tagResult.length > 0 ? (
-                <>
-                  <p className="font-bold">Tags</p>
-                  <hr className="border-[#814997] border-[1px]" />
-                  <div className="flex flex-col my-2">
-                    {tagResult.slice(0, 4).map((tag, i) => (
-                      <Link
-                        key={i}
-                        href={"/"}
-                        className="text-zinc-500 hover:font-bold transition-all duration-200 ease-in-out"
-                      >
-                        {tag.title}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              ) : null}
             </div>
-            {result.length > 8 ? (
-              <button onClick={handleSubmit}>show more</button>
+            {hasMoreResult ? (
+              <button
+                onClick={handleSubmit}
+                className="text-[purple] text-sm flex justify-end items-center p-2"
+              >
+                show more
+              </button>
             ) : null}
           </div>
         </div>

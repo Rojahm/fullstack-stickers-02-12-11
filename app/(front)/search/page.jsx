@@ -5,36 +5,11 @@ import Link from "next/link";
 import StickerResult from "./StickerResult";
 import { Suspense } from "react";
 import Loading from "@/app/Loading";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PackResult from "./PackResult";
 
 function SearchPage() {
   const [title, setTitle] = useState("");
-
-  // const [tags, setTags] = useState([]);
-  // useEffect(() => {
-  //   const handleSearch = async (query) => {
-  //     if (query) {
-  //       const packResult = await searchPack(query);
-  //       setPacks(packResult.result);
-  //       // const stickerResult = await searchSticker(query);
-  //       // setStickers(stickerResult.result);
-  //       const tagResult = await searchTag(query);
-  //       setTags(tagResult);
-  //       // setResult([
-  //       //   ...packResult.result,
-  //       //   ...stickerResult.result,
-  //       //   ...tagResult,
-  //       // ]);
-  //     } else {
-  //       setPacks([]);
-  //       // setStickers([]);
-  //       setTags([]);
-  //       // setResult([]);
-  //     }
-  //   };
-  //   handleSearch(query);
-  // }, []);
   return (
     <div className="flex flex-col justify-center items-center w-full">
       <PackPageHero title={`results for ${title}`} />
@@ -53,7 +28,6 @@ function SearchPage() {
         <Suspense fallback={<Loading />}>
           <StickerResult />
         </Suspense>
-        <Title title={"Tags"} link={"/sticker-packs"} />
       </div>
     </div>
   );
