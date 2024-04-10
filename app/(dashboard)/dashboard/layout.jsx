@@ -1,9 +1,6 @@
-import { Nunito } from "next/font/google";
 import "@/app/globals.css";
 import Nav from "./Nav";
 import Header from "@/app/(front)/ui/Header";
-
-const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Dashboard | ChopStick",
@@ -12,12 +9,10 @@ export const metadata = {
 
 export default function DashboardLayout({ children }) {
   return (
-    <html lang="en" className={`${nunito.className} antialiased`}>
-      <body>
-        <Header color={"black"} />
-        <Nav />
-        {children}
-      </body>
-    </html>
+    <section>
+      <Header color={"black"} />
+      <Nav />
+      {children}
+    </section>
   );
 }
