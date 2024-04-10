@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import useCart from "@/app/store/useCart";
 
 function StickerPage({ pack, sticker }) {
   const formatPrice = (price) => {
@@ -16,6 +18,11 @@ function StickerPage({ pack, sticker }) {
 
     return formattedNumber;
   };
+  // Counter
+  const cartCount = useCart((state) => state.count);
+  // Controls
+  const addTo = useCart((state) => state.addToCart);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-[90%] lg:w-[80%] my-6 flex gap-2 leading-6 text-[18px] font-semibold">
@@ -56,8 +63,11 @@ function StickerPage({ pack, sticker }) {
               <button className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-s-full">
                 -
               </button>
-              <button className="p-5 text-[purple]">0</button>
-              <button className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-e-full">
+              <button className="p-5 text-[purple]">{cartCount}</button>
+              <button
+                onClick={addTo}
+                className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-e-full"
+              >
                 +
               </button>
             </div>
