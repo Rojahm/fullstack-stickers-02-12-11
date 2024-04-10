@@ -46,7 +46,7 @@ function StickerPage({ pack, sticker }) {
           <p className="text-[#4e4a67] text-[0.8rem] leading-6">
             {sticker.description}
           </p>
-          <div className="flex justify-between items-center px-10">
+          <div className="flex justify-between items-center">
             <div className="flex gap-1 items-center">
               <p className="text-[purple] font-bold">Price:</p>
               <p className="font-semibold">{formatPrice(sticker.price)}</p>
