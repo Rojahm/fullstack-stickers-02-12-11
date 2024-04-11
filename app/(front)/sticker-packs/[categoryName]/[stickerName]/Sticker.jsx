@@ -1,21 +1,25 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import {
+  productQtyInCartSelector,
+  addToCart,
+  removeFromCart,
+  totalCartItemsSelector,
+} from "@/lib/features/cart/cartSlice";
+import { formatPrice } from "@/app/util/formatPrice";
+import { useEffect, useState } from "react";
 
 function StickerPage({ pack, sticker }) {
-  const formatPrice = (price) => {
-    const reversedPrice = String(price).split("").reverse();
-    const formattedParts = [];
-    for (let i = 0; i < reversedPrice.length; i += 3) {
-      // Slice a group of 3 characters (or less for the last group)
-      const part = reversedPrice.slice(i, i + 3);
-      // Join the characters back into a string and push it to the array
-      formattedParts.push(part.reverse().join(""));
-    }
-    // Reverse the formatted parts array back to the correct order
-    const formattedNumber = formattedParts.reverse().join(",");
-
-    return formattedNumber;
-  };
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const [qty, setQty] = useState("0");
+  useEffect(() => {
+    cartItems.map((item) =>
+      item.product._id === sticker._id ? setQty(item.qty) : setQty(0)
+    );
+  }, [sticker, cartItems]);
+  const dispatch = useAppDispatch();
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-[90%] lg:w-[80%] my-6 flex gap-2 leading-6 text-[18px] font-semibold">
@@ -53,11 +57,23 @@ function StickerPage({ pack, sticker }) {
               <p className="text-[purple] font-bold text-xs">Toman</p>
             </div>
             <div>
-              <button className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-s-full">
+              <button
+                onClick={(event) => {
+                  event.preventDefault();
+                  dispatch(removeFromCart(sticker));
+                }}
+                className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-s-full"
+              >
                 -
               </button>
-              <button className="p-5 text-[purple]">0</button>
-              <button className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-e-full">
+              <button className="p-5 text-[purple]">{qty}</button>
+              <button
+                onClick={(event) => {
+                  event.preventDefault();
+                  dispatch(addToCart(sticker));
+                }}
+                className="bg-[purple] hover:bg-[#814997] uppercase text-white text-md font-bold py-3 px-5 rounded-e-full"
+              >
                 +
               </button>
             </div>
