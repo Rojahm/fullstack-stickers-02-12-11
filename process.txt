@@ -1,20 +1,10 @@
 // TO DO //
 
 front:
-  2 cart state mgmt
-  Cart number show
-  Limit availability
-  Cart component style,
-  limit name character
-  Image
-  Fixed width
-
-  Cart page style
 
   Bread crumb style sm, md
-  Sticker component on sm vp
-  Sticker page add to cart on sm
-  cart style
+  metadata
+
   3 sign in
   4 auth
   7 users /dashboard
@@ -74,6 +64,17 @@ front:
   toastify(dashboard) add/delete/update
   sticker price
 21 farvardin
+  cart state mgmt
+  Cart number show
+  Cart component style,
+  limit name character
+  Image
+  Fixed width
+  Cart page style
+  Sticker component on sm vp
+  Sticker page add to cart on sm
+  cart style
+  Limit availability
 
 
 back:
