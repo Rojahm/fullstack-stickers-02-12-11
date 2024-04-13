@@ -6,6 +6,7 @@ import { CiUser } from "react-icons/ci";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
+import { useAppSelector } from "@/lib/hooks";
 
 function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const menuItems = [
@@ -50,6 +51,8 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const handleSearch = () => {
     setShowSearch(true);
   };
+  const cartNumber = useAppSelector((state) => state.cart.cartQty);
+
   return (
     <>
       {menuItems.map((item, i) =>
@@ -83,6 +86,11 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
             }
           >
             {item.title}
+            {item.id === "cart" && cartNumber > 0 ? (
+              <div className="absolute top-8 right-5 rounded-full bg-[purple] text-white text-xs px-1">
+                {cartNumber}
+              </div>
+            ) : null}
           </button>
         )
       )}

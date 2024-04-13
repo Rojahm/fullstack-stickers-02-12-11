@@ -6,6 +6,8 @@ import { CiUser } from "react-icons/ci";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
+import { useAppSelector } from "@/lib/hooks";
+
 function DrawerMenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const menuItems = [
     {
@@ -49,6 +51,8 @@ function DrawerMenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const handleSearch = () => {
     setShowSearch(true);
   };
+  const cartNumber = useAppSelector((state) => state.cart.cartQty);
+
   return (
     <>
       {menuItems.map((item, i) =>
@@ -66,7 +70,7 @@ function DrawerMenuItems({ color, setShowCart, showCart, setShowSearch }) {
           // Render a different tag (replace with your desired tag)
           <button
             id={item.id ? item.id : ""}
-            className="font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+            className="flex items-center font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
             key={`${i}-no-link`}
             style={{ color: `${color}` }}
             onClick={
@@ -82,6 +86,11 @@ function DrawerMenuItems({ color, setShowCart, showCart, setShowSearch }) {
             }
           >
             {item.title}
+            {item.id === "cart" && cartNumber > 0 ? (
+              <div className="rounded-full bg-[purple] text-white text-xs px-1">
+                {cartNumber}
+              </div>
+            ) : null}
           </button>
         )
       )}
