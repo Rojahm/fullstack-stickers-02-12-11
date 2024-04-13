@@ -5,6 +5,7 @@ function PriceInput({ name, defaultValue }) {
         Price :
       </label>
       <input
+        required
         autoComplete="off"
         type="number"
         id={name}
