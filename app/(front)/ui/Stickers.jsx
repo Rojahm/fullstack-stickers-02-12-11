@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 function Stickers({ stickers }) {
   return (
-    <div className="mt-4 grid grid-cols-5 gap-5">
+    <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-5">
       {stickers.map((sticker, i) => (
         <div
           key={i}

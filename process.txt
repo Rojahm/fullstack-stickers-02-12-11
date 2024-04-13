@@ -2,6 +2,7 @@
 
 front:
   2 cart state mgmt
+  cart style
   3 sign in
   4 auth
   7 users /dashboard

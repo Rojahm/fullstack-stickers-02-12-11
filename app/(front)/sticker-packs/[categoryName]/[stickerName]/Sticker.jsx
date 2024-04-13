@@ -50,12 +50,7 @@ function StickerPage({ pack, sticker }) {
           <p className="text-[#4e4a67] text-[0.8rem] leading-6">
             {sticker.description}
           </p>
-          <div className="flex justify-between items-center">
-            <div className="flex gap-1 items-center">
-              <p className="text-[purple] font-bold">Price:</p>
-              <p className="font-semibold">{formatPrice(sticker.price)}</p>
-              <p className="text-[purple] font-bold text-xs">Toman</p>
-            </div>
+          <div className="flex justify-between items-center md:px-10">
             <div>
               <button
                 onClick={(event) => {
@@ -77,9 +72,16 @@ function StickerPage({ pack, sticker }) {
                 +
               </button>
             </div>
-            <div className="flex gap-1">
-              <p className="font-semibold">Available:</p>
-              <p className="text-[purple]">{sticker.quantity}</p>
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-1 items-center">
+                <p className="text-[purple] font-bold">Price:</p>
+                <p className="font-semibold">{formatPrice(sticker.price)}</p>
+                <p className="text-[purple] font-bold text-xs">Toman</p>
+              </div>
+              <div className="flex gap-1">
+                <p className="font-semibold">Available:</p>
+                <p className="text-[purple]">{sticker.quantity}</p>
+              </div>
             </div>
           </div>
           <div className="bg-white shadow-lg shadow-[#814997]/40 rounded-3xl border py-8 px-3 lg:translate-x-20">
