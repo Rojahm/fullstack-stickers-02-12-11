@@ -1,5 +1,6 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 // import StoreProvider from "./StoreProvider";
 import dynamic from "next/dynamic";
 
@@ -16,10 +17,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${nunito.className} antialiased`}>
-        <StoreProvider>{children}</StoreProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${nunito.className} antialiased`}>
+          <StoreProvider>{children}</StoreProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
