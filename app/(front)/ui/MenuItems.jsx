@@ -7,6 +7,7 @@ import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
 import { useAppSelector } from "@/lib/hooks";
+import { UserButton } from "@clerk/nextjs";
 
 function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const menuItems = [
@@ -94,6 +95,7 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
           </button>
         )
       )}
+      <UserButton />
     </>
   );
 }

@@ -7,6 +7,8 @@ front:
 
   3 sign in
   4 auth
+  name
+  
   7 users /dashboard
   8 orders /dashboard
   9 payment
