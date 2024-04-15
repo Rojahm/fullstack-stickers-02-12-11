@@ -2,12 +2,10 @@
 import Link from "next/link";
 // UI
 import { FaSearch } from "react-icons/fa";
-import { CiUser } from "react-icons/ci";
-import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
 import { useAppSelector } from "@/lib/hooks";
-import { UserButton } from "@clerk/nextjs";
+import UserNavItems from "./UserNavItems";
 
 function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const menuItems = [
@@ -31,14 +29,6 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
       title: <IoIosSearch />,
       // link: "/",
       id: "search",
-    },
-    {
-      title: <CiUser />,
-      link: "/profile",
-    },
-    {
-      title: <MdOutlineSpaceDashboard />,
-      link: "/dashboard",
     },
     {
       title: <RiShoppingBasketLine />,
@@ -95,7 +85,7 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
           </button>
         )
       )}
-      <UserButton />
+      <UserNavItems color={color} />
     </>
   );
 }
