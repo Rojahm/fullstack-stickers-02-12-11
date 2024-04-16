@@ -7,42 +7,41 @@ import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
 import { useAppSelector } from "@/lib/hooks";
+import UserNavItems from "./UserNavItems";
 
 function DrawerMenuItems({ color, setShowCart, showCart, setShowSearch }) {
   const menuItems = [
     {
       title: "Home",
       link: "/",
+      alt: "Home Page",
     },
     {
       title: "Sticker Packs",
       link: "/sticker-packs",
+      alt: "Sticker Packs Page",
     },
     {
       title: "Stickers",
       link: "/stickers",
+      alt: "Stickers Page",
     },
     {
       title: "FAQ",
       link: "/",
+      alt: "Frequantly Asked Questions Page",
     },
     {
       title: <IoIosSearch />,
       // link: "/",
       id: "search",
-    },
-    {
-      title: <CiUser />,
-      link: "/profile",
-    },
-    {
-      title: <MdOutlineSpaceDashboard />,
-      link: "/dashboard",
+      alt: "Search Page",
     },
     {
       title: <RiShoppingBasketLine />,
       // link: "/dashboard",
       id: "cart",
+      alt: "Cart Page",
     },
   ];
   const handleCart = () => {
@@ -55,11 +54,14 @@ function DrawerMenuItems({ color, setShowCart, showCart, setShowSearch }) {
 
   return (
     <>
+      <UserNavItems color={color} />
+
       {menuItems.map((item, i) =>
         item.link ? (
           <Link
+            title={item.alt}
             id={item.id ? item.id : ""}
-            key={i}
+            key={`${i}+${item.alt}`}
             href={item.link}
             style={{ color: `${color}` }}
             className="font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
@@ -67,8 +69,9 @@ function DrawerMenuItems({ color, setShowCart, showCart, setShowSearch }) {
             {item.title}
           </Link>
         ) : (
-          // Render a different tag (replace with your desired tag)
+          // Render a different tag
           <button
+            title={item.alt}
             id={item.id ? item.id : ""}
             className="flex items-center font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
             key={`${i}-no-link`}

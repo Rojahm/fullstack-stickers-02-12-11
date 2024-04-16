@@ -12,28 +12,34 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
     {
       title: "Home",
       link: "/",
+      alt: "Home Page",
     },
     {
       title: "Sticker Packs",
       link: "/sticker-packs",
+      alt: "Sticker Packs Page",
     },
     {
       title: "Stickers",
       link: "/stickers",
+      alt: "Stickers Page",
     },
     {
       title: "FAQ",
       link: "/",
+      alt: "Frequantly Asked Questions Page",
     },
     {
       title: <IoIosSearch />,
       // link: "/",
       id: "search",
+      alt: "Search Page",
     },
     {
       title: <RiShoppingBasketLine />,
       // link: "/dashboard",
       id: "cart",
+      alt: "Cart Page",
     },
   ];
   const handleCart = () => {
@@ -49,8 +55,9 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
       {menuItems.map((item, i) =>
         item.link ? (
           <Link
+            title={item.alt}
             id={item.id ? item.id : ""}
-            key={i}
+            key={`${i}+${item.alt}`}
             href={item.link}
             style={{ color: `${color}` }}
             className="font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
@@ -58,8 +65,9 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
             {item.title}
           </Link>
         ) : (
-          // Render a different tag (replace with your desired tag)
+          // Render a different tag
           <button
+            title={item.alt}
             id={item.id ? item.id : ""}
             className="font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
             key={`${i}-no-link`}

@@ -4,27 +4,35 @@ import { CiUser } from "react-icons/ci";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { UserButton, SignedIn, SignedOut, useSession } from "@clerk/nextjs";
 import { checkUserRole } from "@/app/util/userUtils";
+import { GoSignIn } from "react-icons/go";
+import { GoSignOut } from "react-icons/go";
+import { SignOutButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 function UserNavItems({ color }) {
+  const router = useRouter();
   const { session } = useSession();
   const userRole = checkUserRole(session);
   const menuItems = [
     {
       title: <CiUser />,
       link: "/profile",
+      alt: "User Profile",
     },
     {
       title: <MdOutlineSpaceDashboard />,
       link: "/dashboard",
       role: "admin",
+      alt: "Admin Dashboard",
     },
   ];
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
       <SignedIn>
         {menuItems.map((item, i) =>
-          (item.role === "admin" && userRole === "admin") || !item.role ? (
+          (item.role === "admin" && userRole === "org:admin") || !item.role ? (
             <Link
+              title={item.alt}
               id={item.id ? item.id : ""}
               key={i}
               href={item.link}
@@ -38,23 +46,18 @@ function UserNavItems({ color }) {
       </SignedIn>
       {/* SignedOut Component */}
       <SignedOut>
-        <a href="/sign-in">
-          <button className="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base mr-4">
-            Login
-          </button>
-        </a>
-        <a href="/sign-up">
-          <button className="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base">
-            Sign Up
-          </button>
-        </a>
+        <Link href="/sign-in" title="Sign In">
+          <GoSignIn color={color} />
+        </Link>
       </SignedOut>
 
       {/* UserButton Component */}
       <SignedIn>
-        <div className="ml-4">
-          <UserButton afterSignOutUrl="/" />
-        </div>
+        <SignOutButton signOutCallback={() => router.push("/")}>
+          <button title="Sign Out">
+            <GoSignOut color={color} />
+          </button>
+        </SignOutButton>
       </SignedIn>
     </div>
   );
