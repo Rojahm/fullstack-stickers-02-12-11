@@ -69,7 +69,7 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
           <button
             title={item.alt}
             id={item.id ? item.id : ""}
-            className="font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
+            className="relative font-semi bold text-[19px] h-full border-b-2 border-transparent hover:border-b-2 hover:border-white"
             key={`${i}-no-link`}
             style={{ color: `${color}` }}
             onClick={
@@ -86,7 +86,7 @@ function MenuItems({ color, setShowCart, showCart, setShowSearch }) {
           >
             {item.title}
             {item.id === "cart" && cartNumber > 0 ? (
-              <div className="absolute top-8 right-5 rounded-full bg-[purple] text-white text-xs px-1">
+              <div className="absolute top-3 -left-1 rounded-full bg-[purple] text-white text-xs px-1">
                 {cartNumber}
               </div>
             ) : null}

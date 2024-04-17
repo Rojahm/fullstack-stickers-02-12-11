@@ -24,7 +24,7 @@ function Nav({
 
   return (
     <div id="navMain">
-      <div className="hidden w-[450px] md:flex justify-center items-center gap-3">
+      <div className="hidden w-[480px] md:flex justify-center items-center gap-3">
         <MenuItems
           color={color}
           setShowCart={setShowCart}
