@@ -162,3 +162,20 @@ const upload = async (file, filepath) => {
   }
   return `https://${process.env.BUCKET_NAME}.${process.env.S3_ENDPOINT}/${key}`;
 };
+
+// USER mgmt
+export async function addNewUser(formData) {
+  const data = {
+    user_id: formData.get("userId"),
+    name: formData.get("name"),
+    lastname: formData.get("lastname"),
+    email: formData.get("email"),
+    mobile: formData.get("mobile"),
+    role: formData.get("role"),
+    address: formData.get("address"),
+  };
+  axios
+    .post(`${process.env.NEXT_PUBLIC_SRV_URL}/newUser`, data)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+}

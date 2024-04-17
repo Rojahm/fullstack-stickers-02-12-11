@@ -4,6 +4,7 @@ import { useSignUp } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/app/(front)/ui/Header";
+import { useSession } from "@clerk/nextjs";
 // import { SignUp } from "@clerk/nextjs";
 
 function SignUpPage() {
@@ -11,6 +12,7 @@ function SignUpPage() {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [pendingVerification, setPendingVerification] = useState(false);
+  // const [addedToDB, setAddedToDB] = useState(false);
   const [code, setCode] = useState("");
   const router = useRouter();
   // start the sign up process.
@@ -53,8 +55,9 @@ function SignUpPage() {
         console.log(JSON.stringify(completeSignUp, null, 2));
       }
       if (completeSignUp.status === "complete") {
+        // ADD aditional info
         await setActive({ session: completeSignUp.createdSessionId });
-        router.push("/");
+        router.push("/verify-sign-up");
       }
     } catch (err) {
       console.error(JSON.stringify(err, null, 2));
@@ -67,63 +70,77 @@ function SignUpPage() {
         <h1 className="text-white font-extrabold text-3xl md:text-[40px] lg:text-[60px] uppercase drop-shadow-md">
           Sign Up
         </h1>
-        <div className="text-center w-[80%] lg:w-[40%]">
-          {/* <div className="flex text-center justify-center items-center">
+        {/* <div className="text-center w-[80%] lg:w-[40%]"> */}
+        {/* <div className="flex text-center justify-center items-center">
             <SignUp />
           </div> */}
-          {!pendingVerification && (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  onChange={(e) => setEmailAddress(e.target.value)}
-                  id="email"
-                  name="email"
-                  type="email"
-                  className="rounded p-2"
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  onChange={(e) => setPassword(e.target.value)}
-                  id="password"
-                  name="password"
-                  type="password"
-                  className="rounded p-2"
-                ></input>
-              </div>
-              <button
-                // onClick={handleSubmit}
-                type="submit"
-                className="bg-orange-400 text-white rounded py-2 font-bold"
+        {!pendingVerification && (
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col justify-center items-center gap-5 w-[80%] lg:w-[40%]"
+          >
+            <div className="flex justify-between items-center gap-4 w-[80%]">
+              <label
+                htmlFor="email"
+                className="w-32 text-white font-bold text-lg"
               >
-                Sign Up
-              </button>
-            </form>
-          )}
-          {pendingVerification && (
-            <div>
-              <form>
-                <input
-                  value={code}
-                  placeholder="Code..."
-                  onChange={(e) => setCode(e.target.value)}
-                />
-                <button onClick={onPressVerify}>Verify Email</button>
-              </form>
+                Email:
+              </label>
+              <input
+                onChange={(e) => setEmailAddress(e.target.value)}
+                id="email"
+                name="email"
+                type="email"
+                className="rounded p-2 w-full"
+              ></input>
             </div>
-          )}
-          <div className="flex justify-center items-center gap-5 my-5">
-            <p className="text-white">Already Have an account?</p>
-            <Link
-              href={"/sign-in"}
-              className="bg-orange-400 text-white rounded py-2 px-4 font-bold"
+            <div className="flex justify-between items-center gap-4 w-[80%]">
+              <label
+                htmlFor="password"
+                className="w-32 text-white font-bold text-lg"
+              >
+                Password:
+              </label>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                name="password"
+                type="password"
+                className="rounded p-2 w-full"
+              ></input>
+            </div>
+            <button
+              // onClick={handleSubmit}
+              type="submit"
+              className="bg-orange-400 text-white rounded px-4 py-2 font-bold"
             >
-              Login
-            </Link>
+              Sign Up
+            </button>
+          </form>
+        )}
+        {pendingVerification && (
+          <div>
+            <form>
+              <input
+                value={code}
+                placeholder="Code..."
+                onChange={(e) => setCode(e.target.value)}
+              />
+              <button onClick={onPressVerify}>Verify Email</button>
+            </form>
           </div>
+        )}
+
+        <div className="flex justify-center items-center gap-5 my-5">
+          <p className="text-white">Already Have an account?</p>
+          <Link
+            href={"/sign-in"}
+            className="bg-orange-400 text-white rounded py-2 px-4 font-bold"
+          >
+            Login
+          </Link>
         </div>
+        {/* </div> */}
       </div>
 
       {/* <div className="relative h-[6.25vw] -bottom-1 md:-bottom-2 bg-hero-bg-curve bg-contain"></div> */}

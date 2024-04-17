@@ -1,8 +1,142 @@
+"use client";
+import Header from "@/app/(front)/ui/Header";
+import { useState } from "react";
+import { useSession } from "@clerk/nextjs";
+import { addNewUser } from "@/app/lib/actions";
+
 function VerifyPage() {
+  const [addedToDB, setAddedToDB] = useState(false);
+  const { isSignedIn, session } = useSession();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    if (!isSignedIn) {
+      return;
+    } else {
+      try {
+        const res = await addNewUser(formData);
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    console.log(session.user.id);
+    console.log(session);
+    console.log(isSignedIn);
+    console.log(formData.get("name"));
+    console.log(formData.get("userId"));
+    console.log(formData.get("email"));
+    console.log(formData.get("role"));
+  };
   return (
-    <div>
-      3 sign in 4 auth different menu based on roles route access role based for
-      admin and member sign in and sign out button custom place
+    <div className="bg-hero-background-image flex flex-col bg-cover h-[100vh] relative">
+      <Header color={"white"} />
+      <div className="flex flex-col justify-center items-center my-20 pb-14 mx-32 lg:mx-44 gap-10 lg:gap-16">
+        <h1 className="text-white font-extrabold text-3xl md:text-[40px] lg:text-[60px] uppercase drop-shadow-md">
+          Sign Up Completion
+        </h1>
+        <div className="text-center w-[90%] lg:w-[40%]">
+          {/* <div className="flex text-center justify-center items-center">
+            <SignUp />
+          </div> */}
+
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col justify-center items-center gap-5 w-[80%] lg:w-[40%]"
+          >
+            <div className="flex justify-between items-center gap-4 w-[80%]">
+              <label
+                htmlFor="name"
+                className="w-32 text-white font-bold text-lg"
+              >
+                Name:
+              </label>
+              <input
+                // onChange={(e) => setEmailAddress(e.target.value)}
+                required
+                id="name"
+                name="name"
+                type="text"
+                className="rounded p-2 w-full"
+              ></input>
+            </div>
+            <div className="flex justify-between items-center gap-4 w-[80%]">
+              <label
+                htmlFor="lastname"
+                className="w-32 text-white font-bold text-lg"
+              >
+                LastName:
+              </label>
+              <input
+                // onChange={(e) => setPassword(e.target.value)}
+                required
+                id="lastname"
+                name="lastname"
+                type="text"
+                className="rounded p-2 w-full"
+              ></input>
+            </div>
+            <div className="flex justify-between items-center gap-4 w-[80%]">
+              <label
+                htmlFor="mobile"
+                className="w-32 text-white font-bold text-lg"
+              >
+                Mobile:
+              </label>
+              <input
+                // onChange={(e) => setPassword(e.target.value)}
+                required
+                id="mobile"
+                name="mobile"
+                type="text"
+                className="rounded p-2 w-full"
+              ></input>
+            </div>
+            <div className="flex justify-between items-center gap-4 w-[80%]">
+              <label
+                htmlFor="address"
+                className="w-32 text-white font-bold text-lg self-start"
+              >
+                Address:
+              </label>
+              <textarea
+                // onChange={(e) => setPassword(e.target.value)}
+                required
+                id="address"
+                name="address"
+                className="rounded p-2 w-full"
+              ></textarea>
+            </div>
+            <input
+              type="text"
+              className="hidden"
+              name="userId"
+              defaultValue={session.user.id}
+            />
+            <input
+              type="text"
+              className="hidden"
+              name="email"
+              defaultValue={session.user.emailAddresses[0].emailAddress}
+            />
+            <input
+              type="text"
+              className="hidden"
+              name="role"
+              defaultValue={"member"}
+            />
+            <button
+              // onClick={handleSubmit}
+              type="submit"
+              className="bg-orange-400 text-white rounded px-4 py-2 font-bold"
+            >
+              Finish Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* <div className="relative h-[6.25vw] -bottom-1 md:-bottom-2 bg-hero-bg-curve bg-contain"></div> */}
     </div>
   );
 }
