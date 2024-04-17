@@ -176,6 +176,10 @@ export async function addNewUser(formData) {
   };
   axios
     .post(`${process.env.NEXT_PUBLIC_SRV_URL}/newUser`, data)
-    .then((res) => console.log(res))
+    .then((res) => {
+      console.log(res.data.msg);
+      // console.log(res.status);
+      // return res;
+    })
     .catch((err) => console.log(err));
 }
