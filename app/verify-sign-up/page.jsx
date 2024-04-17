@@ -3,9 +3,11 @@ import Header from "@/app/(front)/ui/Header";
 import { useState } from "react";
 import { useSession } from "@clerk/nextjs";
 import { addNewUser } from "@/app/lib/actions";
+import { useRouter } from "next/navigation";
 
 function VerifyPage() {
-  const [addedToDB, setAddedToDB] = useState(false);
+  // const [addedToDB, setAddedToDB] = useState(false);
+  const router = useRouter();
   const { isSignedIn, session } = useSession();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,35 +16,35 @@ function VerifyPage() {
       return;
     } else {
       try {
-        const res = await addNewUser(formData);
-        console.log(res);
+        await addNewUser(formData);
+        router.push("/");
       } catch (err) {
         console.log(err);
       }
     }
-    console.log(session.user.id);
-    console.log(session);
-    console.log(isSignedIn);
-    console.log(formData.get("name"));
-    console.log(formData.get("userId"));
-    console.log(formData.get("email"));
-    console.log(formData.get("role"));
+    // console.log(session.user.id);
+    // console.log(session);
+    // console.log(isSignedIn);
+    // console.log(formData.get("name"));
+    // console.log(formData.get("userId"));
+    // console.log(formData.get("email"));
+    // console.log(formData.get("role"));
   };
   return (
     <div className="bg-hero-background-image flex flex-col bg-cover h-[100vh] relative">
       <Header color={"white"} />
-      <div className="flex flex-col justify-center items-center my-20 pb-14 mx-32 lg:mx-44 gap-10 lg:gap-16">
-        <h1 className="text-white font-extrabold text-3xl md:text-[40px] lg:text-[60px] uppercase drop-shadow-md">
+      <div className=" w-full flex flex-col h-full justify-center items-center gap-10 lg:gap-16">
+        <h1 className="text-white font-extrabold text-3xl md:text-[40px] uppercase drop-shadow-md">
           Sign Up Completion
         </h1>
-        <div className="text-center w-[90%] lg:w-[40%]">
+        <div className="bg-zinc-200/50 px-5 py-16 rounded-lg w-[500px]">
           {/* <div className="flex text-center justify-center items-center">
             <SignUp />
           </div> */}
 
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col justify-center items-center gap-5 w-[80%] lg:w-[40%]"
+            className="flex flex-col justify-center items-center gap-5 "
           >
             <div className="flex justify-between items-center gap-4 w-[80%]">
               <label
@@ -111,13 +113,13 @@ function VerifyPage() {
               type="text"
               className="hidden"
               name="userId"
-              defaultValue={session.user.id}
+              // defaultValue={session.user.id}
             />
             <input
               type="text"
               className="hidden"
               name="email"
-              defaultValue={session.user.emailAddresses[0].emailAddress}
+              // defaultValue={session.user.emailAddresses[0].emailAddress}
             />
             <input
               type="text"
