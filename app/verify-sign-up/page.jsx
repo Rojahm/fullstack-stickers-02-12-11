@@ -113,13 +113,13 @@ function VerifyPage() {
               type="text"
               className="hidden"
               name="userId"
-              // defaultValue={session.user.id}
+              defaultValue={session.user.id}
             />
             <input
               type="text"
               className="hidden"
               name="email"
-              // defaultValue={session.user.emailAddresses[0].emailAddress}
+              defaultValue={session.user.emailAddresses[0].emailAddress}
             />
             <input
               type="text"
