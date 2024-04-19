@@ -80,17 +80,17 @@ function SignUpPage() {
             Verify Your Email address
           </h1>
         )}
-        <div className="bg-zinc-200/50 px-5 py-16 rounded-lg w-[500px]">
+        <div className="bg-zinc-200/50 px-5 py-16 rounded-lg flex justify-center items-center">
           {!pendingVerification && (
-            <>
+            <div>
               <form
                 onSubmit={handleSubmit}
                 className="flex flex-col justify-center items-center gap-5 "
               >
-                <div className="flex justify-between items-center gap-4 w-[80%]">
+                <div className="flex flex-col w-full">
                   <label
                     htmlFor="email"
-                    className="w-32 text-white font-bold text-lg"
+                    className=" text-white font-bold text-lg"
                   >
                     Email:
                   </label>
@@ -99,13 +99,13 @@ function SignUpPage() {
                     id="email"
                     name="email"
                     type="email"
-                    className="rounded p-2 w-full"
+                    className="rounded p-2"
                   ></input>
                 </div>
-                <div className="flex justify-between items-center gap-4 w-[80%]">
+                <div className="flex flex-col w-full">
                   <label
                     htmlFor="password"
-                    className="w-32 text-white font-bold text-lg"
+                    className=" text-white font-bold text-lg"
                   >
                     Password:
                   </label>
@@ -114,7 +114,7 @@ function SignUpPage() {
                     id="password"
                     name="password"
                     type="password"
-                    className="rounded p-2 w-full"
+                    className="rounded p-2"
                   ></input>
                 </div>
                 <button
@@ -134,10 +134,10 @@ function SignUpPage() {
                   Login
                 </Link>
               </div>
-            </>
+            </div>
           )}
           {pendingVerification && (
-            <>
+            <div className="flex flex-col w-full">
               <h1 className="text-white font-extrabold text-xl uppercase drop-shadow-md">
                 Check your email
               </h1>
@@ -146,7 +146,7 @@ function SignUpPage() {
                   value={code}
                   placeholder="Code..."
                   onChange={(e) => setCode(e.target.value)}
-                  className="rounded p-2 w-full"
+                  className="rounded p-2"
                 />
                 <button
                   className="bg-orange-400 text-white rounded px-4 py-2 font-bold"
@@ -155,7 +155,7 @@ function SignUpPage() {
                   Verify Email
                 </button>
               </form>
-            </>
+            </div>
           )}
         </div>
       </div>

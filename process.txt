@@ -10,6 +10,19 @@ front:
 
   
   7 users /dashboard
+  7 users /dashboard pagination
+  7 users /dashboard delete
+  7 users /dashboard edit
+
+  /profile personal info show
+  /profile personal info edit name, lastname, mobile, add address
+  /profile personal info add new addresses
+  /profile personal info addresses cant be zero
+  /profile cart add to user db
+  /profile change password
+  /profile orders
+  orders model srv
+
   8 orders /dashboard
   9 payment
 

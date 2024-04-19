@@ -31,13 +31,13 @@ function VerifyPage() {
     // console.log(formData.get("role"));
   };
   return (
-    <div className="bg-hero-background-image flex flex-col bg-cover h-[100vh] relative">
+    <div className="bg-hero-background-image flex flex-col bg-cover h-[100vh]">
       <Header color={"white"} />
-      <div className=" w-full flex flex-col h-full justify-center items-center gap-10 lg:gap-16">
+      <div className=" p-5 w-full flex flex-col h-full justify-center items-center gap-10 lg:gap-16">
         <h1 className="text-white font-extrabold text-3xl md:text-[40px] uppercase drop-shadow-md">
           Sign Up Completion
         </h1>
-        <div className="bg-zinc-200/50 px-5 py-16 rounded-lg w-[500px]">
+        <div className="bg-zinc-200/50 m-5 px-5 py-16 rounded-lg flex justify-center items-center">
           {/* <div className="flex text-center justify-center items-center">
             <SignUp />
           </div> */}
@@ -46,7 +46,7 @@ function VerifyPage() {
             onSubmit={handleSubmit}
             className="flex flex-col justify-center items-center gap-5 "
           >
-            <div className="flex justify-between items-center gap-4 w-[80%]">
+            <div className="flex flex-col w-full">
               <label
                 htmlFor="name"
                 className="w-32 text-white font-bold text-lg"
@@ -59,10 +59,10 @@ function VerifyPage() {
                 id="name"
                 name="name"
                 type="text"
-                className="rounded p-2 w-full"
+                className="rounded p-2"
               ></input>
             </div>
-            <div className="flex justify-between items-center gap-4 w-[80%]">
+            <div className="flex flex-col w-full">
               <label
                 htmlFor="lastname"
                 className="w-32 text-white font-bold text-lg"
@@ -75,10 +75,10 @@ function VerifyPage() {
                 id="lastname"
                 name="lastname"
                 type="text"
-                className="rounded p-2 w-full"
+                className="rounded p-2"
               ></input>
             </div>
-            <div className="flex justify-between items-center gap-4 w-[80%]">
+            <div className="flex flex-col w-full">
               <label
                 htmlFor="mobile"
                 className="w-32 text-white font-bold text-lg"
@@ -91,10 +91,10 @@ function VerifyPage() {
                 id="mobile"
                 name="mobile"
                 type="text"
-                className="rounded p-2 w-full"
+                className="rounded p-2"
               ></input>
             </div>
-            <div className="flex justify-between items-center gap-4 w-[80%]">
+            <div className="flex flex-col w-full">
               <label
                 htmlFor="address"
                 className="w-32 text-white font-bold text-lg self-start"
@@ -106,7 +106,7 @@ function VerifyPage() {
                 required
                 id="address"
                 name="address"
-                className="rounded p-2 w-full"
+                className="rounded p-2"
               ></textarea>
             </div>
             <input
