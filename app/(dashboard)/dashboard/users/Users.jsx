@@ -36,10 +36,10 @@ function Users() {
       {usersInfo
         ? usersInfo.map((user, i) => (
             <div key={i}>
-              <div className="border-x-2 hover:border-[purple] p-4 gap-10 flex justify-between">
+              <div className="border-x-2 min-w-96 hover:border-[purple] p-4 gap-10 flex justify-between">
                 <Link
                   href={`/dashboard/users/${user.user_id}`}
-                  className="flex justify-between w-full"
+                  className="flex flex-wrap justify-between w-full gap-2"
                 >
                   <div className="text-xs text-[purple]">{user.user_id}</div>
                   <div className="font-semibold text-[purple]">{user.name}</div>
@@ -56,7 +56,7 @@ function Users() {
                   <button>see</button>
                 </div>
               </div>
-              <hr />
+              <hr className="min-w-96" />
             </div>
           ))
         : null}
