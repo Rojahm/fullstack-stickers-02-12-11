@@ -38,7 +38,7 @@ function Users() {
             <div key={i}>
               <div className="border-x-2 hover:border-[purple] p-4 gap-10 flex justify-between">
                 <Link
-                  href={`/dashboard/users/${user._id}`}
+                  href={`/dashboard/users/${user.user_id}`}
                   className="flex justify-between w-full"
                 >
                   <div className="text-xs text-[purple]">{user.user_id}</div>
