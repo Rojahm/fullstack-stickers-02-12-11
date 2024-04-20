@@ -33,6 +33,8 @@ function Users() {
   }, []);
   return (
     <div className="w-[80%]">
+      <hr className="min-w-96" />
+
       {usersInfo
         ? usersInfo.map((user, i) => (
             <div key={i}>
