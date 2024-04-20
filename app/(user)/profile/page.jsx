@@ -25,7 +25,7 @@ function ProfilePage() {
         setUserInfo(res.data.user[0]);
         setLoading(false);
       });
-  }, [userId, isEditing]);
+  }, [userId, isEditing, userInfo]);
   if (!loading && userId) {
     if (!userInfo) {
       router.push("/verify-sign-up");
@@ -36,9 +36,19 @@ function ProfilePage() {
 
     // console.log(e.target.value);
     console.log(newData);
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_SRV_URL}/updateUser/${userInfo._id}`,
+        newData
+      )
+      .then((res) => {
+        console.log(res.data);
+        setUserInfo(res.data.updated);
+      });
     setIsEditing(false);
     router.refresh();
   };
+  // console.log(userInfo);
   return (
     <div>
       <div className="flex justify-between items-center my-5">
