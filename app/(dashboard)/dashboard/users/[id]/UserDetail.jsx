@@ -19,25 +19,32 @@ function UserDetail({ id }) {
   return (
     <div className="w-full flex justify-center">
       {!isLoading ? (
-        !isEditing ? (
-          <div className="w-[80%] bg-sky-100/50 border rounded-lg p-4">
-            <UserInfo userInfo={userInfo} />
-            <button
-              onClick={() => setIsEditing(true)}
-              className="bg-orange-500 text-white hover:bg-orange-200 shadow-md hover:text-orange-500 font-bold transition-all duration-200 ease-in-out px-4 py-1 rounded-md block m-auto"
-            >
-              Edit
-            </button>
-          </div>
-        ) : (
-          <div className="w-[80%] bg-sky-100/50 border rounded-lg p-4">
-            <UserInfo userInfo={userInfo} />
-            <UserInfoEdit userInfo={userInfo} setNewUserInfo={setNewUserInfo} />
-            <button className="bg-orange-500 text-white hover:bg-orange-200 shadow-md hover:text-orange-500 font-bold transition-all duration-200 ease-in-out px-4 py-1 rounded-md block m-auto">
-              Save
-            </button>
-          </div>
-        )
+        <div className="w-[80%] bg-sky-100/50 border rounded-lg p-4">
+          {!isEditing ? (
+            <>
+              <UserInfo userInfo={userInfo} />
+              <button
+                onClick={() => setIsEditing(true)}
+                className="bg-orange-500 text-white hover:bg-orange-200 shadow-md hover:text-orange-500 font-bold transition-all duration-200 ease-in-out px-4 py-1 rounded-md block m-auto"
+              >
+                Edit
+              </button>
+            </>
+          ) : (
+            <>
+              <UserInfoEdit
+                userInfo={userInfo}
+                setNewUserInfo={setNewUserInfo}
+              />
+              <button
+                onClick={() => setIsEditing(true)}
+                className="bg-orange-500 text-white hover:bg-orange-200 shadow-md hover:text-orange-500 font-bold transition-all duration-200 ease-in-out px-4 py-1 rounded-md block m-auto"
+              >
+                Save
+              </button>
+            </>
+          )}
+        </div>
       ) : (
         <p>Loading</p>
       )}
