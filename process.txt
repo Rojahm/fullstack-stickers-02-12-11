@@ -6,24 +6,16 @@ front:
   metadata
 
 
-  get member data for mongoDB
-
-  
-  7 users /dashboard
-  7 users /dashboard pagination
   7 users /dashboard delete
-  7 users /dashboard edit
-
-  /profile personal info show
-  /profile personal info edit name, lastname, mobile, add address
-  /profile personal info add new addresses
-  /profile personal info addresses cant be zero
   /profile cart add to user db
   /profile change password
   /profile orders
   orders model srv
-
   8 orders /dashboard
+
+  /profile personal info add new addresses
+  /profile personal info addresses cant be zero
+
   9 payment
 
 back:
@@ -95,6 +87,12 @@ front:
   different menu based on roles
   route access role based for admin and member
   sign in and sign out button custom place
+    7 users /dashboard
+  7 users /dashboard pagination
+  7 users /dashboard edit
+    get member data for mongoDB
+      /profile personal info show
+  /profile personal info edit name, lastname, mobile, add address
 
 
 back:

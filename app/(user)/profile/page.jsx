@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import UserInfo from "../ui/UserInfo";
 import UserInfoEdit from "../ui/UserInfoEdit";
+import { ToastContainer } from "react-toastify";
 
 function ProfilePage() {
   const [userInfo, setUserInfo] = useState([]);
@@ -31,26 +32,11 @@ function ProfilePage() {
       router.push("/verify-sign-up");
     }
   }
-  const handleEdit = (newData) => {
-    //add user Update
 
-    // console.log(e.target.value);
-    console.log(newData);
-    axios
-      .post(
-        `${process.env.NEXT_PUBLIC_SRV_URL}/updateUser/${userInfo._id}`,
-        newData
-      )
-      .then((res) => {
-        console.log(res.data);
-        setUserInfo(res.data.updated);
-      });
-    setIsEditing(false);
-    router.refresh();
-  };
   // console.log(userInfo);
   return (
     <div>
+      <ToastContainer />
       <div className="flex justify-between items-center my-5">
         <h1>Personal Information</h1>
         {!isEditing ? (
@@ -60,14 +46,7 @@ function ProfilePage() {
           >
             Edit
           </button>
-        ) : (
-          <button
-            onClick={() => handleEdit(newUserInfo)}
-            className="bg-[purple] text-white px-5 py-1 rounded-lg hover:bg-purple-200 hover:shadow-md hover:text-[purple] transition-all ease-in-out duration-200"
-          >
-            Save
-          </button>
-        )}
+        ) : null}
       </div>
       <hr />
       {userInfo ? (
@@ -75,7 +54,11 @@ function ProfilePage() {
           {!isEditing ? (
             <UserInfo userInfo={userInfo} />
           ) : (
-            <UserInfoEdit userInfo={userInfo} setNewUserInfo={setNewUserInfo} />
+            <UserInfoEdit
+              // handleEdit={handleEdit}
+              userInfo={userInfo}
+              setIsEditing={setIsEditing}
+            />
           )}
         </>
       ) : null}

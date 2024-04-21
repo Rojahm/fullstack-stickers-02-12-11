@@ -8,14 +8,14 @@ function UserDetail({ id }) {
   const [userInfo, setUserInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [newUserInfo, setNewUserInfo] = useState([]);
+
   useEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_SRV_URL}/user/${id}`).then((res) => {
       setUserInfo(res.data.user[0]);
       setIsLoading(false);
     });
-  }, [id]);
-  // console.log(userInfo);
+  }, [id, isEditing, userInfo]);
+
   return (
     <div className="w-full flex justify-center">
       {!isLoading ? (
@@ -31,18 +31,7 @@ function UserDetail({ id }) {
               </button>
             </>
           ) : (
-            <>
-              <UserInfoEdit
-                userInfo={userInfo}
-                setNewUserInfo={setNewUserInfo}
-              />
-              <button
-                onClick={() => setIsEditing(true)}
-                className="bg-orange-500 text-white hover:bg-orange-200 shadow-md hover:text-orange-500 font-bold transition-all duration-200 ease-in-out px-4 py-1 rounded-md block m-auto"
-              >
-                Save
-              </button>
-            </>
+            <UserInfoEdit userInfo={userInfo} setIsEditing={setIsEditing} />
           )}
         </div>
       ) : (

@@ -4,12 +4,8 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 //Custom Components
 import Pagination from "@/app/ui/Pagination";
-import { deletePack } from "@/app/lib/actions";
 // UI and Icons
-import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { FaRegEye } from "react-icons/fa";
-import { FaRegEyeSlash } from "react-icons/fa";
 // Toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,10 +27,14 @@ function Users() {
         setUsersQty(res.data.qty);
       });
   }, []);
+
+  // Delete User
+  const deleteUser = (id) => {
+    console.log(id);
+  };
   return (
     <div className="w-[80%]">
       <hr className="min-w-96" />
-
       {usersInfo
         ? usersInfo.map((user, i) => (
             <div key={i}>
@@ -53,9 +53,9 @@ function Users() {
                   </div>
                 </Link>
                 <div className="flex gap-2">
-                  <button>x</button>
-                  <button>edit</button>
-                  <button>see</button>
+                  <button onClick={() => deleteUser(user.user_id)}>
+                    <FaRegTrashAlt />
+                  </button>
                 </div>
               </div>
               <hr className="min-w-96" />

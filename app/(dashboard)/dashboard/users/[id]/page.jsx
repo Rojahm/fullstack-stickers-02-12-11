@@ -1,7 +1,6 @@
 import Link from "next/link";
 import UserDetail from "./UserDetail";
 function UserPage({ params }) {
-  console.log(params.id);
   return (
     <div>
       <div className="flex py-5 px-10 gap-1">
@@ -13,9 +12,7 @@ function UserPage({ params }) {
           Users{" "}
         </Link>
         <p>/</p>
-        <h1 className=" text-orange-400 font-bold capitalize">
-          user details: {params.id}
-        </h1>
+        <h1 className=" text-orange-400 font-bold capitalize">{params.id}</h1>
       </div>
       <UserDetail id={params.id} />
     </div>
