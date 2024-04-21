@@ -7,6 +7,7 @@ function UserInfoEdit({ userInfo, setNewUserInfo }) {
   const [address, setAddress] = useState(`${userInfo.address}`);
   const [newData, setNewData] = useState([]);
   useEffect(() => {
+    console.log(name);
     setNewData({
       name: name,
       lastname: lastname,
@@ -26,6 +27,7 @@ function UserInfoEdit({ userInfo, setNewUserInfo }) {
       <div>
         <h3 className="text-[purple] font-bold">Name:</h3>
         <input
+          onClick={() => (e.target.value = "")}
           onChange={(e) => setName(e.target.value)}
           name="name"
           defaultValue={userInfo.name}
