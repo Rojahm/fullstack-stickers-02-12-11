@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 //Custom Components
 import Pagination from "@/app/ui/Pagination";
 // UI and Icons
@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
 function Users() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [usersInfo, setUsersInfo] = useState([]);
   const [usersQty, setUsersQty] = useState();
@@ -30,10 +31,22 @@ function Users() {
 
   // Delete User
   const deleteUser = (id) => {
-    console.log(id);
+    toast.promise(
+      axios
+        .post(`${process.env.NEXT_PUBLIC_SRV_URL}/deleteUser/${id}`)
+        .then((res) => console.log(res.data.msg))
+        .catch((err) => console.log(err)),
+      {
+        pending: "Deleting",
+        success: "User Deleted",
+        error: "error",
+      }
+    );
+    router.refresh();
   };
   return (
     <div className="w-[80%]">
+      <ToastContainer />
       <hr className="min-w-96" />
       {usersInfo
         ? usersInfo.map((user, i) => (
@@ -53,7 +66,7 @@ function Users() {
                   </div>
                 </Link>
                 <div className="flex gap-2">
-                  <button onClick={() => deleteUser(user.user_id)}>
+                  <button onClick={() => deleteUser(user._id)}>
                     <FaRegTrashAlt />
                   </button>
                 </div>
