@@ -1,23 +1,55 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+// UI Icons
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { GoTrash } from "react-icons/go";
+// State mgmt
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
-  totalCartItemsSelector,
-  totalPriceSelector,
   addToCart,
   removeFromCart,
   deleteFromCart,
 } from "@/lib/features/cart/cartSlice";
+// Custom Util
 import { formatPrice } from "@/app/util/formatPrice";
+// Auth Clerk
+import { useAuth } from "@clerk/nextjs";
+import axios from "axios";
 
 function CartPage() {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const totalCartItems = useAppSelector((state) => state.cart.cartQty);
   const totalCartPrice = useAppSelector((state) => state.cart.cartPrice);
   const dispatch = useAppDispatch();
+  const [userInfo, setUserInfo] = useState();
+  const [loading, setLoading] = useState(true);
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
+
+  useEffect(() => {
+    if (isLoaded && userId) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_SRV_URL}/user/${userId}`)
+        .then((res) => {
+          setUserInfo(res.data.user[0]);
+          setLoading(false);
+          if (cartItems.length > 0) {
+            const data = {
+              cart: cartItems,
+            };
+            axios
+              .post(
+                `${process.env.NEXT_PUBLIC_SRV_URL}/updateUser/${res.data.user[0]._id}`,
+                data
+              )
+              .then((res) => console.log(res))
+              .catch((err) => console.log(err));
+          }
+        });
+    }
+  }, [cartItems, userId]);
+
   return (
     <div className="bg-white/85 shadow-xl p-5 rounded">
       <div className="flex items-center gap-5 w-full text-[purple] my-5">
