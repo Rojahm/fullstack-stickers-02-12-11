@@ -14,7 +14,7 @@ function UserNav() {
   const menuItems = [
     { title: "cart", icon: <IoCartOutline />, link: "/profile/cart" },
     { title: "my account", icon: <FaRegUser />, link: "/profile" },
-    { title: "my orders", icon: <MdOutlineHistory />, link: "/" },
+    { title: "my orders", icon: <MdOutlineHistory />, link: "/profile/order" },
     { title: "my favs", icon: <GrFavorite />, link: "/" },
     { title: "payments", icon: <MdPayment />, link: "/" },
     { title: "change password", icon: <RiLockPasswordLine />, link: "/" },

@@ -17,9 +17,12 @@ import { formatPrice } from "@/app/util/formatPrice";
 // Auth Clerk
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
+import AddOrder from "@/app/(user)/profile/cart/AddOrder";
 
 function CartPage() {
-  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const [cartItems, setCartItems] = useState(
+    useAppSelector((state) => state.cart.cartItems)
+  );
   const totalCartItems = useAppSelector((state) => state.cart.cartQty);
   const totalCartPrice = useAppSelector((state) => state.cart.cartPrice);
   const dispatch = useAppDispatch();
@@ -117,9 +120,13 @@ function CartPage() {
             <p>{totalCartItems}</p>
             <p>{totalCartPrice}</p>
           </div>
-          <button className="bg-[purple] hover:bg-purple-300 text-white hover:text-zinc-600 transition-all ease-in-out duration-200 font-bold shadow-md hover:shadow-xl rounded-md w-full">
-            Check Out
-          </button>
+          <div className="py-6">
+            <AddOrder
+              cartItems={cartItems}
+              price={totalCartPrice}
+              setCartItems={setCartItems}
+            />
+          </div>
         </div>
       ) : (
         <p className="text-center font-bold text-zinc-400">Cart is Empty</p>
