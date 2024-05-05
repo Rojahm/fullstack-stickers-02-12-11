@@ -3,6 +3,7 @@
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Orders from "./Orders";
 function OrderPage() {
   const { isLoaded, userId } = useAuth();
   const [orders, setOrders] = useState();
@@ -19,6 +20,7 @@ function OrderPage() {
   return (
     <div>
       <h1>Order page</h1>
+      <Orders />
     </div>
   );
 }
