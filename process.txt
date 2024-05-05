@@ -2,25 +2,20 @@
 
 front:
 
+  order details /profile dashboard
+  9 payment
+
   Bread crumb style sm, md
   metadata
 
-
-  7 users /dashboard delete
-  /profile cart add to user db
   /profile change password
-  /profile orders
-  orders model srv
-  8 orders /dashboard
 
   /profile personal info add new addresses
   /profile personal info addresses cant be zero
 
-  9 payment
 
 back:
-  5 user model
-  6 order model
+
   
 
 
@@ -93,7 +88,12 @@ front:
     get member data for mongoDB
       /profile personal info show
   /profile personal info edit name, lastname, mobile, add address
-
+  7 users /dashboard delete
+  /profile cart add to user db
+  /profile orders
+  orders model srv
+  8 orders /dashboard
+16 ordibehesht
 
 back:
   db
@@ -109,3 +109,6 @@ back:
   tag search is in considered in stickerSearch
   sticker model price
 21 farvardin
+  5 user model
+  6 order model
+16 ordibehesht
