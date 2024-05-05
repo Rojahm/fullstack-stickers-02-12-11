@@ -45,23 +45,25 @@ function Users() {
     router.refresh();
   };
   return (
-    <div className="w-[80%]">
+    <div className="w-[80%] flex flex-col justify-center items-center">
       <ToastContainer />
-      <hr className="min-w-96" />
       {usersInfo
         ? usersInfo.map((user, i) => (
             <div key={i}>
-              <div className="border-x-2 min-w-96 hover:border-[purple] p-4 gap-10 flex justify-between">
+              <hr className="min-w-40" />
+              <div className="border-x-2 min-w-40 hover:border-[purple] p-4 gap-10 flex justify-between">
                 <Link
                   href={`/dashboard/users/${user.user_id}`}
-                  className="flex flex-wrap justify-between w-full gap-2"
+                  className="grid grid-cols-3 w-fit gap-2"
                 >
-                  <div className="text-xs text-[purple]">{user.user_id}</div>
-                  <div className="font-semibold text-[purple]">{user.name}</div>
-                  <div className="font-semibold text-[purple]">
-                    {user.lastname}
+                  <div className="text-ellipsis overflow-hidden text-xs text-[purple] ">
+                    {user.user_id}
                   </div>
-                  <div className="font-semibold text-[purple]">
+                  <div className="font-semibold text-[purple] text-ellipsis overflow-hidden">
+                    {`${user.name} ${user.lastname}`}
+                  </div>
+
+                  <div className="font-semibold text-[purple] text-ellipsis overflow-hidden">
                     {user.email}
                   </div>
                 </Link>
@@ -71,7 +73,7 @@ function Users() {
                   </button>
                 </div>
               </div>
-              <hr className="min-w-96" />
+              <hr className="min-w-40" />
             </div>
           ))
         : null}
